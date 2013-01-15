@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Project request:</b>
+  <%= @request_selection.project_request_id %>
+</p>
+
+<p>
+  <b>Employee:</b>
+  <%= @request_selection.employee_id %>
+</p>
+
+<p>
+  <b>Response:</b>
+  <%= @request_selection.response_id %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @request_selection.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_response_request_selection_path(@response, @request_selection) %> |
+<%= link_to 'Back', response_request_selections_path(@response) %>

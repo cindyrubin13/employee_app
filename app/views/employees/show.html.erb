@@ -1,0 +1,117 @@
+<head>
+  <title>Tabbed Structure - REgular</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+</head>
+<body>
+  <div id="tabbed_box_1" class="tabbed_box">
+    <h4>Select a Tab</h4>
+    <div id="navigation">
+          <ul>
+           <li><%= link_to 'All Requests', project_requests_path %></li>
+           <li id="current"><%= link_to 'My Profile', employee_path(current_employee) %></li>
+           <li><%= link_to "Requests I've Posted", project_request_path(current_employee) %></li>
+          </ul>
+        </div>    
+      </div>
+
+<p class="profilehead"> My Profile </p>
+<p class="signoutlink"><%= link_to 'Signout', signout_path, method: "delete" %></p>
+
+
+<%= link_to ' Edit Profile', edit_employee_path(current_employee) %> 
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @employee %>
+        <!--<%= @employee.employee_name %>-->
+      </h1>
+    </section>
+  </aside>
+</div>
+<div class="showprofile">
+<p>
+  <b>Employee name:</b>
+  <%= @employee.employee_name %>
+</p>
+
+<p>
+  <b>Employee email:</b>
+  <%= @employee.employee_email %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @employee.location %>
+</p>
+
+<p>
+  <b>Department:</b>
+  <%= @employee.department %>
+</p>
+
+<p>
+  <b>Years with Company:</b>
+  <%= @employee.years_with_company %>
+</p>
+
+<p>
+  <b>Manager:</b>
+  <%= @employee.manager %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @employee.position %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @employee.group %>
+</p>
+
+<p>
+  <b>Current Skills:</b>
+  <%= @employee.current_skill %>
+</p>
+
+<p>
+  <b>Skills Interest In:</b>
+  <%= @employee.skills_interested_in %>
+</p>
+
+<p>
+  <b>Short Description about </b>
+  <b><%= @employee.employee_name %></b>
+  <b> : </b>
+  <%= @employee.description %>
+</p>
+<div="projectsworked">
+ <p> <b>Projects I have Worked On: </b></p>
+ 
+
+ <p> <% @project_requests.each do |project_request| %>
+     <% if @employee.id == project_request.employee_id %>
+
+        <b><%= project_request.title%> :
+         <%= project_request.start_date.strftime("%B %e, %Y -") %> 
+         <%= project_request.end_date.strftime("%B %e, %Y") %> </b>
+           <% if project_request.end_date < @current_date %>
+              <b>(Completed)</b>
+            <% else %>
+              <b> (In Progress)</b>
+            <% end %>
+
+  </p>
+           <p><b>Description:  <%= project_request.project_help %></b></p>
+   <p><b>-------------------------------------------------------------------------------------------</b></p>        
+      <% end %>
+     <% end %>
+     
+    </div>
+   
+</div>
+
+
+</div>
+

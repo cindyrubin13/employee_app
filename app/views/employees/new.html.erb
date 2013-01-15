@@ -1,0 +1,119 @@
+<h1>New Employee Sign-Up Page</h1>
+
+
+<%= form_for(@employee) do |f| %>
+ 
+   
+   <div class="field">
+    <%= f.label :employee_name %>
+    <%= f.text_field :employee_name %>
+    </div>
+    
+    <div class="newfirst">
+      <div class="field">
+      <%= f.label :employee_email %>
+      <%= f.text_field :employee_email %>
+     </div>
+     </div>
+    <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    </div>
+    <div class="newsecond">
+     <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    </div>
+    </div>
+
+    <div class="field">
+    <%= f.label :office %>
+    <%= f.select :location, ['New York', 'Chicago', 'Los Angeles', 'Atlanta', 'Detroit', 'Boston', 'Mumbai', 'Houston'] %> 
+  </div>
+  <div class="newthird">
+  <div class="field">
+    <%= f.label :department %>
+    <%= f.select :department, ['IT', 'Security' 'Programming'] %>
+  </div>
+  </div>
+  <div class="newfourth">
+   <div class="field">
+    <%= f.label :years_with_company %>
+    <%= f.select :years_with_company, ['1', '2', '3', '4', '5', '6', '7', '8', '9'] %>
+  </div>
+  </div>
+  <div class="field">
+    <%= f.label :immediate_supervisor %>
+    <%= f.text_field :manager %>
+  </div>
+<div class="newfifth">
+  <div class="field">
+    <%= f.label :job_title %>
+    <%= f.select :position, ['Engineer', 'Analyst', 'Project Lead', 'UI Specialist', 'QA Specialist'] %>
+  </div>
+  </div>
+<div class="newsixth">
+  <div class="field">
+    <%= f.label :group %>
+   <%= f.select :group, ['Development', 'Interface Design', 'QA', 'Infrasructure'] %>
+  </div>
+ </div>
+
+ <div class="newseventh">
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :size => "40x6" %>
+  </div>
+ </div>
+  <div class="currsk">
+   <div class="field">
+     <%= f.label :current_skill  %>
+     <% @skills.each do |skill| %>
+      <div class="inbox">
+       <%= check_box_tag "current_skill[]", skill.language %>
+       <%= skill.language %>
+     </div>
+       <% end %>
+      
+    
+      
+    </div>
+  </div>
+
+
+    <div class="skint">
+   <div class="field">
+     <%= f.label :desired_skills  %>
+      <% @skills.each do |skill| %> 
+      <div class="inbox">
+       <%= check_box_tag "skills_interested_in[]", skill.language %>
+       <%= skill.language %>
+     </div>
+       <% end %>
+      
+    
+      
+    </div>
+  </div>
+</div>
+ 
+  <div class="newsub">
+ <div class="actions">
+    <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+  </div>
+</div>
+<% end %>
+
+
+  
+    
+
+     
+
+
+
+
+
+
+
+

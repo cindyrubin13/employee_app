@@ -1,0 +1,18 @@
+<head>
+  <title>Tabbed Structure - REgular</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+</head>
+<body>
+  <div id="tabbed_box_1" class="tabbed_box">
+    <h4>Select a Tab</h4>
+    <div class="tabbed_area">
+          <ul class="tabs">
+           <li> <%= link_to 'All Requests', project_requests_path %></li>
+           <li ><%= link_to 'My Profile', employee_path(current_employee) %></li>
+           
+           <li><%= link_to "Requests I've Posted", project_request_path(current_employee) %></li>
+           
+          </ul>
+        </div>    
+      </div>
+    </body>  

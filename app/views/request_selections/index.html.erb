@@ -1,0 +1,35 @@
+<h1>Listing Request Selections</h1>
+
+<table>
+  <tr>
+    <th>Project request</th>
+    <th>Employee</th>
+    <th>Response</th>
+    <th>Comment</th>
+    <th>Name</th>
+    <th colspan="2"></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @request_selections.each do |request_selection| %>
+  <tr>
+    <td><%= request_selection.project_request_id %></td>
+    <td><%= request_selection.employee_id %></td>
+    <td><%= request_selection.response_id %></td>
+    <td><%= request_selection.comment %></td>
+    <td class="selection"><%= request_selection.employee.employee_name %></td> 
+    <td colspan"2"; class="selection"> has been selected for project request number</td>
+    <td class="selection"><%= request_selection.project_request_id %></td>
+    
+   
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back to Project Requests', project_requests_path %>

@@ -1,0 +1,98 @@
+<p class="profilehead">New Project Request</p>
+
+<%= form_for(@project_request) do |f| %>
+  <% if @project_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_request.errors.count, "error") %> prohibited this project_request from being saved:</h2>
+
+      <ul>
+      <% @project_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :employee_id %>
+    <%= f.number_field :employee_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br/>
+    <%= f.text_area :project_help, :size => "40x6" %>
+  </div>
+
+ <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select(:start_date, :order => [:month, :day, :year], :default => @current_date) %>
+  
+  </div>
+  <<div class="tenfield">
+    <%= f.label :select_date %>
+    <div class="datefield1">
+    <%= render 'layouts/datepicker' %>
+  </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_select(:end_date, :order => [:month, :day, :year], :default => @current_date)  %>
+  </div>
+ <div class="elefield">
+    
+  <%= f.label :select_date %>  
+   <div class="datefield2"> 
+<%= render 'layouts/datepicker' %>
+  </div>
+</div>
+
+  <div class="field">
+    <%= f.label :group %>
+     <%= f.select :group, ['Development', 'Interface Design', 'QA', 'Infrasructure'] %>
+  </div> 
+ 
+<div class="offield">
+<div class="field">
+    <%= f.label :office %>
+    <%= f.select :office, ['New York', 'Chicago', 'Los Angeles', 'Atlanta', 'Detroit', 'Boston', 'Mumbai', 'Houston'] %> 
+  </div>
+</div>
+  
+ 
+
+ <div class="thirtfld">
+   <div class="field">
+     <%= f.label :relevant_skills %>
+     <div class="chkbox">
+      <%= check_box_tag  "relevant_skill[]","PHP" %>PHP <br/>
+     <%= check_box_tag "relevant_skill[]", "MySQL" %>MySQL <br/> 
+     <%= check_box_tag "relevant_skill[]", "C+" %>C+ <br/> 
+     <%= check_box_tag "relevant_skill[]", "Apache" %>Apache <br/> 
+     <%= check_box_tag "relevant_skill[]", "Ruby on Rails" %>Ruby on Rails <br/> 
+     <%= check_box_tag "relevant_skill[]", "SQL Server" %>SQL Server<br/> 
+     <%= check_box_tag "relevant_skill[]", "Linux" %>Linux <br/> 
+     
+  </div>
+</div>
+</div>
+  
+  <!--<div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>-->
+
+
+<div class="fourtfld"> 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+</div>
+<% end %>
+
+

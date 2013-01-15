@@ -1,0 +1,33 @@
+<%= form_for([@response, @request_selection]) do |f| %>
+  <% if @request_selection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request_selection.errors.count, "error") %> prohibited this request_selection from being saved:</h2>
+
+      <ul>
+      <% @request_selection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= f.hidden_field :project_request_id, :value => @response.project_request_id %><br />
+  </div>
+  <div class="field">
+    
+    <%= f.hidden_field :employee_id, :value =>  @response.employee_id %>
+  </div>
+  <div class="field">
+    
+    <%= f.hidden_field :response_id %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_field :comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

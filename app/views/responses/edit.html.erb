@@ -1,0 +1,6 @@
+<h1>Editing a Response</h1>
+<!--form_for(@response, :url=>project_request_responses_path(@project_request)) do |f|-->
+<%= render 'form' %>
+
+<%= link_to 'Show',project_request_response_path(@project_request, @response) %> |
+<%= link_to 'Return to Response Listing',project_request_responses_path(@project_request) %>

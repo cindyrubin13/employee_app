@@ -1,0 +1,78 @@
+ <head>
+  <title>Tabbed Structure - REgular</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+</head>
+<body>
+  <div id="tabbed_box_1" class="tabbed_box">
+    <h4>Select a Tab</h4>
+    <div id="navigation">
+          <ul>
+           <li id="current"><%= link_to 'All Requests', project_requests_path %></li>
+           <li><%= link_to 'My Profile', employee_path(current_employee) %></li>
+           <li><%= link_to "Requests I've Posted", project_request_path(current_employee) %></li>
+          </ul>
+        </div>    
+      </div>
+
+<p class="profilehead">All Requests</p>
+<h1></h1>
+<table>
+  
+
+<% @project_requests.each do |project_request| %>
+  <tr>
+    <td><%= project_request.title %>: 
+    <%= project_request.start_date.strftime("%B %e, %Y -") %>
+    <%= project_request.end_date.strftime(" %B %e, %Y") %></td>
+   <td> <% if project_request.start_date <= @current_date  &&    project_request.end_date > @current_date %> 
+           <%= project_request.status = 'Open, In Progress' %>
+        <% else %> 
+          <% if project_request.start_date > @current_date %> 
+           <%= project_request.status  = 'Open, Not Started' %>
+          
+          <% else %>
+             <% if project_request.end_date <= @current_date  %>
+             <%= project_request.status  = 'Closed, Completed' %>
+             <% end %>
+          <% end %>
+        <% end %>
+       </td>
+    
+  </tr>
+  <tr>
+    <td>Posted by
+    <%= project_request.employee.employee_name %> in 
+    <%= project_request.employee.location %> Office (Group: 
+    <%= project_request.employee.group %> )</td>
+  </tr>
+  <tr>
+    <td>Description:
+    <%= project_request.project_help %></td>
+  </tr>
+  <tr> 
+     <% if project_request.end_date <= @current_date %>    
+       <td> Applied</td>
+     <% else %> 
+       <td><%= link_to "Apply", project_request_responses_path(project_request) %></td>
+     <% end %>  
+    
+    <!--<td><%= project_request.status %></td>
+    
+    <td style= "padding-left: 25px"></td>
+    
+    <td><%= link_to "Current_responses", project_request_responses_path(project_request) %></td>
+    <td><%= link_to 'Show', project_request %></td>
+    <td><%= link_to 'Edit', edit_project_request_path(project_request) %></td>
+    <td><%= link_to 'Destroy', project_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project request', new_project_request_path %>
+
+<%= link_to 'My Profile', employee_path(current_employee) %> |
+<%= link_to 'All employees', employees_path %> |
+<%= link_to 'Post a Request', new_project_request_path %> |
+<%= link_to 'Signout', signout_path, method: "delete" %>

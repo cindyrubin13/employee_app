@@ -1,0 +1,45 @@
+<h1>Listing of All Employees</h1>
+
+<table>
+  <tr>
+    <th>Employee name</th>
+    <th>Employee email</th>
+    <th>Location</th>
+    <th>Department</th>
+    <th>Years With Company</th>
+    <th>Manager/Lead</th>
+    <th>Position</th>
+    <th>Group</th>
+    <th>Current skills</th>
+    <th>Skills Interested In</th>
+    <th>Post Projects</th>
+    <th>Checkout Projects</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employees.each do |employee| %>
+  <tr>
+    <td><%= employee.employee_name %></td>
+    <td><%= employee.employee_email %></td>
+    <td><%= employee.location %></td>
+    <td><%= employee.department %></td>
+    <td><%= employee.years_with_company %></td>
+    <td><%= employee.manager %></td>
+    <td><%= employee.position %></td>
+    <td><%= employee.group %></td>
+    <td><%= employee.current_skill %></td>
+     <td><%= employee.skills_interested_in %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+<!--<%= link_to 'My Profile', employee_path(current_employee) %> |
+<%= link_to "Post?", new_project_request_path %> |
+<%= link_to 'All Requests', project_requests_path %> |
+<%= link_to 'Signout', signout_path, method: "delete" %> -->
+
+

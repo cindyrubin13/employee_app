@@ -1,0 +1,36 @@
+<h1>Listing of Responses for a Project Request</h1>
+<%= stylesheet_link_tag 'stylesheets/request_selections' %>
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Employee</th>
+    <th>Project request</th>
+    <th> Employee Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+ 
+
+ 
+  <% @responses.each do |response| %>
+    
+      <tr>
+        <td><%= response.message %></td>
+        <td><%= response.employee_id %></td>
+        <td><%= response.project_request_id %></td>
+        <td><%= link_to response.employee.employee_name, employee_path(response.employee_id) %></td>
+        <td><%= link_to 'Pick Me', new_response_request_selection_path(response) %></td>
+        <% if response.employee_id == current_employee.id %>
+       
+        <td><%= link_to 'edit', edit_project_request_response_path(@project_request, response)%></td>
+        <td><%= link_to 'destroy', project_request_response_path(@project_request, response), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+         <% end %>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back to list of project requests', project_requests_path %>

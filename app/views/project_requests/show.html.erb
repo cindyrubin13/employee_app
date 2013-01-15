@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Project help:</b>
+  <%= @project_request.project_help %>
+</p>
+
+<p>
+  <b>Employee:</b>
+  <%= @project_request.employee_id %>
+</p>
+
+<p>
+  <b>Start Date:</b>
+  <%= @project_request.start_date %>
+</p>
+
+<p>
+  <b>End Date:</b>
+  <%= @project_request.end_date %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @project_request.status %>
+</p>
+
+<%= link_to 'Edit', edit_project_request_path(@project_request) %> |
+<%= link_to 'Back', project_requests_path %>

@@ -1,0 +1,138 @@
+<p class="profilehead">Edit Profile Information</p>
+<p class="signoutlink"><%= link_to 'Signout', signout_path, method: "delete" %></p>
+<%= hidden_field_tag "employee[skills][]", "" %>
+
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="editprofile">
+ 
+  <div class="field">
+    <%= f.label :employee_name %>
+    <%= f.text_field :employee_name %>
+  </div>
+  <div class="emailfld">
+  <div class="field">
+    <%= f.label :employee_email %>
+    <%= f.text_field :employee_email %>
+  </div>
+</div>
+
+
+ <div class="firstfld">
+  <div class="field">
+    <%= f.label :office %>
+    <%= f.select :location, ['New York', 'Chicago', 'Los Angeles', 'Atlanta', 'Detroit', 'Boston', 'Mumbai', 'Houston'] %>
+
+  </div>
+</div>
+
+ <div class="secondfld">
+  <div class="field">
+    <%= f.label :department %>
+    <%= f.select :department, ['IT', 'Security' 'Programming'] %>
+  </div>
+  </div>
+<div class="thirdfld">
+  <div class="field">
+    <%= f.label :group %>
+    <%= f.select :group, ['Development', 'Interface Design', 'QA', 'Infrasructure'] %>
+  </div>
+</div>
+
+<div class="fourthfld">
+ <div class="field">
+    <%= f.label :job_title %>
+    <%= f.select :position, ['Engineer', 'Analyst', 'Project Lead', 'UI Specialist', 'QA Specialist'] %>
+  </div>
+</div>
+   <div class="fifthfld">
+ <div class="field">
+    <%= f.label :immediate_supervisor %>
+    <%= f.text_field :manager %>
+  </div>
+</div>
+
+<div class="sixthfld">
+  <div class="field">
+    <%= f.label :years_with_company %>
+    <%= f.select :years_with_company, ['1', '2', '3', '4', '5', '6', '7', '8', '9'] %>
+  </div>
+ </div> 
+ 
+
+     
+<div class="ninefld">
+  <div class="field">
+    <%= f.label :description %><br/>
+    <%= f.text_area :description, :size => "40x6" %>
+  </div>
+</div>
+<div class="grfield">
+ <%= gravatar_for @employee %>
+    <a href="http://gravatar.com/emails">Upload 
+      Photo</a>
+</div>    
+    
+  <div class="seventhfld">
+ <div class="field">
+
+        <%= f.label :current_skill  %>
+      <% @skills.each do |skill| %>
+      <div class="inbox">
+         <%  emp = @employee.current_skill.index skill.language %>
+         
+   <% if emp.blank? %> 
+   <%= check_box_tag(:current_skill, skill.language, false) %> <%= skill.language %> <br/>
+   <% else %>
+   <%= check_box_tag(:current_skill, skill.language, true) %> <%= skill.language %><br/>
+   <% end %>
+     </div>
+    <% end %>
+      
+    </div>
+  </div>
+
+
+
+<div class="eightfld">
+   <div class="field">
+     <%= f.label :desired_skills  %>
+      <% @skills.each do |skill| %> 
+      <div class="inbox">
+         <%  emp = @employee.skills_interested_in.index skill.language %>
+          
+   <% if emp.blank? %> 
+   <%= check_box_tag(:skills_interested_in, skill.language, false) %> <%= skill.language %><br/>
+   <% else %>
+   <%= check_box_tag(:skills_interested_in, skill.language, true) %><%= skill.language %> <br/>
+   <% end %>
+     </div>
+    <% end %>
+      
+    
+      
+    </div>
+  </div>
+
+  <div class="submitfld">
+  <div class="actions">
+    <%= f.submit "Update Profile", class: "btn btn-large btn-primary" %> 
+  </div>
+</div>
+<div class="cancelfld">
+<%= link_to "Cancel", employee_path(current_employee) %>  
+</div>
+</div>
+<% end %>
+
+
