@@ -45,16 +45,27 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @skills = Skill.all
     current_skill = params[:current_skill]
-    @employee.current_skill = @employee.current_skill.split(", ")
-  
+    if !params[:current_skill].nil?
+   current_skill = @employee.current_skill.split(", ")
+   #@current_skills = (params[:current_skill].present? ? params[:current_skill] : [])
+    end   
    skills_interested_in = params[:skills_interested_in]
-   @employee.skills_interested_in = @employee.skills_interested_in.split(", ")
+   if !params[:skills_interested_in].nil?
+   skills_interested_in = @employee.skills_interested_in.split(", ")
+   #@skills_interested_in = Employee.where("skills_interested_in IN (?)", params[:skills_interested_in])
+    end
+
+
+
+
   end
 
   # POST /employees
   # POST /employees.json
   def create
+
     @employee = Employee.new(params[:employee])
+      @skills = Skill.all
     current_skill = params[:current_skill]
     @employee.current_skill = current_skill.join(", ")
  
@@ -80,8 +91,14 @@ class EmployeesController < ApplicationController
   def update
    @employee = Employee.find(params[:id])
     @skills = Skill.all
-   #current_skill = (params[:current_skill].present? ? params[:current_skill] : [])
-    @employee.current_skill = params[:current_skill]
+    #params[:current_skill][:skill_languages]  ||= []
+   #@employee.current_skill = (params[:current_skill].present? ? params[:current_skill] : [])
+   #current_skill = params[:current_skill]
+   # @employee.current_skill = current_skill.join(", ")
+   @employee.current_skill = params[:current_skill]
+   # skills_interested_in = params[:skills_interested_in]
+   #@employee.skills_interested_in = skills_interested_in.join(", ")#@employee.current_skill = current_skill.join(", ")
+   #@current_skill = params[:current_skill]
      #params[:current_skill] ||= []
     #current_skill = params[:current_skill]
     #@employee.current_skill = current_skill.join(", ")

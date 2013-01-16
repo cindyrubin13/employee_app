@@ -432,11 +432,8 @@ ul.tabs li a  {
    padding: 3px;
    margin: 1px;
    }
-   #current {
-  padding: 3px;
-  margin: 1px;
-  border: 10px solid white;
-}
+  
+
 #navigation li a:hover {
   text-align: center;
   border-bottom: none;
@@ -444,6 +441,19 @@ ul.tabs li a  {
   border-color:  blue;
   color: blue;
   border-bottom: none;
+}
+#navigation li a:active {
+  text-align: center;
+  border-bottom: none;
+  background-color: white;
+  border-color:  blue;
+  color: blue;
+  border-bottom: 3px solid white;
+}
+ #current {
+  padding: 3px;
+  margin: 1px;
+  border: 10px solid white;
 }
 /*.current {
   text-align: center;

@@ -5,7 +5,11 @@ class ProjectRequestsController < ApplicationController
   def index
     @project_requests = ProjectRequest.all
 #@responses = Response.find_all_by_project_request_id(@project_request)
-      @responses = Response.all
+      @responses = Response.find_all_by_employee_id(current_employee)
+      
+
+
+
      @current_date = DateTime.now
     respond_to do |format|
       format.html # index.html.erb

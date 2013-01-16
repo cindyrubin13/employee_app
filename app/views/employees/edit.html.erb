@@ -1,6 +1,6 @@
 <p class="profilehead">Edit Profile Information</p>
 <p class="signoutlink"><%= link_to 'Signout', signout_path, method: "delete" %></p>
-<%= hidden_field_tag "employee[skills][]", "" %>
+<%= hidden_field_tag "employee[current_skills][]", "" %>
 
 <%= form_for(@employee) do |f| %>
   <% if @employee.errors.any? %>
@@ -87,18 +87,17 @@
  <div class="field">
 
         <%= f.label :current_skill  %>
-      <% @skills.each do |skill| %>
+
+         <% @skills.each do |skill| %> 
       <div class="inbox">
-         <%  emp = @employee.current_skill.index skill.language %>
-         
-   <% if emp.blank? %> 
-   <%= check_box_tag(:current_skill, skill.language, false) %> <%= skill.language %> <br/>
-   <% else %>
-   <%= check_box_tag(:current_skill, skill.language, true) %> <%= skill.language %><br/>
-   <% end %>
+       
+       <%= check_box_tag "current_skill[]", skill.language, @employee.current_skill.include?(skill.language) %>
+       <%= skill.language %>
      </div>
-    <% end %>
+       <% end %>
+   
       
+       
     </div>
   </div>
 
@@ -109,17 +108,11 @@
      <%= f.label :desired_skills  %>
       <% @skills.each do |skill| %> 
       <div class="inbox">
-         <%  emp = @employee.skills_interested_in.index skill.language %>
-          
-   <% if emp.blank? %> 
-   <%= check_box_tag(:skills_interested_in, skill.language, false) %> <%= skill.language %><br/>
-   <% else %>
-   <%= check_box_tag(:skills_interested_in, skill.language, true) %><%= skill.language %> <br/>
-   <% end %>
+        
+         <%= check_box_tag "skills_interested_in[]", skill.language, @employee.skills_interested_in.include?(skill.language) %>
+       <%= skill.language %>
      </div>
     <% end %>
-      
-    
       
     </div>
   </div>

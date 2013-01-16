@@ -20,6 +20,7 @@
   
 
 <% @project_requests.each do |project_request| %>
+<%  empstatus = 0 %>
   <tr>
     <td><%= project_request.title %>: 
     <%= project_request.start_date.strftime("%B %e, %Y -") %>
@@ -50,22 +51,48 @@
     <%= project_request.project_help %></td>
   </tr>
   <tr> 
-     <% if project_request.end_date <= @current_date %>    
-       <td> Applied</td>
-     <% else %> 
-       <td><%= link_to "Apply", project_request_responses_path(project_request) %></td>
-     <% end %>  
+    <td> </td>
+
+<% if !@responses.nil? %>
     
-    <!--<td><%= project_request.status %></td>
-    
-    <td style= "padding-left: 25px"></td>
-    
-    <td><%= link_to "Current_responses", project_request_responses_path(project_request) %></td>
-    <td><%= link_to 'Show', project_request %></td>
-    <td><%= link_to 'Edit', edit_project_request_path(project_request) %></td>
-    <td><%= link_to 'Destroy', project_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-  </tr>
+  <% @responses.each do |response| %>
+     
+    <% if project_request.id  == response.project_request_id && response.employee_id == project_request.employee.id %>
+
+    <td> <%= project_request.id %>
+      <%= response.project_request_id %>
+      <%= response.employee_id %>
+        <%= project_request.employee.id %> </td>
+      <% empstatus = 1  %>
+      <td> Applied</td>
+      
+    <% end %>
+       
+  <% end %>
+    <% if empstatus != 1 %>
+    <td> <%= project_request.id %>
+      
+        <%= project_request.employee.id %> </td>
+      <% if project_request.employee_id == project_request.employee.id %>
+      <td> You posted this project so you can't apply </td>
+      <% else %>
+      <td><%= link_to "Apply", new_project_request_response_path(project_request) %></td>
+     
+      <%end %>
+  <% end %>
+<% else %>
+  <% if project_request.employee_id == project_request.employee.id %>
+  <td> <%= project_request.id %>
+      
+        <%= project_request.employee.id %> </td>
+    <td> You posted this project so you can't apply </td>
+  <% else %>
+    <td><%= link_to "Apply", new_project_request_response_path(project_request) %></td>
+  <% end %>
 <% end %>
+  </tr>
+  <% end %>
+
 </table>
 
 <br />

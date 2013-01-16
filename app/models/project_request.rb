@@ -3,6 +3,7 @@ class ProjectRequest < ActiveRecord::Base
   belongs_to :employee
   has_many :responses
   belongs_to :request_selection
+  #belongs_to :responses
   has_many :request_selections
   accepts_nested_attributes_for :responses, :allow_destroy => true
   has_and_belongs_to_many :skills
