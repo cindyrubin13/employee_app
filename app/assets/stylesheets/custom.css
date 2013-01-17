@@ -166,7 +166,7 @@
 
 .tenfield {
   position: absolute;
-  top: 310px;
+  top: 380px;
   left: 330px;
 
 }
@@ -178,7 +178,7 @@
 }
 .elefield {
   position: absolute;
-  top: 340px;
+  top: 410px;
   left: 330px;
 
 }
@@ -190,7 +190,7 @@
 }
 .offield {
   position: absolute;
-  top: 370px;
+  top: 440px;
   left: 330px;
 }
 .twefld {
@@ -209,8 +209,8 @@
 
 .fourtfld {
   position: absolute;
-  top: 590px;
-  left: 100px;
+  top: 630px;
+  left: 250px;
 
 }
 

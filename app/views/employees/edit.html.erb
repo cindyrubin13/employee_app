@@ -1,7 +1,8 @@
 <p class="profilehead">Edit Profile Information</p>
 <p class="signoutlink"><%= link_to 'Signout', signout_path, method: "delete" %></p>
-<%= hidden_field_tag "employee[current_skills][]", "" %>
 
+<%= hidden_field_tag "employee[current_skills][]", "" %>
+<%= hidden_field_tag "employee[skills_interested_in][]", "" %>
 <%= form_for(@employee) do |f| %>
   <% if @employee.errors.any? %>
     <div id="error_explanation">

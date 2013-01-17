@@ -2,7 +2,7 @@ EmpApp::Application.routes.draw do
 
   resources :skills
 
-
+  get "my_requests" => "project_requests#my_requests", :as => "_my_requests"
   get "static_pages/home"
 
  match '/signup', to: 'employees#new'
@@ -19,7 +19,7 @@ EmpApp::Application.routes.draw do
   end
 
 
-    
+
   
 
   resources :project_requests do
@@ -29,7 +29,7 @@ EmpApp::Application.routes.draw do
 
   resources :employees 
   resources :sessions, only: [:new, :create, :destroy]
-  
+   
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

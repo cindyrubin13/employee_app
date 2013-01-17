@@ -1,6 +1,11 @@
 class ResponsesController < ApplicationController
   # GET /responses
-  # GET /responses.json
+  
+  def my_requests
+     @my_requests = ProjectRequest.find_all_by_employee_id(current_employee)
+      @responses = Response.find_all_by_employee_id(current_employee)
+  end
+# GET /responses.json
   def index
   
  @project_request = ProjectRequest.find(params[:project_request_id])

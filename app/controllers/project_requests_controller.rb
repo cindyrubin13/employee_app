@@ -1,13 +1,22 @@
 class ProjectRequestsController < ApplicationController
   before_filter :signed_in_employee, only: [:create, :destroy]
+  def my_requests
+     @project_requests = ProjectRequest.find_all_by_employee_id(current_employee)
+     @responses = Response.find_all_by_employee_id(current_employee)
+     @request_selections = RequestSelection.find_all_by_employee_id(current_employee)
+     @current_date = DateTime.now
+  end
+
+
   # GET /project_requests
   # GET /project_requests.json
   def index
     @project_requests = ProjectRequest.all
 #@responses = Response.find_all_by_project_request_id(@project_request)
-      @responses = Response.find_all_by_employee_id(current_employee)
+      #@responses = Response.all
+      @responses = Response.find(:all, :conditions => :project_request_id == :id)
       
-
+     
 
 
      @current_date = DateTime.now
@@ -40,6 +49,7 @@ class ProjectRequestsController < ApplicationController
   # GET /project_requests/new.json
   def new
     @project_request = ProjectRequest.new
+     @skills = Skill.all
      @current_date = DateTime.now
 
     respond_to do |format|

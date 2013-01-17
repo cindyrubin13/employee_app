@@ -1,4 +1,26 @@
-<p class="profilehead">New Project Request</p>
+
+ <head>
+  <title>Tabbed Structure - REgular</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+</head>
+<body>
+  <div id="tabbed_box_1" class="tabbed_box">
+    <h4>Select a Tab</h4>
+    <div id="navigation">
+          <ul>
+           <li><%= link_to 'All Requests', project_requests_path %></li>
+           <li id="current"><%= link_to 'My Profile', employee_path(current_employee) %></li>
+           <li><%= link_to "Requests I've Posted", _my_requests_path %></li>
+           <li><%= link_to "Post a New Request", new_project_request_path %></li>
+          </ul>
+        </div>    
+      </div>
+
+<%= hidden_field_tag "employee[relevant_skill][]", "" %>
+
+
+
+<p class="profilehead">New Request</p>
 
 <%= form_for(@project_request) do |f| %>
   <% if @project_request.errors.any? %>
@@ -19,8 +41,7 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :employee_id %>
-    <%= f.number_field :employee_id %>
+    <%= f.hidden_field :employee_id, :value => current_employee.id %>
   </div>
 
   <div class="field">
@@ -33,7 +54,7 @@
     <%= f.date_select(:start_date, :order => [:month, :day, :year], :default => @current_date) %>
   
   </div>
-  <<div class="tenfield">
+   <div class="tenfield">
     <%= f.label :select_date %>
     <div class="datefield1">
     <%= render 'layouts/datepicker' %>
@@ -44,11 +65,11 @@
     <%= f.label :end_date %>
     <%= f.date_select(:end_date, :order => [:month, :day, :year], :default => @current_date)  %>
   </div>
+  
  <div class="elefield">
-    
   <%= f.label :select_date %>  
    <div class="datefield2"> 
-<%= render 'layouts/datepicker' %>
+ <%= render 'layouts/datepicker' %>
   </div>
 </div>
 
@@ -66,21 +87,15 @@
   
  
 
- <div class="thirtfld">
+  <div class="relsk">
    <div class="field">
-     <%= f.label :relevant_skills %>
-     <div class="chkbox">
-      <%= check_box_tag  "relevant_skill[]","PHP" %>PHP <br/>
-     <%= check_box_tag "relevant_skill[]", "MySQL" %>MySQL <br/> 
-     <%= check_box_tag "relevant_skill[]", "C+" %>C+ <br/> 
-     <%= check_box_tag "relevant_skill[]", "Apache" %>Apache <br/> 
-     <%= check_box_tag "relevant_skill[]", "Ruby on Rails" %>Ruby on Rails <br/> 
-     <%= check_box_tag "relevant_skill[]", "SQL Server" %>SQL Server<br/> 
-     <%= check_box_tag "relevant_skill[]", "Linux" %>Linux <br/> 
-     
-  </div>
-</div>
-</div>
+     <%= f.label :relevant_skills  %>
+     <% @skills.each do |skill| %>
+      <div class="inbox">
+       <%= check_box_tag "relevant_skill[]", skill.language %>
+       <%= skill.language %>
+     </div>
+       <% end %>
   
   <!--<div class="field">
     <%= f.label :status %><br />
@@ -88,9 +103,9 @@
   </div>-->
 
 
-<div class="fourtfld"> 
-  <div class="actions">
-    <%= f.submit %>
+   <div class="fourtfld">
+   <div class="actions">
+    <%= f.submit "Create My Request", class: "btn btn-large btn-primary" %>
   </div>
 </div>
 <% end %>
