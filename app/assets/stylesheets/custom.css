@@ -276,11 +276,11 @@ height: 100%
 }
 
 
-@import "bootstrap";
+/*@import "bootstrap";
 
 /* universal */
 
-html {
+/*html {
   overflow-y: scroll;
 }
 
