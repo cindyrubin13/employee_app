@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :department, :employee_email, :employee_name, :location,
+  attr_accessible :department, :employee_email, :employee_name, :location, :last_name,
   :years_with_company, :manager, :position, :group, :current_skill, :skills_interested_in, :password, :password_confirmation, :description
   has_secure_password 
   has_and_belongs_to_many :skills

@@ -21,34 +21,50 @@
 <table>
   
 <% if !@project_requests.nil? %>
-<% @project_requests.each do |project_request| %>
+  <% @project_requests.each do |project_request| %>
   <tr>
+
     <td><%= project_request.title %>: 
     <%= project_request.start_date.strftime("%B %e, %Y -") %>
     <%= project_request.end_date.strftime(" %B %e, %Y") %></td>
    <td> <% if project_request.start_date <= @current_date  &&    project_request.end_date > @current_date %> 
            <%= project_request.status = 'Open, In Progress' %>
+           <% open = 0 %>
         <% else %> 
           <% if project_request.start_date > @current_date %> 
-           <%= project_request.status  = 'Open, Not Started' %>
-          
+            <%= project_request.status  = 'Open, Not Started' %>
+            <% open = 0 %>
           <% else %>
-             <% if project_request.end_date <= @current_date  %>
-             <%= project_request.status  = 'Closed, Completed' %>
-             <% end %>
+              <% if project_request.end_date <= @current_date  %>
+                <%= project_request.status  = 'Closed, Completed' %>
+                <% open = 1 %>
+              <% end %>
           <% end %>
         <% end %>
     </td>
     
   </tr>
-  <tr>
-    <td>Description:
-    <%= project_request.project_help %></td>
-  </tr>
-  <tr>
-    <td>Applicants</td>
-  </tr> 
-  
+   <tr>
+     <td>Description:
+        <%= project_request.project_help %></td>
+   </tr>
+  <% if open == 1 %>
+      <% open = 0 %>
+    <tr>
+       <td> No Longer Active </td> 
+ 
+    </tr>
+   
+  <% else %> 
+     <tr>
+       <td> Active 
+       <%= link_to 'Cancel', project_request, method: :delete, data: { confirm: 'Are you sure?' } %></td></tr>
+       <tr> </tr>
+       <tr></tr>
+     <tr>
+       <td>Applicants</td>
+     </tr> 
+  <% end %>
  
     <tr> </tr>
 
@@ -56,28 +72,46 @@
     
   <% @responses.each do |response| %>
      
-<% if project_request.id  == response.project_request_id && response.employee_id == project_request.employee_id %>
-     <tr><td><%= link_to response.employee.employee_name, employee_path(response.employee_id) %></td>
-     <td><%= link_to 'View Profile', employee_path(response.employee_id) %></td> 
-
-  <% if !@request_selections.nil? %>
+    <% if project_request.id  == response.project_request_id %> 
+        <% if response.employee_id != project_request.employee_id %>
+           <% if project_request.employee_id == current_employee.id %>
+                 <tr><td><%= response.employee.employee_name %>
+                 <%= response.employee.last_name %>
+                         <%= link_to 'View Profile', employee_path(response.employee_id) %>
+                         <% rselement = 0 %>
+                    <% if !@request_selections.nil? %>
     
-    <% @request_selections.each do |request_selection| %> 
-     
-      <% if response.employee_id == request_selection.employee_id && response.project_request_id == request_selection.project_request_id %>
-      <td> Selected </td>
-      <% else %>   
-      <td><%= link_to 'Select', new_response_request_selection_path(response) %></td>  
-      <% end %>
+                        <% @request_selections.each do |request_selection| %> 
+                         
+                          <% if response.project_request_id == request_selection.project_request_id %>
+                              <% if response.employee_id == request_selection.employee_id %> 
+                                   <% rselement = 1 %>
+                                     Selected </td>
+
+                              <% end %>
+                          <% end %>
+                       
+                        <% end %>
+                    <% end %>
+                         <% if rselement = 0 %>
+                           <%= link_to 'Select', new_response_request_selection_path(response) %></td>
+                        <% end %>
+             <% end %>
+           </tr>
+          
+        <% end %>
+  
     <% end %>
-  <%end %>
-</tr> 
+  
+  <% end %>
+<tr><td>----------------------------------------------------------------</td></tr>
 <% end %>
 
 <% end %>
+
 <% end %>
-<% end %>
-<% end %>
+
+                                   
 </table>
 
 <br />

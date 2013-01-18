@@ -25,6 +25,15 @@
   left: 150px;
 
 }
+
+#border { 
+border-left: 1px solid black; 
+border-right: 1px solid black;
+height: 100% 
+} 
+
+
+
 .projectsworked {
   line-height: 90%;
 
@@ -41,29 +50,34 @@
   right: 500px;
 }
 
-.emailfld {
+.lastn {
   position: absolute;
   top: 158px;
   left: 400px;
 }
+.emailfld {
+  position: absolute;
+  top: 200px;
 
+}
 .firstfld {
   position: absolute;
   top: 200px;
+  left: 350px;
 
 }
 
 .secondfld {
   position: absolute;
   top: 200px;
-  left: 300px;
+  left: 550px;
 
 }
 
 .thirdfld {
   position: absolute;
   top: 200px;
-  left: 600px;
+  left: 850px;
 
 }
 

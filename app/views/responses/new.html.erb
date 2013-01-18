@@ -1,5 +1,41 @@
-<h1>New Response</h1>
 
 
-<%= render 'form' %>
+<p class="profilehead">Responding to a Request</p>
 
+
+
+<%= form_for([@project_request, @response]) do |f| %>
+
+  <% if @response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
+
+      <ul>
+      <% @response.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :would_you_like_to_leave_a_message? %><br />
+    <%= f.text_field :message %>
+  </div>
+  <div class="field">
+    <div class="field">
+    
+    <%= f.hidden_field :employee_id, :value =>  current_employee.id %>
+    
+   
+  </div>
+  <div class="field">
+    
+    <%= f.hidden_field :project_request_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+    <%= link_to 'Cancel - Return to List of Project Requests', project_requests_path %>
+  </div>
+<% end %>

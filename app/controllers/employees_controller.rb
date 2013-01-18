@@ -6,8 +6,8 @@ class EmployeesController < ApplicationController
 
   def my_requests
       @project_requests = ProjectRequest.find_all_by_employee_id(current_employee)
-      @responses = Response.find_all_by_employee_id(current_employee)
-      @request_selections = RequestSelection.find_all_by_employee_id(current_employee)
+      @responses = Response.find_all_by_project_request_id(@project_requests)
+      @request_selections = RequestSelection.find_all_by_project_request_id(@project_requests)
       @current_date = DateTime.now
   end
 

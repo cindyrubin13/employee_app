@@ -24,59 +24,67 @@
   <% closed = 0 %>
   <tr>
     <td><%= project_request.title %>: 
-    <%= project_request.start_date.strftime("%B %e, %Y -") %>
-    <%= project_request.end_date.strftime(" %B %e, %Y") %></td>
-   <td> <% if project_request.start_date <= @current_date  &&    project_request.end_date > @current_date %> 
-           <%= project_request.status = 'Open, In Progress' %>
-        <% else %> 
-          <% if project_request.start_date > @current_date %> 
-           <%= project_request.status  = 'Open, Not Started' %>
+        <%= project_request.start_date.strftime("%B %e, %Y -") %>
+        <%= project_request.end_date.strftime(" %B %e, %Y") %></td>
+    <td> <% if project_request.start_date <= @current_date  &&    project_request.end_date > @current_date %> 
+             <%= project_request.status = 'Open, In Progress' %>
+         <% else %> 
+             <% if project_request.start_date > @current_date %> 
+                <%= project_request.status  = 'Open, Not Started' %>
           
-          <% else %>
-             <% if project_request.end_date <= @current_date  %>
-             <%= project_request.status  = 'Closed, Completed' %>
-             <% closed = 1 %>
+             <% else %>
+                <% if project_request.end_date <= @current_date  %>
+                   <%= project_request.status  = 'Closed, Completed' %>
+                   <% closed = 1 %>
+                <% end %>
              <% end %>
-          <% end %>
-        <% end %>
+         <% end %>
        </td>
     
   </tr>
-  <tr>
+   <tr>
     <td>Posted by
-    <%= project_request.employee.employee_name %> in 
-    <%= project_request.employee.location %> Office (Group: 
-    <%= project_request.employee.group %> )</td>
-  </tr>
-  <tr>
-    <td>Description:
-    <%= project_request.project_help %></td>
-  </tr>
-  <tr> 
-    
-<% if closed != 1 %>
- <% if !@responses.nil? %>
-    
-  <% @responses.each do |response| %>
- 
+       <%= project_request.employee.employee_name %> 
+       <%= project_request.employee.last_name %>in 
+       <%= project_request.employee.location %> Office (Group: 
+       <%= project_request.employee.group %> )</td>
+   </tr>
+   <tr>
+     <td>Description:
+        <%= project_request.project_help %></td>
+   </tr>
+   <tr> 
+  <% aplelement = 0 %>  
 
-     
-  <% if project_request.id  == response.project_request_id %>
-    <% if project_request.employee_id == response.employee.id %>
-          <tr><td> You posted this project so you can't apply </td></tr>
+  <% if closed != 1 %>
+      <% if project_request.employee_id == current_employee.id %>
+            <tr><td> You posted this project so you can't apply </td></tr>
+            <% aplelement = 1 %>
       <% else %>
-        <% if response.employee_id == response.employee.id %>
-            <tr><td> Applied </td></tr> 
-        <% else %>
-            <tr><td><%= link_to "Apply", new_project_request_response_path(project_request) %></td></tr>
-        <% end %>
-      <% end %>
+
+
+          <% if !@responses.nil? %>
     
-  <% end %>
-<% end %> 
+            <% @responses.each do |response| %>
  
-<tr><td><%= link_to "Apply", new_project_request_response_path(project_request) %></td></tr> 
-<% end %>
+                 <% if project_request.id  == response.project_request_id %>
+              
+                     <% if response.employee_id == response.employee.id %>
+                           <% aplelement = 1 %>
+                           <tr><td> Applied </td></tr> 
+                     <% end %>
+                 <% end %>
+    
+            <% end %>
+    
+         <% end %>
+   
+     <% if aplelement = 0  %>
+       <tr><td><%= link_to "Apply", new_project_request_response_path(project_request) %></td></tr> 
+   
+     <% end %>
+   <% end %>
+
 </tr>
 <% closed = 0 %>
 <% end %>
