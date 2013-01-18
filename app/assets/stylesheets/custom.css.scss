@@ -1,0 +1,515 @@
+
+.selection {
+  color: red;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 2px;
+  padding-right: 2px;
+  line-height: small;
+
+}
+.signup, .profile, .signin {
+  position: absolute;
+  top: 175px;
+  text-align: center;
+  font-weight: bold;
+  left: 575px;
+  
+}
+
+.showprofile {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+
+}
+
+#border { 
+border-left: 1px solid black; 
+border-right: 1px solid black;
+height: 100% 
+} 
+
+
+
+.projectsworked {
+  line-height: 90%;
+
+}
+
+.profilehead {
+   font-size: x-large;
+   text-decoration: underline;
+}
+
+.signoutlink {
+  position: absolute;
+  top: 100px;
+  right: 500px;
+}
+
+.lastn {
+  position: absolute;
+  top: 158px;
+  left: 400px;
+}
+.emailfld {
+  position: absolute;
+  top: 200px;
+
+}
+.firstfld {
+  position: absolute;
+  top: 200px;
+  left: 350px;
+
+}
+
+.secondfld {
+  position: absolute;
+  top: 200px;
+  left: 550px;
+
+}
+
+.thirdfld {
+  position: absolute;
+  top: 200px;
+  left: 850px;
+
+}
+
+.fourthfld {
+  position: absolute;
+  top: 250px;
+  
+}
+
+.fifthfld {
+  position: absolute;
+  top: 250px;
+  left: 300px;
+
+}
+.sixthfld {
+  position: absolute;
+  top: 250px;
+  left: 700px;
+
+}
+.seventhfld {
+  position: absolute;
+  top: 450px;
+  left: 50px;
+  
+
+}
+.eightfld {
+  position: absolute;
+  top: 450px;
+  left: 450px;
+  
+
+}
+.ninefld {
+  position: absolute;
+  top: 310px;
+  left: 10px;
+
+}
+.grfield {
+  position: absolute;
+  top: 330px;
+  left: 450px;
+
+}
+.newfirst {
+  position: absolute;
+  top: 160px;
+  left: 350px;
+}
+.newsecond {
+  position: absolute;
+  top: 195px;
+  left: 350px;
+}
+.newthird {
+  position: absolute;
+  top: 225px;
+  left: 350px;
+}
+.newfourth {
+  position: absolute;
+  top: 225px;
+  left: 650px;
+}
+.newfifth {
+  position: absolute;
+  top: 260px;
+  left: 380px;
+}
+.newsixth {
+  position: absolute;
+  top: 260px;
+  left: 650px;
+}
+.newseventh {
+  position: absolute;
+  top: 300px;
+ 
+}
+.currsk {
+  position: absolute;
+  top: 423px;
+  left: 20px;
+  }
+  .skint {
+  position: absolute;
+  top: 423px;
+  left: 200px;
+  }
+ .newsub {
+  position: absolute;
+  top: 600px;
+  left: 200px;
+  }
+
+
+
+.tenfield {
+  position: absolute;
+  top: 380px;
+  left: 330px;
+
+}
+.datefield1 {
+  position: absolute;
+  top: -13px;
+  left: 100px;
+
+}
+.elefield {
+  position: absolute;
+  top: 410px;
+  left: 330px;
+
+}
+.datefield2 {
+  position: absolute;
+  top: -13px;
+  left: 100px;
+
+}
+.offield {
+  position: absolute;
+  top: 440px;
+  left: 330px;
+}
+.twefld {
+  position: absolute;
+  top: 373px;
+  left: 280px;
+
+}
+
+.thirtfld {
+  position: absolute;
+  top: 400px;
+  left: 10px;
+
+}
+
+.fourtfld {
+  position: absolute;
+  top: 630px;
+  left: 250px;
+
+}
+
+.fiftfld {
+  position: absolute;
+  top: 460px;
+  left: 90px;
+
+}
+.submitfld {
+  position: absolute;
+  top: 625px;
+
+}
+.chkbox {
+  position: fixed;
+  top: 430px;
+  
+
+}
+.skint {
+  position: absolute;
+  top: 423px;
+  left: 350px;
+  }
+.inbox {
+   display: block;
+}
+.cancelfld {
+  position: absolute;
+  top: 625px;
+  left: 400px;
+  text-decoration: none;
+
+}
+
+ h1 {
+    text-align: center;
+    font-weight: bold;
+    
+  }
+.field_with_errors {
+   text-align: center;
+  
+  padding: 2px;
+  background-color: red;
+  display: table;
+  
+}
+
+
+/*@import "bootstrap";
+
+/* universal */
+
+/*html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+ 
+
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #999;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+/* sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid gray;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+/*#tabbed_box {
+  margin: 0px auto 0px auto;
+  width: 650px;
+}
+.tabbed_box_1 h4 {
+  font-family: arial, Helvetica, sans-serif;
+  font-size: 23px;
+  color: #ffffff;
+  letter-spacing: 3px;
+  margin-bottom: 0px;
+}
+.tabbed_area {
+  /*border-bottom: 1px solid #494e52;
+  background-color: white;
+  /*padding: 8px;
+}
+/*ul.tabs {
+  margin: 0px; padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 6px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+}*/
+/*ul.tabs li {
+  list-style: none;
+  display: inline;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+ul.tabs li a  {
+  text-align: center;
+  text-decoration: none;
+   font-size: 9px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px ;
+   
+
+   /* border: 1px solid #464c54;
+  background-color:  #464c54;
+  color: #ffebb5;
+  padding: 8px 14px 8px 14px;
+  
+ 
+  border: 1px solid #464c54;
+  background-color: white;
+  text-decoration: none;
+  font-size: 9px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  
+ 
+}*/
+#navigation li {
+   
+    text-decoration: none;
+     list-style: none;
+  display: inline;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+ 
+   font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+ 
+}
+#navigation li a {
+  text-decoration: none;
+  color: black;
+  
+   background-color: white;
+  border-width: 3px;
+   border-style: solid;
+   border-color: black;
+   padding: 3px;
+   margin: 1px;
+   }
+  
+
+#navigation li a:hover {
+  text-align: center;
+  border-bottom: none;
+  background-color: white;
+  border-color:  blue;
+  color: blue;
+  border-bottom: none;
+}
+#navigation li a:active {
+  text-align: center;
+  border-bottom: none;
+  background-color: white;
+  border-color:  blue;
+  color: blue;
+  border-bottom: 3px solid white;
+}
+ #current {
+  padding: 3px;
+  margin: 1px;
+  border: 10px solid white;
+}
+/*.current {
+  text-align: center;
+  background-color: white;
+  color: #282e32;
+  border-top: 1px solid #464c54; 
+  border-left: 1px solid #464c54;
+  border-right: 1px solid #464c54;
+  padding: 8px;
+  border-bottom: none;
+}
+.noncurrent {
+  text-align: center;
+  background-color: white;
+  color: #282e32;
+   border: 1px solid #464c54;
+   padding: 8px;
+}
+
+ul.tabs li a:hover {
+  text-align: center;
+  background-color: #2f343a;
+  border-color:  #2f343a;
+}
+
+ul.tabs li a.active  {
+  text-align: center;
+  background-color: white;
+  color:#282e32;
+  border-top: 1px solid #464c54; 
+  border-left: 1px solid #464c54;
+  border-right: 1px solid #464c54;
+  padding: 8px;
+  border-bottom: none;
+ /* border-top: 1px solid #464c54;
+  border-left: 1px solid #464c54;
+  border-right: 1px solid #464c54;
+  border-bottom: 0px white;
+}
+.content {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #464c54;
+}
+#content_2, #content_3 {display: none;}*/
