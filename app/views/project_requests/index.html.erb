@@ -18,8 +18,8 @@
 <p class="profilehead">All Requests</p>
 <h1></h1>
 <table>
-  
-
+   <% aplelement = 0 %> 
+ <% applied = 0 %>
 <% @project_requests.each do |project_request| %>
   <% closed = 0 %>
   <tr>
@@ -54,43 +54,52 @@
         <%= project_request.project_help %></td>
    </tr>
    <tr> 
-  <% aplelement = 0 %>  
-
+ 
+ 
   <% if closed != 1 %>
       <% if project_request.employee_id == current_employee.id %>
-            <tr><td> You posted this project so you can't apply </td></tr>
+            <tr><td class='apply'> You posted this project so you can't apply </td></tr>
             <% aplelement = 1 %>
+            <% applied = 1 %>
       <% else %>
-
+        <% applied = 0 %>
 
           <% if !@responses.nil? %>
     
-            <% @responses.each do |response| %>
+              <% @responses.each do |response| %>
  
                  <% if project_request.id  == response.project_request_id %>
-              
-                     <% if response.employee_id == response.employee.id %>
-                           <% aplelement = 1 %>
-                           <tr><td> Applied </td></tr> 
-                     <% end %>
-                 <% end %>
-    
-            <% end %>
-    
-         <% end %>
-   
-     <% if aplelement = 0  %>
-       <tr><td><%= link_to "Apply", new_project_request_response_path(project_request) %></td></tr> 
-   
-     <% end %>
-   <% end %>
+                
+                    <% if response.employee_id == current_employee.id %>
+                          
+                        <% if response.status == 1 %>
 
+                               <tr><td class='apply'> Applied </td></tr>
+                                    <% applied = 1 %> 
+                              
+                        <% end %>
+                       
+                    <% end %>
+                  
+                 <% end %>
+                
+               
+            <% end %>
+           
+               
+        <% end %>     
+           
+    <% end %>
+    <% if applied ==  0 %>
+           <tr class='apply'><td ><%= link_to "Apply", new_project_request_response_path(project_request) %></td></tr>
+     
+  <% end %>
 </tr>
+
 <% closed = 0 %>
 <% end %>
-<% end %>        
- 
-      
+
+<% end %>          
       
 
 </table>

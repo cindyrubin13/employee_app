@@ -27,6 +27,7 @@ class EmployeesController < ApplicationController
   def show
      @employee = Employee.find(params[:id])
      @project_requests = ProjectRequest.all
+     @request_selections = RequestSelection.all
      @current_date = DateTime.now
     respond_to do |format|
       format.html # show.html.erb

@@ -49,29 +49,26 @@
     <%= f.text_area :project_help, :size => "40x6" %>
   </div>
 
- <div class="field">
+  <div class="field">
     <%= f.label :start_date %>
     <%= f.date_select(:start_date, :order => [:month, :day, :year], :default => @current_date) %>
-  
+
+
+
   </div>
-   <div class="tenfield">
-    <%= f.label :select_date %>
-    <div class="datefield1">
-    <%= render 'layouts/datepicker' %>
-  </div>
-  </div>
-  
+ 
+
+
   <div class="field">
     <%= f.label :end_date %>
     <%= f.date_select(:end_date, :order => [:month, :day, :year], :default => @current_date)  %>
+    
+
   </div>
   
- <div class="elefield">
-  <%= f.label :select_date %>  
-   <div class="datefield2"> 
- <%= render 'layouts/datepicker' %>
-  </div>
-</div>
+ 
+ 
+
 
   <div class="field">
     <%= f.label :group %>

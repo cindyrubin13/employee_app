@@ -70,7 +70,9 @@ class ProjectRequestsController < ApplicationController
     
      @project_request = current_employee.project_requests.build(params[:project_request])
      @current_date = DateTime.now
-
+     relevant_skill = params[:relevant_skill]
+    @project_request.relevant_skill = relevant_skill.join(", ")
+ @skills = Skill.all
     if @project_request.save
       flash[:success] = "Project Request created!"
       redirect_to project_requests_path

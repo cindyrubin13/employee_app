@@ -9,32 +9,36 @@
     <%= f.label :first_name %>
     <%= f.text_field :employee_name %>
     </div>
+    <div class="lnfield">
     <div class="field">
     <%= f.label :last_name %>
     <%= f.text_field :last_name %>
     </div>
-    
+    </div>
     <div class="newfirst">
       <div class="field">
       <%= f.label :employee_email %>
       <%= f.text_field :employee_email %>
      </div>
      </div>
+     <div class="passfld">
     <div class="field">
     <%= f.label :password %>
     <%= f.password_field :password %>
     </div>
+  </div>
     <div class="newsecond">
      <div class="field">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
     </div>
     </div>
-
+   <div class="newoffice"
     <div class="field">
     <%= f.label :office %>
     <%= f.select :location, ['New York', 'Chicago', 'Los Angeles', 'Atlanta', 'Detroit', 'Boston', 'Mumbai', 'Houston'] %> 
   </div>
+</div>
   <div class="newthird">
   <div class="field">
     <%= f.label :department %>
@@ -47,10 +51,12 @@
     <%= f.select :years_with_company, ['1', '2', '3', '4', '5', '6', '7', '8', '9'] %>
   </div>
   </div>
+  <div class="newsuper">
   <div class="field">
     <%= f.label :immediate_supervisor %>
     <%= f.text_field :manager %>
   </div>
+</div>
 <div class="newfifth">
   <div class="field">
     <%= f.label :job_title %>

@@ -97,25 +97,29 @@
  <p> <b>Projects I have Worked On: </b></p>
  
 
- <p> <% @project_requests.each do |project_request| %>
-     <% if @employee.id == project_request.employee_id %>
 
-        <b><%= project_request.title%> :
-         <%= project_request.start_date.strftime("%B %e, %Y -") %> 
-         <%= project_request.end_date.strftime("%B %e, %Y") %> </b>
-           <% if project_request.end_date < @current_date %>
-              <b>(Completed)</b>
-            <% else %>
-              <b> (In Progress)</b>
-            <% end %>
+
+     <% @request_selections.each do |request_selection| %>
+
+      <% if request_selection.employee_id == current_employee.id %>
+
+
+        <b><%= request_selection.project_request.title%> :
+           <%= request_selection.project_request.start_date.strftime("%B %e, %Y -") %> 
+           <%= request_selection.project_request.end_date.strftime("%B %e, %Y") %> </b>
+             <% if request_selection.project_request.end_date < @current_date %>
+                <b>(Completed)</b>
+             <% else %>
+                <b> (In Progress)</b>
+             <% end %>
 
   </p>
-           <p><b>Description:  <%= project_request.project_help %></b></p>
+           <p><b>Description:  <%= request_selection.project_request.project_help %></b></p>
    <p><b>-------------------------------------------------------------------------------------------</b></p>        
       <% end %>
-     <% end %>
-     
-    </div> 
+  <% end %>
+
+</div> 
 </div>
 </div>
 
