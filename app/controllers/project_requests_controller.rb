@@ -5,6 +5,19 @@ class ProjectRequestsController < ApplicationController
      @responses = Response.all
      @request_selections = RequestSelection.all
      @current_date = DateTime.now
+
+    def destroy
+       @project_request = ProjectRequest.find(params[:id])
+     @project_request.destroy
+
+      respond_to do |format|
+        format.html { redirect_to my_requests_url }
+        format.json { head :no_content }
+    end
+  end
+     
+     
+
   end
 
 
@@ -70,8 +83,8 @@ class ProjectRequestsController < ApplicationController
     
      @project_request = current_employee.project_requests.build(params[:project_request])
      @current_date = DateTime.now
-     relevant_skill = params[:relevant_skill]
-    @project_request.relevant_skill = relevant_skill.join(", ")
+     @project_request.relevant_skill = params[:relevant_skill].to_a
+    @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
  @skills = Skill.all
     if @project_request.save
       flash[:success] = "Project Request created!"
@@ -105,8 +118,8 @@ class ProjectRequestsController < ApplicationController
   # DELETE /project_requests/1
   # DELETE /project_requests/1.json
   def destroy
-    @project_request = ProjectRequest.find(params[:id])
-    @project_request.destroy
+   @project_request = ProjectRequest.find(params[:id])
+     @project_request.destroy
 
     respond_to do |format|
       format.html { redirect_to project_requests_url }

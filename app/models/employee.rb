@@ -23,8 +23,8 @@ validates :employee_name, presence: true
  
   validates :password_confirmation, presence: true, :on => :create
   
-  validates :current_skill, presence: true, :on => :create
-  validates :skills_interested_in, presence: true, :on => :create
+  #validates :current_skill, presence: true, :on => :create
+  #validates :skills_interested_in, presence: true, :on => :create
 private
 
     def create_remember_token

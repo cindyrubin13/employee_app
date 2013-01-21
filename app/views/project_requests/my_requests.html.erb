@@ -4,21 +4,21 @@
 </head>
 <body>
   <div id="tabbed_box_1" class="tabbed_box">
-    <h4>Select a Tab</h4>
+    
     <div id="navigation">
           <ul>
-           <li id="current"><%= link_to 'All Requests', project_requests_path %></li>
+           <li><%= link_to 'All Requests', project_requests_path %></li>
            <li><%= link_to 'My Profile', employee_path(current_employee) %></li>
-             <li><%= link_to "Requests I've Posted", _my_requests_path %></li>
-              <li><%= link_to "Post a New Request", new_project_request_path %></li>
+           <li><%= link_to "Requests I've Posted", _my_requests_path, :class => 'current' %></li>
+           <li><%= link_to "Post a New Request", new_project_request_path %></li>
           </ul>
         </div>    
       </div>
 
 <p class="profilehead"> Requests I've Posted</p>
-<li><%= link_to 'New Request', new_project_request_path %></li>
-
+<div class="myrequests">
 <table>
+  
   
 <% if !@project_requests.nil? %>
   <% @project_requests.each do |project_request| %>
@@ -27,20 +27,20 @@
     <td><%= project_request.title %>: 
     <%= project_request.start_date.strftime("%B %e, %Y -") %>
     <%= project_request.end_date.strftime(" %B %e, %Y") %></td>
-   <td> <% if project_request.start_date <= @current_date  &&    project_request.end_date > @current_date %> 
+    <td>  <% if project_request.start_date <= @current_date  &&    project_request.end_date > @current_date %> 
            <%= project_request.status = 'Open, In Progress' %>
            <% open = 0 %>
-        <% else %> 
-          <% if project_request.start_date > @current_date %> 
-            <%= project_request.status  = 'Open, Not Started' %>
-            <% open = 0 %>
-          <% else %>
-              <% if project_request.end_date <= @current_date  %>
-                <%= project_request.status  = 'Closed, Completed' %>
-                <% open = 1 %>
+          <% else %> 
+              <% if project_request.start_date > @current_date %> 
+              <%= project_request.status  = 'Open, Not Started' %>
+              <% open = 0 %>
+              <% else %>
+                <% if project_request.end_date <= @current_date  %>
+                  <%= project_request.status  = 'Closed, Completed' %>
+                  <% open = 1 %>
+                <% end %>
               <% end %>
           <% end %>
-        <% end %>
     </td>
     
   </tr>
@@ -51,7 +51,7 @@
   <% if open == 1 %>
       <% open = 0 %>
     <tr>
-       <td> No Longer Active </td> 
+      <td> No Longer Active </td> 
  
     </tr>
    
@@ -67,52 +67,69 @@
   <% end %>
  
     <tr> </tr>
+<% selected_id = 0 %>    
+ 
+ 
 
 <% if !@responses.nil? %>
     
   <% @responses.each do |response| %>
-     
-    <% if project_request.id  == response.project_request_id %> 
-        <% if response.employee_id != project_request.employee_id %>
-           <% if project_request.employee_id == current_employee.id %>
-                 <tr><td><%= response.employee.employee_name %>
-                 <%= response.employee.last_name %>
-                         <%= link_to 'View Profile', employee_path(response.employee_id) %>
-                         <% rselement = 0 %>
-                    <% if !@request_selections.nil? %>
     
-                        <% @request_selections.each do |request_selection| %> 
+      <% if project_request.id  == response.project_request_id %> 
+        <% if response.employee_id != project_request.employee_id %>
+            <% if project_request.employee_id == current_employee.id %>
+                  <% if !@request_selections.nil? %>
+    
+                    <% @request_selections.each do |request_selection| %> 
                          
-                          <% if response.project_request_id == request_selection.project_request_id %>
-                              <% if response.employee_id == request_selection.employee_id %> 
-                                   <% rselement = 1 %>
-                                     Selected </td>
-
-                              <% end %>
-                          <% end %>
-                       
-                        <% end %>
+                      <% if project_request.id == request_selection.project_request_id %>
+                      <% selected_id = request_selection.employee_id %>
+                                  
+                      <% end %>
                     <% end %>
-                         <% if rselement = 0 %>
-                           <%= link_to 'Select', new_response_request_selection_path(response) %></td>
-                        <% end %>
-             <% end %>
-           </tr>
+                   <% end %>
 
-        <% end %>
+                   <% if selected_id != 0 %>
+                    <% if selected_id == response.employee_id %>
   
-    <% end %>
+                          <tr><td><%= response.employee.employee_name %>
+                          <%= response.employee.last_name %>
+                          <%= link_to 'View Profile', employee_path(response.employee_id) %>
+                          Selected </td>
+                          <% selected_id = 0 %>
+                    <% else %>
+                         <tr><td><%= response.employee.employee_name %>
+                         <%= response.employee.last_name %>
+                         <%= link_to 'View Profile', employee_path(response.employee_id) %>
+                                     </td>
+                    <% end %>
+                   
+                  <% else %>
+                    <tr><td><%= response.employee.employee_name %>
+                          <%= response.employee.last_name %>
+                          <%= link_to 'View Profile', employee_path(response.employee_id) %>
+                          <%= link_to 'Select', new_response_request_selection_path(response) %></td> </tr>
+                  <% end %>
+                  <% end %>
+          <% end %>
+      <% end %>
+  <% end %>
+                     
+                 
+
+                         
+<% end %>
+     
+<tr><td class="select">--------------------------------------------------------------------------------</td></tr>
+ <% end %>
   
   <% end %>
-<tr><td>----------------------------------------------------------------</td></tr>
-<% end %>
 
-<% end %>
-
-<% end %>
+  
 
                                    
 </table>
+</div>
 
 <br />
 

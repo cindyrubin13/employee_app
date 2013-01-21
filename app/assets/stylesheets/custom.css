@@ -10,20 +10,64 @@
   line-height: small;
 
 }
+
 .signup, .profile, .signin {
   position: absolute;
   top: 175px;
   text-align: center;
   font-weight: bold;
-  left: 575px;
+  left: 360px;
+  
+}
+ .signin {
+  position: absolute;
+  top: 170px;
+  text-align: center;
+  font-weight: bold;
+  left: 40%;
+  font-size: 30px;
   
 }
 
+.signup {
+  background-color: #E0EEEE;
+  color: #8B2323;
+  width: 50%;
+}
+.signinhead {
+  color: #458B00;
+  font-weight: bold;
+  font-size: 45px;
+}
+.signuphead {
+  color: #458B00;
+  font-weight: bold;
+  font-size: 40px;
+}
+.field {
+  color: #458B00;
+}
+.signhead {
+   color: #458B00;
+   font-style: italic;
+   font-weight: bold;
+}
 .showprofile {
   position: absolute;
   top: 150px;
   left: 150px;
+  color: #458B00;
 
+}
+.mtrequests {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  color: #458B00;
+
+}
+.showfields {
+  color: #458B00;
 }
 
 #border { 
@@ -34,7 +78,31 @@ height: 100%
 
 .apply {
   font: bold;
-  color: blue;
+  color: #458B00;
+  font-size: 18px;
+  border-bottom: 3px solid #458B00;
+  margin: 0px;
+  padding: 0px;
+  width: 50%;
+  
+}
+.select {
+  font: bold;
+  color: #458B00;
+  font-size: 18px;
+  
+  width: 50%;
+  
+}
+.apply1 {
+  font: bold;
+  color: red;
+  font-size: 18px;
+  border-bottom: 3px solid #458B00;
+  margin: 0px;
+  padding: 0px;
+  width: 50%;
+  
 }
 
 .projectsworked {
@@ -45,12 +113,16 @@ height: 100%
 .profilehead {
    font-size: x-large;
    text-decoration: underline;
+   color: #458B00;
+   font-style: italic;
+   font-weight: bold;
 }
 
 .signoutlink {
   position: absolute;
   top: 100px;
-  right: 500px;
+  right: 600px;
+  color: red;
 }
 .signoutlinke {
   position: absolute;
@@ -126,6 +198,11 @@ height: 100%
   top: 310px;
   left: 10px;
 
+}
+.proffice {
+  position: absolute;
+  top: 310px;
+  left: 250px;
 }
 .grfield {
   position: absolute;
@@ -425,6 +502,7 @@ ul.tabs li a  {
   
  
 }*/
+
 #navigation li {
    
     text-decoration: none;
@@ -432,7 +510,7 @@ ul.tabs li a  {
   display: inline;
   text-align: center;
   text-decoration: none;
-  color: black;
+  color: #458B00;
   background-color: white;
  
    font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -442,38 +520,44 @@ ul.tabs li a  {
 }
 #navigation li a {
   text-decoration: none;
-  color: black;
+  color: #458B00;
   
    background-color: white;
-  border-width: 3px;
+   border-width: 3px;
    border-style: solid;
-   border-color: black;
+   border-color: #458B00;
    padding: 3px;
    margin: 1px;
    }
+ #navigation .current {
+  text-decoration: none;
+     list-style: none;
+  display: inline;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  color: #458B00;
+  border-bottom: 3px solid white;
   
+}
 
 #navigation li a:hover {
   text-align: center;
   border-bottom: none;
   background-color: white;
-  border-color:  blue;
-  color: blue;
+  border-color:  #006400;
+  color: #006400;
   border-bottom: none;
 }
 #navigation li a:active {
   text-align: center;
   border-bottom: none;
   background-color: white;
-  border-color:  blue;
-  color: blue;
+  border-color:  #006400;
+  color:  #006400;
   border-bottom: 3px solid white;
 }
- #current {
-  padding: 3px;
-  margin: 1px;
-  border: 10px solid white;
-}
+
 /*.current {
   text-align: center;
   background-color: white;

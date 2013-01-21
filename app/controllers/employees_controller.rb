@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
      @project_requests = ProjectRequest.all
      @request_selections = RequestSelection.all
      @current_date = DateTime.now
-    respond_to do |format|
+     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }
     end
@@ -41,6 +41,10 @@ class EmployeesController < ApplicationController
 
     @employee = Employee.new
     @skills = Skill.all
+
+
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @employee }
@@ -76,11 +80,26 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(params[:employee])
     @skills = Skill.all
 
-    current_skill = params[:current_skill]
-    @employee.current_skill = current_skill.join(", ")
+ @employee.current_skill = params[:current_skill].to_a
+   @employee.current_skill = @employee.current_skill.join(", ")
+   
+   @employee.skills_interested_in = params[:skills_interested_in].to_a
+   @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
+
+
+
+
+    #current_skill = params[:current_skill]
+   # if !params[:current_skill].nil?
+      #current_skill = @employee.current_skill.join(", ")
+   # end   
+   # skills_interested_in = params[:skills_interested_in]
+  #   if !params[:skills_interested_in].nil?
+  #    skills_interested_in = @employee.skills_interested_in.join(", ")
+ #  end
  
-    skills_interested_in = params[:skills_interested_in]
-    @employee.skills_interested_in = skills_interested_in.join(", ")
+
+
 
       if @employee.save
          sign_in @employee
