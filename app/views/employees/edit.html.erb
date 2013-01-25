@@ -1,4 +1,4 @@
-<p class="profilehead">Edit Profile Information</p>
+<p class="editprofilehead">Edit Profile Information</p>
 <p class="signoutlinke"><%= link_to 'Signout', signout_path, method: "delete" %></p>
 
 <%= hidden_field_tag "employee[current_skill][]", "" %>
@@ -15,14 +15,15 @@
       </ul>
     </div>
   <% end %>
-<div class="editprofile">
- 
+
+ <div class="editfname"
   <div class="field">
     <%= f.label :first_name %>
     <%= f.text_field :employee_name %>
   </div>
-  <div class="lastn">
+ <div class="lastn">
   <div class="field">
+
     <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
@@ -132,7 +133,7 @@
 <div class="cancelfld">
 <%= link_to "Cancel", employee_path(current_employee) %>  
 </div>
-</div>
+
 <% end %>
 
 

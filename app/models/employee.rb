@@ -4,7 +4,7 @@ class Employee < ActiveRecord::Base
   has_secure_password 
   has_and_belongs_to_many :skills
   belongs_to :skills
-  has_many :project_requests, dependent: :destroy
+  has_many :project_requests
   belongs_to :project_request
   has_many :responses, :through => :project_request
   has_many :request_selections, :through => :responses

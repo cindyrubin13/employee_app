@@ -3,6 +3,7 @@
   <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
 </head>
 <body>-->
+ <%= render 'layouts/header' %>
 
   <div id="tabbed_box_1" class="tabbed_box">
   
@@ -20,10 +21,11 @@
 
 
 <p class="profilehead"> My Profile </p>
-<p class="signoutlink"><%= link_to 'Signout', signout_path, method: "delete" %></p>
+<!--<p class="signoutlink"><%= link_to 'Signout', signout_path, method: "delete" %></p>-->
 
 
-<%= link_to ' Edit Profile', edit_employee_path(current_employee) %> 
+<%= link_to ' Edit Profile', edit_employee_path(current_employee), :class => 'showedit' %>
+<div class="showgrav"> 
 <div class="row">
   <aside class="span4">
     <section>
@@ -33,6 +35,7 @@
       </h1>
     </section>
   </aside>
+</div>
 </div>
 <div class="showprofile">
 <p>
@@ -100,7 +103,7 @@
  
 
 
-
+    <% if !@request_selections.nil? %>
      <% @request_selections.each do |request_selection| %>
 
       <% if request_selection.employee_id == current_employee.id %>
@@ -120,9 +123,7 @@
    <p><b>-------------------------------------------------------------------------------------------</b></p>        
       <% end %>
   <% end %>
-
+<% end %>
 </div> 
 </div>
-</div>
-
 

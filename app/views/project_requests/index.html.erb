@@ -1,3 +1,4 @@
+ <%= render 'layouts/header' %>
  <head>
   <title>Tabbed Structure - REgular</title>
   <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
@@ -16,11 +17,12 @@
       </div>
 
 <p class="profilehead">All Requests</p>
+<div class="allrequest">
 <h1></h1>
 <table>
  <% aplelement = 0 %> 
  <% applied = 0 %>
-
+ <% selected = 0 %>
 <% @project_requests.each do |project_request| %>
 
   <% closed = 0 %>
@@ -37,6 +39,7 @@
              <% else %>
                 <% if project_request.end_date <= @current_date  %>
                    <%= project_request.status  = 'Closed, Completed' %>
+
                    <% closed = 1 %>
                 <% end %>
              <% end %>
@@ -56,9 +59,27 @@
         <%= project_request.project_help %></td>
    </tr>
    <tr> 
- 
+   
+    <% if !@request_selections.nil? %>
+    
+      <% @request_selections.each do |request_selection| %> 
+      
+                         
+        <% if project_request.id == request_selection.project_request_id %>
+              
+              <% selected = 1 %>
+                                  
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if selected == 1 %>
+      <% selected = 0 %>
+          <tr><td class='apply'> An employee has been selected for this project </td></tr>
+    <% else %>
  
   <% if closed != 1 %>
+
+    
       <% if project_request.employee_id == current_employee.id %>
             <tr><td class='apply'> You posted this project so you can't apply </td></tr>
              
@@ -93,20 +114,26 @@
         <% end %>     
            
     <% end %>
+
     <% if applied ==  0 %>
-           <tr><td class="apply1"><%= link_to "Click to Apply", new_project_request_response_path(project_request) %></td></tr>
+            <tr>
+              <td class="applyf"></td>
+           <td class="apply1"><%= link_to "Apply", new_project_request_response_path(project_request) %></td></tr>
             
-  <% end %>
+   
+    <% end %>
+  <% else %>
+    <tr><td class='apply'> This project is closed and completed </td></tr>
 </tr>
 
 <% closed = 0 %>
-<% end %>
 
+<% end %>
 <% end %>          
-      
+  <% end %>     
 
 </table>
-
+</div>
 <br />
 
 

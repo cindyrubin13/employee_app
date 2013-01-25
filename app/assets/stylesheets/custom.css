@@ -1,4 +1,81 @@
 
+
+/* header */
+
+
+
+.emphead {
+
+  border: 3px solid #006400;
+  background-color: #00FF00;
+  width: 100;
+  color: #458B00;
+  padding: 50px;
+  margin: 40px;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 15px;
+
+}
+
+.headsignoutlink {
+  position: absolute;
+  top: 65px;
+  right: 60px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.welcome {
+  position: absolute;
+  top: 55px;
+  left: 70px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #458B00;
+  font-style: italic;
+}
+.currentusername {
+  position: absolute;
+  top: 95px;
+  left: 70px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #458B00;
+}
+
+
+
+
+   
+
+
+/*body { 
+height: 100%;
+}
+footer {
+ position: absolute;
+  bottom: 1px;
+  
+}
+
+.footbottom {
+   
+  width: 88%;
+ 
+  border: 3px solid #006400;
+  background-color: #00FF00;
+  color: #458B00;
+  padding: 40px;
+  margin: 40px;
+  font-size: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 15px;
+ 
+}*/
+
 .selection {
   color: red;
   padding-top: 0;
@@ -21,7 +98,7 @@
 }
  .signin {
   position: absolute;
-  top: 170px;
+  top: 275px;
   text-align: center;
   font-weight: bold;
   left: 40%;
@@ -30,16 +107,21 @@
 }
 
 .signup {
-  background-color: #E0EEEE;
+  background-color: #00FF00;
   color: #8B2323;
   width: 50%;
+  border-radius: 15px;
 }
 .signinhead {
+  position: absolute;
+  left: 38%;
+  top: 170px;
   color: #458B00;
   font-weight: bold;
   font-size: 45px;
 }
 .signuphead {
+  top: 60px;
   color: #458B00;
   font-weight: bold;
   font-size: 40px;
@@ -54,17 +136,25 @@
 }
 .showprofile {
   position: absolute;
-  top: 150px;
-  left: 150px;
+  top: 250px;
+  left: 240px;
   color: #458B00;
 
 }
-.mtrequests {
+
+
+.myrequests {
   position: absolute;
-  top: 150px;
-  left: 150px;
+  top: 250px;
+  left: 100px;
   color: #458B00;
 
+}
+.newrequest {
+  position: absolute;
+  top: 250px;
+  left: 100px;
+  color: #458B00;
 }
 .showfields {
   color: #458B00;
@@ -94,15 +184,20 @@ height: 100%
   width: 50%;
   
 }
-.apply1 {
+.applyf {
   font: bold;
-  color: red;
+  color: #458B00;
   font-size: 18px;
+  left: 400px;
   border-bottom: 3px solid #458B00;
   margin: 0px;
   padding: 0px;
   width: 50%;
   
+}
+.apply1 {
+  font: bold;
+  font-size: 18px;
 }
 
 .projectsworked {
@@ -111,11 +206,45 @@ height: 100%
 }
 
 .profilehead {
+   position: absolute;
+   top: 165px;
    font-size: x-large;
    text-decoration: underline;
    color: #458B00;
    font-style: italic;
    font-weight: bold;
+   left: 100px;
+}
+.editfname {
+  position: absolute;
+  top: 67px;
+}
+.editprofilehead {
+   position: absolute;
+   top: 2px;
+   font-size: x-large;
+   text-decoration: underline;
+   color: #458B00;
+   font-style: italic;
+   font-weight: bold;
+   left: 10px;
+}
+.showedit {
+  position: absolute;
+  top: 250px;
+  left: 100px;
+  font-size: 17px;
+}
+.showgrav {
+  position: absolute;
+  top: 280px;
+  left: 100px;
+}
+
+.allrequest {
+  position: absolute;
+  top: 220px;
+  left:100px;
 }
 
 .signoutlink {
@@ -132,7 +261,7 @@ height: 100%
 
 .lastn {
   position: absolute;
-  top: 158px;
+  top: 10px;
   left: 400px;
 }
 .emailfld {
@@ -201,8 +330,19 @@ height: 100%
 }
 .proffice {
   position: absolute;
-  top: 310px;
-  left: 250px;
+
+  top: 153px;
+  left: 330px;
+}
+.offselect {
+  position: absolute;
+  top: 1px;
+  left: 50px;
+  
+}
+.relsk {
+  position: absolute;
+  top: 250px;
 }
 .grfield {
   position: absolute;
@@ -296,24 +436,17 @@ height: 100%
   left: 330px;
 
 }
-.datefield1 {
-  position: absolute;
-  top: 280px;
-  left: 100px;
 
-}
+
+
+
 .elefield {
   position: absolute;
   top: 410px;
   left: 330px;
 
 }
-.datefield2 {
-  position: absolute;
-  top: 310px;
-  left: 100px;
 
-}
 .offield {
   position: absolute;
   top: 350px;
@@ -335,7 +468,7 @@ height: 100%
 
 .fourtfld {
   position: absolute;
-  top: 630px;
+  top: 180px;
   left: 250px;
 
 }
@@ -528,6 +661,7 @@ ul.tabs li a  {
    border-color: #458B00;
    padding: 3px;
    margin: 1px;
+   border-radius: 8px;
    }
  #navigation .current {
   text-decoration: none;
@@ -539,6 +673,10 @@ ul.tabs li a  {
   color: #458B00;
   border-bottom: 3px solid white;
   
+}
+#navigation {
+  position: absolute;
+  top:136px;
 }
 
 #navigation li a:hover {
@@ -602,3 +740,65 @@ ul.tabs li a.active  {
   border: 1px solid #464c54;
 }
 #content_2, #content_3 {display: none;}*/
+#calendar table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#calendar td,
+#calendar th {
+  font-family: "Lucida Grande",arial,helvetica,sans-serif;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+}
+
+#calendar th {
+  background: #DDD;
+  color: #666;
+  text-align: center;
+  width: 14.2857142857143%;
+}
+
+#calendar td {
+  background: #FFF;
+  color: #777;
+  height: 80px;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+#calendar .notmonth {
+  color: #CCC;
+}
+
+#calendar #month {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#calendar #month a, #calendar #month a:hover {
+  text-decoration: none;
+  padding: 0 10px;
+  color: #999;
+}
+
+#calendar .today {
+  background-color: #D7F2FF;
+}
+
+#calendar ul {
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+#calendar li {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  text-align: center;
+}

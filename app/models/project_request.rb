@@ -1,5 +1,5 @@
 class ProjectRequest < ActiveRecord::Base
-  attr_accessible :employee_id, :project_help, :start_date, :end_date, :status, :relevant_skill, :title, :group, :office
+  attr_accessible :employee_id, :project_help, :start_date, :end_date, :status, :relevant_skill, :title, :group, :office, :request_status
   belongs_to :employee
   has_many :responses
   belongs_to :request_selection

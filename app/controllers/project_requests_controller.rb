@@ -5,26 +5,18 @@ class ProjectRequestsController < ApplicationController
      @responses = Response.all
      @request_selections = RequestSelection.all
      @current_date = DateTime.now
-
-    def destroy
-       @project_request = ProjectRequest.find(params[:id])
-     @project_request.destroy
-
-      respond_to do |format|
-        format.html { redirect_to my_requests_url }
-        format.json { head :no_content }
-    end
+ 
   end
      
      
 
-  end
-
+ 
 
   # GET /project_requests
   # GET /project_requests.json
   def index
     @project_requests = ProjectRequest.all
+     @request_selections = RequestSelection.all
 #@responses = Response.find_all_by_project_request_id(@project_request)
       #@responses = Response.all
       @responses = Response.find(:all, :conditions => :project_request_id == :id)
@@ -64,6 +56,7 @@ class ProjectRequestsController < ApplicationController
     @project_request = ProjectRequest.new
      @skills = Skill.all
      @current_date = DateTime.now
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -75,6 +68,15 @@ class ProjectRequestsController < ApplicationController
   def edit
     @project_request = ProjectRequest.find(params[:id])
      @current_date = DateTime.now
+     @skills = Skill.all
+
+    relevant_skill = params[:relevant_skill]
+
+    if !params[:relevant_skill].nil?
+      relevant_skill = @project_request.relevant_skill.split(", ")
+    end   
+
+
   end
 
   # POST /project_requests
@@ -85,7 +87,7 @@ class ProjectRequestsController < ApplicationController
      @current_date = DateTime.now
      @project_request.relevant_skill = params[:relevant_skill].to_a
     @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
- @skills = Skill.all
+     @skills = Skill.all
     if @project_request.save
       flash[:success] = "Project Request created!"
       redirect_to project_requests_path
@@ -103,10 +105,13 @@ class ProjectRequestsController < ApplicationController
   def update
     @project_request = ProjectRequest.find(params[:id])
      @current_date = DateTime.now
+
+      @project_request.relevant_skill = params[:relevant_skill].to_a
+   @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
      
     respond_to do |format|
       if @project_request.update_attributes(params[:project_request])
-        format.html { redirect_to @project_request, notice: 'Project request was successfully updated.' }
+        format.html { redirect_to _my_requests_path, notice: 'Project request was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -119,10 +124,10 @@ class ProjectRequestsController < ApplicationController
   # DELETE /project_requests/1.json
   def destroy
    @project_request = ProjectRequest.find(params[:id])
-     @project_request.destroy
-
+   @project_request.delete
+     
     respond_to do |format|
-      format.html { redirect_to project_requests_url }
+      format.html { redirect_to my_requests_url }
       format.json { head :no_content }
     end
   end
