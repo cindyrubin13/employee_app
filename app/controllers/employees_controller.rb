@@ -103,7 +103,7 @@ class EmployeesController < ApplicationController
 
       if @employee.save
          sign_in @employee
-         flash[:success] = "Welcome to Employee App"
+        # flash[:success] = "Welcome to Employee App"
          redirect_to @employee
       else
         render 'new'
@@ -123,7 +123,7 @@ class EmployeesController < ApplicationController
    @employee.skills_interested_in = params[:skills_interested_in].to_a
    @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
      if @employee.update_attributes(params[:employee])
-        flash[:success] = "Profile updated"
+       # flash[:success] = "Profile updated"
         sign_in @employee
         redirect_to @employee
       else

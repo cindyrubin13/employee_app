@@ -89,7 +89,7 @@ class ProjectRequestsController < ApplicationController
     @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
      @skills = Skill.all
     if @project_request.save
-      flash[:success] = "Project Request created!"
+      #flash[:success] = "Project Request created!"
       redirect_to project_requests_path
     else
       redirect_to new_project_request_path(@project_request), notice: "End date must be later than today" 
@@ -111,7 +111,7 @@ class ProjectRequestsController < ApplicationController
      
     respond_to do |format|
       if @project_request.update_attributes(params[:project_request])
-        format.html { redirect_to _my_requests_path, notice: 'Project request was successfully updated.' }
+        format.html { redirect_to _my_requests_path }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
