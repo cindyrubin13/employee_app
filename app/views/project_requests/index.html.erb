@@ -25,6 +25,7 @@
  <% applied = 0 %>
  <% selected = 0 %>
 <% @project_requests.each do |project_request| %>
+
    <% if project_request.request_status != 2 %>
 
   <% closed = 0 %>
@@ -60,21 +61,17 @@
      <td>Description:
         <%= project_request.project_help %></td>
    </tr>
-<% current_skill = project_request.employee.current_skill %>
-   <% interested_skills =  project_request.employee.skills_interested_in %>
-   <% relevant_skill = project_request.relevant_skill %>
 
-   <tr><td>Relevant Skills: <%= project_request.relevant_skill %></td></tr>
-   <tr><td>Current Skills: <%= project_request.employee.current_skill %></td></tr>
-   <tr><td>Skills Interested In: <%= project_request.employee.skills_interested_in %></td></tr>
-  
-  
-  
+   <tr><td>Current_skills: <%= current_employee.current_skill %> </td></tr>
+   <tr><td>Relevant Skills: <%= project_request.relevant_skill %></td></tr> 
+   <tr><td>Interested_skills:<%=  current_employee.skills_interested_in %></td></tr>
+  <tr><td>Number of Common Current Skills and Relevant Skills: <%=  project_request.current_count(current_employee) %> </td></tr>
+
+<tr><td>Number of Common Interested Skills and Relevant Skills: <%= project_request.interest_count(current_employee) %> </td></tr>
+
    
-   <tr><td>Common Current Skills and Relevant Skills: <%= compare_current_skill_of_current_employee_with_relevant_skills_of_each_request(current_skill, relevant_skill) %>
-    
-      </td><td>Number of Matches: <%= @score_common1 %></td></tr>
-   <tr><td>Common Interested Skills and Relevant Skills: <%= compare_skills_interested_of_current_employee_with_relevant_skills_of_each_request(interested_skills, relevant_skill) %></td><td> Number of Matches: <%= @score_common2 %></td></tr>
+ 
+   
 
 
 

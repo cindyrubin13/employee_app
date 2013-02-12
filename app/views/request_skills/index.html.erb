@@ -1,0 +1,23 @@
+<h1>Listing request_skills</h1>
+
+<table>
+  <tr>
+    <th>Language</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @request_skills.each do |request_skill| %>
+  <tr>
+    <td><%= request_skill.language %></td>
+    <td><%= link_to 'Show', request_skill %></td>
+    <td><%= link_to 'Edit', edit_request_skill_path(request_skill) %></td>
+    <td><%= link_to 'Destroy', request_skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Request skill', new_request_skill_path %>

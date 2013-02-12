@@ -1,0 +1,21 @@
+<%= form_for(@desired_skill) do |f| %>
+  <% if @desired_skill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@desired_skill.errors.count, "error") %> prohibited this desired_skill from being saved:</h2>
+
+      <ul>
+      <% @desired_skill.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :language %><br />
+    <%= f.text_field :language %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

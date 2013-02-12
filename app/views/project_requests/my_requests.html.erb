@@ -27,7 +27,7 @@
   
 <% if !@project_requests.nil? %>
   <% @project_requests.each do |project_request| %>
-   
+   <% notactvie = 0 %>
   <tr>
 
     <td><%= project_request.title %>: 
@@ -72,7 +72,7 @@
       <% open = 0 %>
     <tr>
       <td> No Longer Active </td> 
- 
+   
     </tr>
    
   <% else %> 
@@ -128,10 +128,16 @@
                     <% end %>
                    
                   <% else %>
+                    
+                         
                     <tr><td><%= response.employee.employee_name %>
                           <%= response.employee.last_name %>
                           <%= link_to 'View Profile', employee_path(response.employee_id) %>
-                          <%= link_to 'Select', new_response_request_selection_path(response) %></td> </tr>
+                          Common Current Skills <%= project_request.current_count(response.employee) %>
+                          Common Interested Skills <%= project_request.interest_count(response.employee) %>
+                          <%= link_to 'Select', new_response_request_selection_path(response) %>
+                          </td> </tr>
+
                   <% end %>
                   <% end %>
           <% end %>

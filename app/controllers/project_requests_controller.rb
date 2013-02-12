@@ -17,10 +17,9 @@ class ProjectRequestsController < ApplicationController
   def index
     @project_requests = ProjectRequest.all
      @request_selections = RequestSelection.all
-#@responses = Response.find_all_by_project_request_id(@project_request)
-      #@responses = Response.all
+
       @responses = Response.find(:all, :conditions => :project_request_id == :id)
-      
+      @employee = Employee.all
      
 
 
@@ -34,7 +33,7 @@ class ProjectRequestsController < ApplicationController
   # GET /project_requests/1
   # GET /project_requests/1.json
   def show
-    #@project_request = ProjectRequest.find(params[:id])
+   
       @project_request = ProjectRequest.find_by_employee_id(current_employee)
      @current_date = DateTime.now
     if  @project_request.nil?
@@ -43,11 +42,7 @@ class ProjectRequestsController < ApplicationController
     end
 
 
-    # @current_date = DateTime.now
-   # respond_to do |format|
-     # format.html # show.html.erb
-     # format.json { render json: @project_request }
-   # end
+   
   end
 
   # GET /project_requests/new
@@ -89,7 +84,7 @@ class ProjectRequestsController < ApplicationController
     @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
      @skills = Skill.all
     if @project_request.save
-      #flash[:success] = "Project Request created!"
+     
       redirect_to project_requests_path
     else
       redirect_to new_project_request_path(@project_request), notice: "End date must be later than today" 

@@ -1,5 +1,14 @@
 EmpApp::Application.routes.draw do
 
+  resources :request_skills
+
+
+  resources :desired_skills
+
+
+  resources :developer_skills
+
+
   resources :skills
 
   get "my_requests" => "project_requests#my_requests", :as => "_my_requests"

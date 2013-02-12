@@ -80,7 +80,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(params[:employee])
     @skills = Skill.all
 
- @employee.current_skill = params[:current_skill].to_a
+   @employee.current_skill = params[:current_skill].to_a
    @employee.current_skill = @employee.current_skill.join(", ")
    
    @employee.skills_interested_in = params[:skills_interested_in].to_a
@@ -89,19 +89,20 @@ class EmployeesController < ApplicationController
 
 
 
-    #current_skill = params[:current_skill]
-   # if !params[:current_skill].nil?
-      #current_skill = @employee.current_skill.join(", ")
-   # end   
-   # skills_interested_in = params[:skills_interested_in]
-  #   if !params[:skills_interested_in].nil?
-  #    skills_interested_in = @employee.skills_interested_in.join(", ")
- #  end
+    
  
 
 
 
       if @employee.save
+        
+        #@developer_skill = find(params[@employee.current_skill][:id])
+        #@developer_skill.attributes = @employee.current_skill.atributes
+        #def update developer_skills(current_employee)
+        #DeveloperSkill.employee_id = current_employee.id
+        #DeveloperSkill.skill = current_employee.current_skill
+        #end
+        #current_employee.update_developer_skills(params[current_employee])
          sign_in @employee
         # flash[:success] = "Welcome to Employee App"
          redirect_to @employee
