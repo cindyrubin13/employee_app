@@ -94,12 +94,12 @@
   <div class="seventhfld">
  <div class="field">
 
-        <%= f.label :current_skill  %>
+        <%= f.label :current_skills  %>
 
          <% @skills.each do |skill| %> 
       <div class="inbox">
        
-       <%= check_box_tag "current_skill[]", skill.language, @employee.current_skill.include?(skill.language) %>
+       <%= check_box_tag "current_skill[]", skill.id, @employee.current_skill.include?(skill.id.to_s) %>
        <%= skill.language %>
      </div>
        <% end %>

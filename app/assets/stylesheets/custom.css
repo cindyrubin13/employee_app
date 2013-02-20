@@ -206,6 +206,20 @@ height: 100%
   line-height: 90%;
 
 }
+.responsehead {
+  position: absolute;
+  top: 20px;
+  font-size:  x-large;
+  color: #458B00;
+  font-style: italic;
+   font-weight: bold;
+}
+.responsepage {
+  position: absolute;
+  top: 100px;
+  font-size:  large;
+  color: #458B00;
+}
 
 .profilehead {
    position: absolute;
@@ -414,15 +428,23 @@ height: 100%
   position: absolute;
   top: 423px;
   left: 20px;
+
+ 
   }
   .skint {
   position: absolute;
   top: 423px;
-  left: 200px;
+  left: 450px;
+  line-height: 1.8em;
   }
+  /*.radline {
+    
+    left: 50em;
+
+  }*/
  .newsub {
   position: absolute;
-  top: 600px;
+  top: 630px;
   left: 200px;
   }
 
@@ -492,13 +514,14 @@ height: 100%
   
 
 }
-.skint {
+/*.skint {
   position: absolute;
   top: 423px;
   left: 350px;
-  }
-.inbox {
+  }*/
+  .inbox {
    display: block;
+
 }
 .cancelfld {
   position: absolute;

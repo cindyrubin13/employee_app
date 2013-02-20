@@ -7,23 +7,25 @@
 
 <p>
   <b>Employee:</b>
-  <%= @project_request.employee_id %>
+  <%= @project_request.employee.employee_name %>
+  <%= @project_request.employee.last_name %>
 </p>
 
 <p>
   <b>Start Date:</b>
-  <%= @project_request.start_date %>
+  <%= @project_request.start_date.strftime("%B %e, %Y") %>
+    
 </p>
 
 <p>
   <b>End Date:</b>
-  <%= @project_request.end_date %>
+ <%= @project_request.end_date.strftime(" %B %e, %Y") %>
 </p>
 
 <p>
-  <b>Status:</b>
-  <%= @project_request.status %>
+  <b>Relevant Skills:</b>
+  <%= @project_request.relevant_skill %>
 </p>
 
-<%= link_to 'Edit', edit_project_request_path(@project_request) %> |
-<%= link_to 'Back', project_requests_path %>
+
+<%= link_to "Requests I've Posted", _my_requests_path  %>

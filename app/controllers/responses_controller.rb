@@ -70,7 +70,7 @@ class ResponsesController < ApplicationController
       if @response.save
        
         # format.html { redirect_to project_request_responses_path @project_request, notice: 'Response was successfully created.' }
-        format.html { redirect_to project_requests_path, notice: 'Response was successfully created.' }
+        format.html { redirect_to project_requests_path }# notice: 'Response was successfully created.' }
         format.json { render json: @response, status: :created, location: @response }
       else
         format.html { render action: "new" }

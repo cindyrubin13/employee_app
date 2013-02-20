@@ -29,6 +29,22 @@ class EmployeesController < ApplicationController
      @project_requests = ProjectRequest.all
      @request_selections = RequestSelection.all
      @current_date = DateTime.now
+    
+    @skills = Skill.all
+     @skillname = Array.new
+      @prof_level = Array.new
+      current_skills = Employee.find(params[:id]).current_skill
+       current_skills.each_pair do |skill_id, level|
+       language = Skill.find_by_id(skill_id).language
+       @skillname = @skillname.push(language)
+       @prof_level = @prof_level.push(level)
+      end
+      @skillname = @skillname.join(", ")
+      @prof_level = @prof_level.join(", ")
+
+
+
+
      respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }
@@ -79,32 +95,20 @@ class EmployeesController < ApplicationController
 
     @employee = Employee.new(params[:employee])
     @skills = Skill.all
-
-   @employee.current_skill = params[:current_skill].to_a
-   @employee.current_skill = @employee.current_skill.join(", ")
+   #@employee.developer_skills = DeveloperSkill.new
+   # @employee.current_skill = params[:current_skill].to_a
+   # @employee.current_skill = @employee.current_skill.join(", ")
    
-   @employee.skills_interested_in = params[:skills_interested_in].to_a
-   @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
-
-
-
-
-    
- 
-
-
+    @employee.skills_interested_in = params[:skills_interested_in].to_a
+    @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
 
       if @employee.save
-        
-        #@developer_skill = find(params[@employee.current_skill][:id])
-        #@developer_skill.attributes = @employee.current_skill.atributes
-        #def update developer_skills(current_employee)
-        #DeveloperSkill.employee_id = current_employee.id
-        #DeveloperSkill.skill = current_employee.current_skill
-        #end
-        #current_employee.update_developer_skills(params[current_employee])
+  
          sign_in @employee
-        # flash[:success] = "Welcome to Employee App"
+          @employee.current_skill.each do  |skill_id, level| 
+            developer_skills = DeveloperSkill.new(:employee_id => current_employee.id, :skill_id => "#{skill_id}", :level => "#{level}")
+            developer_skills.save
+          end
          redirect_to @employee
       else
         render 'new'
@@ -124,8 +128,9 @@ class EmployeesController < ApplicationController
    @employee.skills_interested_in = params[:skills_interested_in].to_a
    @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
      if @employee.update_attributes(params[:employee])
-       # flash[:success] = "Profile updated"
+       
         sign_in @employee
+         @employee.developer_skills_update_information(current_employee)
         redirect_to @employee
       else
         render 'edit'

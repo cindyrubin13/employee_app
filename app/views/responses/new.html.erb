@@ -1,6 +1,6 @@
 
 
-<p class="profilehead">Responding to a Request</p>
+<p class="responsehead">Responding to a Request</p>
 
 
 
@@ -17,7 +17,7 @@
       </ul>
     </div>
   <% end %>
-
+ <div class="responsepage">
   <div class="field">
     <%= f.label :would_you_like_to_leave_a_message? %><br />
     <%= f.text_field :message %>
@@ -40,4 +40,5 @@
     <%= f.submit %>
     <%= link_to 'Cancel - Return to List of Project Requests', project_requests_path %>
   </div>
+</div>
 <% end %>

@@ -8,18 +8,5 @@ class Response < ActiveRecord::Base
   accepts_nested_attributes_for :request_selections, :allow_destroy => true
 
 
-#validate :check_employee_id
- 
-
-# def check_employee_id
- #   if employee_id  = "nil" 
-  #    errors.add(:employee_id, " Must enter a valid Employee ID")
-   # end
- # end
-
-
-
-
-
 
 end
