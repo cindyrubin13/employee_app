@@ -62,10 +62,9 @@
         <%= project_request.project_help %></td>
    </tr>
 
-   <tr><td>Current_skills: <%= current_employee.current_skill %> </td></tr>
-   <tr><td>Relevant Skills: <%= project_request.relevant_skill %></td></tr> 
+   
    <tr><td>Interested_skills:<%=  current_employee.skills_interested_in %></td></tr>
-  <tr><td>Number of Common Current Skills and Relevant Skills: <%=  project_request.current_count(current_employee) %> </td></tr>
+  
 
 <tr><td>Number of Common Interested Skills and Relevant Skills: <%= project_request.interest_count(current_employee) %> </td></tr>
 

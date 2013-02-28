@@ -89,7 +89,10 @@
      </td>
        
         <td><% [0, 1, 2, 3, 4].each do |level| %>
+         
          <%= radio_button_tag "employee[current_skill][#{skill.id}]", "#{level}" %>
+         
+        
           <%=  level %>
         <% end %>
       </div></td></tr>

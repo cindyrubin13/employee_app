@@ -90,7 +90,7 @@
        <% @employee.current_skill.each do |skill_id, value| %>
        <%= language = Skill.find(skill_id).language %>
        level
-       <%=h "#{value.to_s}" %>,
+       <%= "#{value.to_s}" %>,
        <% end %>
 </p>
 
