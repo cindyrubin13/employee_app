@@ -8,4 +8,19 @@ module EmployeesHelper
   end
 
 
+
+def show_skill_and_level(skill_level)
+       
+        if skill_level.level != 0
+        
+         
+         language = Skill.find_by_id(skill_level.skill_id).language
+         level = skill_level.level
+         @skillname.push(language)
+         @skillname.push(level)
+
+       end
+ end
+    
+
 end

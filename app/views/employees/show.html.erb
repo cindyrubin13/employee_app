@@ -86,12 +86,13 @@
 
 <p>
   <b>Current Skills:</b>
-   
-       <% @employee.current_skill.each do |skill_id, value| %>
-       <%= language = Skill.find(skill_id).language %>
-       level
-       <%= "#{value.to_s}" %>,
-       <% end %>
+   <% @skillname = [] %>
+    <% @employee.developer_skills.each do |dev_skill| %>
+      <% show_skill_and_level(dev_skill) %>
+      <% end %>
+       <%= @skillname.join(", ") %>
+       
+       
 </p>
 
 <p>

@@ -57,18 +57,8 @@ def add_new_developer
      end
 end
 
-def show_skill_and_level
-      @skillname = Array.new
-      @prof_level = Array.new
-       current_skill.each_pair do |skill_id, level|
-       language = Skill.find_by_id(skill_id).language
-       @skillname = @skillname.push(language)
-       @prof_level = @prof_level.push(level)
-      end
-      @skillname = @skillname.join(", ")
-      @prof_level = @prof_level.join(", ")
 
-end
+
 #def current_skill=(current_skills)
 
    # current_skills.each do |skill, level|

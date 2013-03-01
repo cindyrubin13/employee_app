@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-
+   include EmployeesHelper
    before_filter :signed_in_employee, only: [:index, :edit, :update]
    before_filter :signed_in_employee, only: [:edit, :update]
    before_filter :correct_employee, only: [:edit, :update] 
@@ -31,9 +31,7 @@ class EmployeesController < ApplicationController
      @current_date = DateTime.now
    
     @skills = Skill.all
-     @employee.show_skill_and_level
-
-
+      
 
      respond_to do |format|
       format.html # show.html.erb
@@ -115,7 +113,7 @@ class EmployeesController < ApplicationController
    #
    #@employee.current_skill = params[:current_skill]
    #@employee.current_skill = @employee.current_skill.join(", ")
-   @employee.current_skill.update(@employee.current_skill)
+   #@employee.current_skill.update(@employee.current_skill)
    @employee.skills_interested_in = params[:skills_interested_in].to_a
    @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
      if @employee.update_attributes(params[:employee])
