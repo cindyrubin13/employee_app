@@ -1,9 +1,9 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :department, :employee_email, :employee_name, :location, :last_name,
+  attr_accessible :department, :employee_email, :employee_name, :location, :last_name, :current_skills,
   :years_with_company, :manager, :position, :group, :current_skill, :skills_interested_in, :password, :password_confirmation, :description
   has_secure_password 
   has_and_belongs_to_many :skills
-  serialize :current_skill
+  attr_accessor :current_skills
   has_many :developer_skills
   belongs_to :skills
   accepts_nested_attributes_for :skills
@@ -29,99 +29,89 @@ validates :employee_name, presence: true
   def has_skill_level(skill_id, level) 
 
   radiocheck = 0
-     
-  developer_skills.each do |dev_id|
-    if radiocheck == 0  
-      if dev_id.skill_id == skill_id && dev_id.level == level
-       radiocheck = 1
-    
-      else  
-       radiocheck = 0
-      end
-
+  skillcheck = 0
+  developer_skills.each do |dev|
+    if dev.skill_id == skill_id
+      skillcheck = 1
+      break
+    else
+      skillcheck = 0
     end
   end
-if radiocheck == 1
-   return true
+  puts skillcheck
+ 
+ if skillcheck == 1
+   if !developer_skills.nil?   
+    developer_skills.each do |dev_id|
+      if radiocheck == 0  
+        if dev_id.skill_id == skill_id && dev_id.level == level
+         radiocheck = 1
+    
+        else  
+         radiocheck = 0
+        end
+
+      end
+    end
+  end
 else
-   return false
+  if level == 0
+    radiocheck = 1
+  else
+    radiocheck = 0
+  end
 end
+      if radiocheck == 1
+         return true
+      else
+         return false
+      end
 
-
+  # end
 
 end  
-def add_new_developer
-    current_skill.each do  |skill_id, level| 
-            developer_skills = DeveloperSkill.new(:employee_id => :id, :skill_id => "#{skill_id}", :level => "#{level}")
-            developer_skills.save
-     end
-end
+
+ 
+
+def new_skill_level(skill_id, level) 
+
+ 
+   if level == 3
+    return true
+   else
+    return false
+   end   
+ 
+
+end  
+  
 
 
-
-#def current_skill=(current_skills)
-
-   # current_skills.each do |skill, level|
-    #  developer_skills = DeveloperSkill.new( :skill_id => skill, :level => level)
-    #  self.developer_skills 
-   # end
- # end
- # def developer_skills
-  #  developer_skills = developer_skills.push(developer_skills)
-  #end
-
-
-      
-
-#current_skills = Employee.find(27).current_skill
-def to_developer_skills(current_skill)
-  #current_skills = Employee.find(current_employee.id).current_skill
+def to_developer_skills(current_skills)
+ 
+   if !current_skills.nil?
   developer_skills = []
-  current_skill.each do |skill, level|
+  current_skills.each do |skill, level|
+      if level != "0"
       developer_skill = DeveloperSkill.new( :skill_id => skill, :level => level)
       developer_skills = developer_skills.push(developer_skill)
-
+      end
   end
   developer_skills
-  #update_developer_skills(developer_skills,current_employee)
-end
-
-#def update_developer_skills(developer_skills, current_employee)
- # developer_skills.each do |dev|
- #   dev.update_attributes(developer_skill)
- #end
-
-
-
-
-def current_skill=(current_skill)
-  self.developer_skills = to_developer_skills current_skill
-end
-
-#def current_skills=
- # self.developer_skills = to_developer_skills current_skills
-#end
-
-  # DeveloperSkill.where(:employee_id => current_employee.id).delete_all
-       
-    #     current_skill.each do |skill_id, level|
-     #     @developer_skills = DeveloperSkill.new(:employee_id => current_employee.id, :skill_id => skill_id, :level => level)
-      #    @developer_skills.save
-       #  end
-#end
-#def developer_skills_information(current_employee)
   
- # if !current_employee.current_skill.nil?
- #  current_skills = current_employee.current_skill.split(", ")
- # else
- #  []
-  #end
-   # current_skills.each do |skill_id|
-   #       @developer_skills = DeveloperSkill.new(:employee_id => current_employee.id, :skill_id => skill_id)
-    #      @developer_skills.save
-    #end
-   
-#end
+end
+end
+
+
+
+
+
+
+def current_skills=(current_skills)
+  self.developer_skills = to_developer_skills current_skills
+end
+
+
 
 
 private

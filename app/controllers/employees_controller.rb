@@ -92,10 +92,7 @@ class EmployeesController < ApplicationController
         
         
          sign_in @employee
-         @employee.current_skill.each do  |skill_id, level| 
-           developer_skills = DeveloperSkill.new(:employee_id => current_employee.id, :skill_id => "#{skill_id}", :level => "#{level}")
-           developer_skills.save
-          end
+         @employee.to_developer_skills(@employee.current_skills)
          
          redirect_to @employee
       else
@@ -131,7 +128,7 @@ class EmployeesController < ApplicationController
        
         sign_in @employee
          #current_skills = DeveloperSkill.find_all_by_employee_id(current_employee.id).current_skill
-         @employee.to_developer_skills(@employee.current_skill)
+         @employee.to_developer_skills(@employee.current_skills)
 
         # @employee.developer_skills_update_information(current_employee)
         redirect_to @employee

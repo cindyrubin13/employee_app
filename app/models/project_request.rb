@@ -23,7 +23,24 @@ class ProjectRequest < ActiveRecord::Base
     end
   end
 
-
+def match_skills(employee)
+  skill_score = []
+  relevant_skills = relevant_skill.split(", ")
+  skill_length = relevant_skills.length
+  x = 0
+  while x < skill_length
+    skill_id = Skill.find_by_language(relevant_skills.slice(x)).id
+    developer_skills = DeveloperSkill.find_all_by_employee_id(employee.id)
+    developer_skills.each do |dev_id|
+      if dev_id.skill_id == skill_id
+        skill_score.push(dev_id.level)
+        break
+      end
+    end
+    x = x + 1
+  end
+  skill_score.sum
+  end
 
 
 

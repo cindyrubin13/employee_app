@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217201108) do
+ActiveRecord::Schema.define(:version => 20130303011006) do
 
   create_table "desired_skills", :force => true do |t|
     t.string   "language"
@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(:version => 20130217201108) do
 
   create_table "developer_skills", :force => true do |t|
     t.string   "language"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "employee_id"
-    t.integer  "level"
     t.integer  "skill_id"
+    t.integer  "level",       :default => 3
   end
 
   create_table "employees", :force => true do |t|
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20130217201108) do
     t.string   "manager"
     t.string   "position"
     t.string   "group"
-    t.string   "current_skill"
     t.string   "skills_interested_in"
     t.string   "password_digest"
     t.string   "password"

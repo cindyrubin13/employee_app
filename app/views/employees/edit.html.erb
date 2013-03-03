@@ -90,7 +90,7 @@
     <a href="http://gravatar.com/emails">Upload 
       Photo</a>
 </div>    
-    <%= @employee.current_skill %> 
+    <%= @employee.current_skills %> 
   <div class="seventhfld">
  <div class="field">
 
@@ -101,7 +101,7 @@
        <tr><td>
             <%= skill.language %></td>
               <td><% [0, 1, 2, 3, 4].each do |level| %>
-       <%= radio_button_tag "employee[current_skill][#{skill.id}]", "#{level}", @employee.has_skill_level(skill.id, level)  %>
+       <%= radio_button_tag "employee[current_skills][#{skill.id}]", "#{level}", @employee.has_skill_level(skill.id, level)  %>
        <%= level %>
       
      <% end %></td></tr>
