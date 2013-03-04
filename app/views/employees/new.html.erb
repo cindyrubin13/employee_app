@@ -105,13 +105,22 @@
     <div class="skint">
       <div class="field">
         <%= f.label :desired_skills  %>
+        <table>
          <% @skills.each do |skill| %> 
          <div class="inbox">
-           <%= check_box_tag "skills_interested_in[]", skill.language %>
-           <%= skill.language %>
-         </div>
+          <tr><td> <%= skill.language %>
+            <%= skill.id %></td>
+            <td><% [0, 1, 2, 3, 4].each do |level| %>
+         
+         <%= radio_button_tag "employee[skills_interested_in][#{skill.id}]", "#{level}",  @employee.new_skill_level(skill.id, level) %>
+         
+        
+          <%=  level %>
+        <% end %>
+          
+         </div></td></tr>
        <% end %>
- 
+        </table>
       </div>
     </div>
  

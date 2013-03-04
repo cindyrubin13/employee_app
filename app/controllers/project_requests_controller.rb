@@ -21,7 +21,8 @@ class ProjectRequestsController < ApplicationController
       @responses = Response.find(:all, :conditions => :project_request_id == :id)
       @employee = Employee.all
      @developer_skills = DeveloperSkill.find_all_by_employee_id(current_employee.id)
-
+     @desired_skills = DesiredSkill.find_all_by_employee_id(current_employee.id)
+     
 
      @current_date = DateTime.now
     respond_to do |format|

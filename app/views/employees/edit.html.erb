@@ -122,14 +122,20 @@
 <div class="eightfld">
    <div class="field">
      <%= f.label :desired_skills  %>
+     <table>
       <% @skills.each do |skill| %> 
       <div class="inbox">
-        
-         <%= check_box_tag "skills_interested_in[]", skill.language, @employee.skills_interested_in.include?(skill.language) %>
-       <%= skill.language %>
+         <tr><td>
+            <%= skill.language %></td>
+              <td><% [0, 1, 2, 3, 4].each do |level| %>
+       <%= radio_button_tag "employee[skills_interested_in][#{skill.id}]", "#{level}", @employee.desired_skill_level(skill.id, level)  %>
+       <%= level %>
+      
+     <% end %></td></tr>
+         
      </div>
     <% end %>
-      
+      </table>
     </div>
   </div>
 

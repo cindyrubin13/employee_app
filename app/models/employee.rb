@@ -4,10 +4,13 @@ class Employee < ActiveRecord::Base
   has_secure_password 
   has_and_belongs_to_many :skills
   attr_accessor :current_skills
+  attr_accessor :skills_interested_in
   has_many :developer_skills
+  has_many :desired_skills
   belongs_to :skills
   accepts_nested_attributes_for :skills
   accepts_nested_attributes_for :developer_skills
+  accepts_nested_attributes_for :desired_skills
   has_many :project_requests
   belongs_to :project_request
   has_many :responses, :through => :project_request
@@ -38,7 +41,7 @@ validates :employee_name, presence: true
       skillcheck = 0
     end
   end
-  puts skillcheck
+  
  
  if skillcheck == 1
    if !developer_skills.nil?   
@@ -71,7 +74,50 @@ end
 
 end  
 
+  def desired_skill_level(skill_id, level) 
+
+  radiocheck = 0
+  skillcheck = 0
+  desired_skills.each do |dev|
+    if dev.skill_id == skill_id
+      skillcheck = 1
+      break
+    else
+      skillcheck = 0
+    end
+  end
  
+ 
+ if skillcheck == 1
+   if !desired_skills.nil?   
+    desired_skills.each do |dev_id|
+      if radiocheck == 0  
+        if dev_id.skill_id == skill_id && dev_id.level == level
+         radiocheck = 1
+    
+        else  
+         radiocheck = 0
+        end
+
+      end
+    end
+  end
+else
+  if level == 0
+    radiocheck = 1
+  else
+    radiocheck = 0
+  end
+end
+      if radiocheck == 1
+         return true
+      else
+         return false
+      end
+
+  # end
+
+end  
 
 def new_skill_level(skill_id, level) 
 
@@ -102,6 +148,21 @@ def to_developer_skills(current_skills)
 end
 end
 
+def to_desired_skills(skills_interested_in)
+ 
+   if !skills_interested_in.nil?
+  desired_skills = []
+  skills_interested_in.each do |skill, level|
+      if level != "0"
+      desired_skill = DesiredSkill.new( :skill_id => skill, :level => level)
+      desired_skills = desired_skills.push(desired_skill)
+      end
+  end
+  desired_skills
+  
+end
+end
+
 
 
 
@@ -111,6 +172,9 @@ def current_skills=(current_skills)
   self.developer_skills = to_developer_skills current_skills
 end
 
+def skills_interested_in=(skills_interested_in)
+  self.desired_skills = to_desired_skills skills_interested_in
+end
 
 
 

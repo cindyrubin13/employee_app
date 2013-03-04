@@ -41,7 +41,24 @@ def match_skills(employee)
   end
   skill_score.sum
   end
-
+def match_desired_skills(employee)
+  skill_score = []
+  relevant_skills = relevant_skill.split(", ")
+  skill_length = relevant_skills.length
+  x = 0
+  while x < skill_length
+    skill_id = Skill.find_by_language(relevant_skills.slice(x)).id
+    desired_skills = DesiredSkill.find_all_by_employee_id(employee.id)
+    desired_skills.each do |des_id|
+      if des_id.skill_id == skill_id
+        skill_score.push(des_id.level)
+        break
+      end
+    end
+    x = x + 1
+  end
+  skill_score.sum
+  end
 
 
 def current_count(employee)

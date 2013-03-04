@@ -136,7 +136,7 @@
                           <%= response.employee.last_name %>
                           <%= link_to 'View Profile', employee_path(response.employee_id) %>
                           Match: Skills: <%= project_request.match_skills(response.employee) %><%= @skill_score %>
-                          Interest: <%= project_request.interest_count(response.employee) %>
+                          Interest: <%= project_request.match_desired_skills(response.employee) %><%= @skill_score %>
                           <%= link_to 'Select', new_response_request_selection_path(response) %>
                           </td> </tr>
                       <% else %>

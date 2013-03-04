@@ -64,11 +64,11 @@ class EmployeesController < ApplicationController
 
     
 
-   skills_interested_in = params[:skills_interested_in]
+   #skills_interested_in = params[:skills_interested_in]
 
-   if !params[:skills_interested_in].nil?
-     skills_interested_in = @employee.skills_interested_in.split(", ")
-   end
+  # if !params[:skills_interested_in].nil?
+   #  skills_interested_in = @employee.skills_interested_in.split(", ")
+  # end
 
 
 
@@ -85,14 +85,15 @@ class EmployeesController < ApplicationController
    # @employee.current_skill = params[:current_skill].to_a
    # @employee.current_skill = @employee.current_skill.join(", ")
    
-    @employee.skills_interested_in = params[:skills_interested_in].to_a
-    @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
+    #@employee.skills_interested_in = params[:skills_interested_in].to_a
+    #@employee.skills_interested_in = @employee.skills_interested_in.join(", ")
 
       if @employee.save
         
         
          sign_in @employee
          @employee.to_developer_skills(@employee.current_skills)
+         @employee.to_desired_skills(@employee.skills_interested_in)
          
          redirect_to @employee
       else
@@ -107,30 +108,17 @@ class EmployeesController < ApplicationController
    @employee = Employee.find(params[:id])
    @skills = Skill.all
     
-   #
-   #@employee.current_skill = params[:current_skill]
-   #@employee.current_skill = @employee.current_skill.join(", ")
-   #@employee.current_skill.update(@employee.current_skill)
-   @employee.skills_interested_in = params[:skills_interested_in].to_a
-   @employee.skills_interested_in = @employee.skills_interested_in.join(", ")
+   
+   #@employee.skills_interested_in = params[:skills_interested_in].to_a
+   #@employee.skills_interested_in = @employee.skills_interested_in.join(", ")
      if @employee.update_attributes(params[:employee])
       
-       #developer_skills = DeveloperSkill.find_all_by_employee_id(@employee)
-        #  index = 0
-      #  @employee.current_skill.each do |skill_id, level| 
-      #
-       #    @employee.developer_skills.each_with_index do  |developer_skill, index| 
-       #     developer_skill.update_attributes(:skill_id => skill_id, :level => level)
-       #      index = index + 1
-       #      break
-       #    end
-       #  end
-       
+      
         sign_in @employee
-         #current_skills = DeveloperSkill.find_all_by_employee_id(current_employee.id).current_skill
+        
          @employee.to_developer_skills(@employee.current_skills)
-
-        # @employee.developer_skills_update_information(current_employee)
+         @employee.to_desired_skills(@employee.skills_interested_in)
+        
         redirect_to @employee
       else
         render 'edit'

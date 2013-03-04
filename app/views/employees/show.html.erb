@@ -97,7 +97,13 @@
 
 <p>
   <b>Skills Interest In:</b>
-  <%= @employee.skills_interested_in %>
+  <% @skillname = [] %>
+    <% @employee.desired_skills.each do |des_skill| %>
+      <% show_skill_and_level(des_skill) %>
+      <% end %>
+       <%= @skillname.join(", ") %>
+       
+       
 </p>
 
 <p>
