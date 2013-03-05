@@ -1,0 +1,143 @@
+<!--<head>
+  <title>Tabbed Structure - REgular</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+</head>
+<body>-->
+ <%= render 'layouts/header' %>
+
+  <div id="tabbed_box_1" class="tabbed_box">
+  
+    <div id="navigation">
+          <ul>
+           <li><%= link_to 'All Requests', project_requests_path %></li>
+           
+           <li><%= link_to 'My Profile', employee_path(current_employee), :class => 'current' %></li>
+       
+           <li><%= link_to "Requests I've Posted", _my_requests_path %></li>
+           <li><%= link_to "Post a New Request", new_project_request_path %></li>
+          </ul>
+        </div>
+        <p class="navlinepro"></p>
+        <p class="navlinepro1"></p>    
+      </div>
+
+
+<p class="profilehead"> My Profile </p>
+<!--<p class="signoutlink"><%= link_to 'Signout', signout_path, method: "delete" %></p>-->
+
+
+
+<div class="showgrav"> 
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @employee %>
+        <!--<%= @employee.employee_name %>-->
+      </h1>
+    </section>
+  </aside>
+</div>
+</div>
+<div class="showprofile">
+<p>
+  <b>Employee First Name:</b>
+  <%= @employee.employee_name %>
+</p>
+
+<p>
+  <b>Employee Last Name:</b>
+  <%= @employee.last_name %>
+</p>
+<p>
+  <b>Employee email:</b>
+  <%= @employee.employee_email %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @employee.location %>
+</p>
+
+<p>
+  <b>Department:</b>
+  <%= @employee.department %>
+</p>
+
+<p>
+  <b>Years with Company:</b>
+  <%= @employee.years_with_company %>
+</p>
+
+<p>
+  <b>Manager:</b>
+  <%= @employee.manager %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @employee.position %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @employee.group %>
+</p>
+
+<p>
+  <b>Current Skills:</b>
+   <% @skillname = [] %>
+    <% @employee.developer_skills.each do |dev_skill| %>
+      <% show_skill_and_level(dev_skill) %>
+      <% end %>
+       <%= @skillname.join(", ") %>
+       
+       
+</p>
+
+<p>
+  <b>Skills Interest In:</b>
+  <% @skillname = [] %>
+    <% @employee.desired_skills.each do |des_skill| %>
+      <% show_skill_and_level(des_skill) %>
+      <% end %>
+       <%= @skillname.join(", ") %>
+       
+       
+</p>
+
+<p>
+  <b>Short Description about </b>
+  <b><%= @employee.employee_name %></b>
+  <b> : </b>
+  <%= @employee.description %>
+</p>
+<div="projectsworked">
+ <p> <b>Projects I have Worked On: </b></p>
+ 
+
+
+    <% if !@request_selections.nil? %>
+     <% @request_selections.each do |request_selection| %>
+
+      <% if request_selection.employee_id == current_employee.id %>
+
+
+        <b><%= request_selection.project_request.title%> :
+           <%= request_selection.project_request.start_date.strftime("%B %e, %Y -") %> 
+           <%= request_selection.project_request.end_date.strftime("%B %e, %Y") %> </b>
+             <% if request_selection.project_request.end_date < @current_date %>
+                <b>(Completed)</b>
+             <% else %>
+                <b> (In Progress)</b>
+             <% end %>
+
+  </p>
+           <p><b>Description:  <%= request_selection.project_request.project_help %></b></p>
+   <p><b>-------------------------------------------------------------------------------------------</b></p>        
+      <% end %>
+  <% end %>
+<% end %>
+</div> 
+</div>
+

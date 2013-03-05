@@ -70,7 +70,7 @@
          <% current_skill_score(rel_skill) %> 
       <% end %>
     <%= @skill_score.sum %></td></tr>
-     <tr><td>Current Employee Skills and Proficiency Levels: <%= @emp_skills.join(", ") %></td></tr>
+     <tr><td>Match to skills: <%= @emp_skills.join(", ") %></td></tr>
      <tr><td>Interested Skills Match Score:
       <% @emp_skills =  [] %>
       <% @skill_score = [] %>
@@ -78,7 +78,7 @@
   
         <% interested_skill_score(rel_skill) %> 
       <% end %>
-    <%= @skill_score.sum %></td></tr><tr><td>Current Employee Interested Skills and Proficiency Levels: <%= @emp_skills.join(", ") %></td></tr>
+    <%= @skill_score.sum %></td></tr><tr><td>Match to interests: <%= @emp_skills.join(", ") %></td></tr>
   
 
    <tr> 
