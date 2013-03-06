@@ -59,7 +59,7 @@ class RequestSelectionsController < ApplicationController
       if @request_selection.save
        
         #format.html { redirect_to response_request_selections_path @response, notice: 'This developer has been selected for this project request.' }
-        format.html { redirect_to _my_requests_path, notice: 'This developer has been selected for this project request.' }
+        format.html { redirect_to _my_requests_path }
         format.json { render json: @request_selection, status: :created, location: @request_selection }
       else
         format.html { render action: "new" }

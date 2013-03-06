@@ -30,104 +30,32 @@ validates :employee_name, presence: true
  
   validates :password_confirmation, presence: true, :on => :create
   def has_skill_level(skill_id, level) 
-
-  radiocheck = 0
-  skillcheck = 0
-  developer_skills.each do |dev|
-    if dev.skill_id == skill_id
-      skillcheck = 1
-      break
-    else
-      skillcheck = 0
-    end
-  end
-  
- 
- if skillcheck == 1
-   if !developer_skills.nil?   
-    developer_skills.each do |dev_id|
-      if radiocheck == 0  
-        if dev_id.skill_id == skill_id && dev_id.level == level
-         radiocheck = 1
-    
-        else  
-         radiocheck = 0
-        end
-
-      end
-    end
-  end
-else
-  if level == 0
-    radiocheck = 1
-  else
-    radiocheck = 0
-  end
+   
+      developer_skills.each do |dev_id|
+       return true  if dev_id.skill_id == skill_id && dev_id.level == level
+         
+          end
+        
+      level == 0
 end
-      if radiocheck == 1
-         return true
-      else
-         return false
-      end
+ 
 
-  # end
-
-end  
 
   def desired_skill_level(skill_id, level) 
 
-  radiocheck = 0
-  skillcheck = 0
-  desired_skills.each do |dev|
-    if dev.skill_id == skill_id
-      skillcheck = 1
-      break
-    else
-      skillcheck = 0
+  desired_skills.each do |dev_id|
+       return true  if dev_id.skill_id == skill_id && dev_id.level == level
+
+          end
+        
+      level == 0
     end
-  end
  
- 
- if skillcheck == 1
-   if !desired_skills.nil?   
-    desired_skills.each do |dev_id|
-      if radiocheck == 0  
-        if dev_id.skill_id == skill_id && dev_id.level == level
-         radiocheck = 1
-    
-        else  
-         radiocheck = 0
-        end
-
-      end
-    end
-  end
-else
-  if level == 0
-    radiocheck = 1
-  else
-    radiocheck = 0
-  end
-end
-      if radiocheck == 1
-         return true
-      else
-         return false
-      end
-
-  
-
-end  
 
 def new_skill_level(skill_id, level) 
 
  
-   if level == 3
-    return true
-   else
-    return false
-   end   
- 
+    level == 3
 
 end  
   
