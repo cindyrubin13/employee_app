@@ -6,7 +6,8 @@ class Response < ActiveRecord::Base
   has_many :request_selections
   belongs_to :request_selection
   accepts_nested_attributes_for :request_selections, :allow_destroy => true
-
-
+  belongs_to :rewards
+  has_many :rewards
+  accepts_nested_attributes_for :rewards, :allow_destroy => true
 
 end

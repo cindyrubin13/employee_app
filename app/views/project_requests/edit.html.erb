@@ -1,4 +1,5 @@
-<h1>Canceling This Request</h1>
+
+<h1>Edit This Request</h1>
 
 <%= hidden_field_tag "project_request[relevant_skill][]", "" %>
 
@@ -22,7 +23,11 @@
     <%= f.date_select(:end_date, :order => [:month, :day, :year], :default => @current_date)  %>
   </div>
  
- 
+  <div class="field">
+    <%= f.label :status_request %>
+     <%= f.select :rstatus, ['Active', 'Cancel'] %>
+  </div> 
+
   <div class="field">
      <%= f.label :relevant_skill  %>
      <% @skills.each do |skill| %>
@@ -42,10 +47,10 @@
   </div>
   <div class="field">
   <div class="actions">
-    <%= f.submit 'Cancel This Request' %>
-    <%= link_to "Cancel", _my_requests_path %>
+    <%= f.submit 'Update This Request' %>
+   
   </div>
-
+<%= link_to "Cancel this Edit", _my_requests_path %>  
 <% end %>
 
 

@@ -1,5 +1,7 @@
 EmpApp::Application.routes.draw do
 
+  
+
   resources :request_skills
 
 
@@ -13,11 +15,11 @@ EmpApp::Application.routes.draw do
 
   get "my_requests" => "project_requests#my_requests", :as => "_my_requests"
   get "static_pages/home"
-
+  
  match '/signup', to: 'employees#new'
  root to:  'static_pages#home'
  #root to: 'sessions#new'
-  match '/show_profile/:id' => 'employees#show_profile', :as => :show_profile
+  
   match '/', to: 'static_pages#home'
   match '/signup', to: 'employees#new'
    match '/signin',  to: 'sessions#new'
@@ -28,7 +30,9 @@ EmpApp::Application.routes.draw do
   end
 
 
-
+  resources :employees do
+    resources :rewards
+  end
   
 
   resources :project_requests do

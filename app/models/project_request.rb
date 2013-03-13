@@ -1,24 +1,33 @@
 class ProjectRequest < ActiveRecord::Base
-  attr_accessible :employee_id, :project_help, :start_date, :end_date, :status, :relevant_skill, :title, :group, :office, :request_status
+  attr_accessible :employee_id, :project_help, :start_date, :end_date, :status, :relevant_skill, :title, :group, :office, :request_status, :rstatus
+  
   belongs_to :employee
   has_many :responses
+  has_many :rewards
   belongs_to :request_selection
- 
   has_many :request_selections
   accepts_nested_attributes_for :responses, :allow_destroy => true
+  accepts_nested_attributes_for :rewards, :allow_destroy => true
   has_and_belongs_to_many :skills
   belongs_to :skills
   
+ 
   validate :check_end_date
   validates_numericality_of :employee_id, :only_integer => true
   validates :employee_id, presence: true
+  validate :start_date, presence: true
+  validate :end_date, presence: true
+  validate :start_date_before_end_date, presence: true, :message => 'Please check the dates'
+
   default_scope order: 'project_requests.created_at DESC'
 
 
+  def start_date_before_end_date
+        self.errors.add(:start_date, "must be before end date") if self.start_date > self.end_date
+  end
 
   def check_end_date
     if end_date < Date.today
-    
        errors.add(:end_date,  "End Date can only be later than today")
     end
   end
@@ -40,7 +49,7 @@ def match_skills(employee)
     x = x + 1
   end
   skill_score.sum
-  end
+end
 def match_desired_skills(employee)
   skill_score = []
   relevant_skills = relevant_skill.split(", ")
@@ -71,6 +80,17 @@ end
 
 def overlap_count(skills1, skills2)
    (skills1.split(", ") & skills2.split(", ")).length
+end
+
+def update_request_status(project_request)
+
+  if project_request.rstatus == "Cancel"   
+  project_request.request_status = 2
+  project_request.save
+  else
+ project_request.request_status = 0
+  project_request.save
+  end
 end
 
 end

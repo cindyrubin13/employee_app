@@ -1,4 +1,4 @@
- <%= render 'layouts/header' %>
+  <%= render 'layouts/header' %>
  
  <head>
   <title>Tabbed Structure - REgular</title>
@@ -79,8 +79,12 @@
   </div>
 </div>
  </div> 
- 
-
+ <div class="statusfield"> 
+  <div class="field">
+    <%= f.label :status_request %>
+     <%= f.select :rstatus, ['Active', 'Cancel'] %>
+  </div> 
+</div>
   <div class="relsk">
    <div class="field">
      <%= f.label :relevant_skills  %>

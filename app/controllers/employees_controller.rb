@@ -11,14 +11,7 @@ class EmployeesController < ApplicationController
       @current_date = DateTime.now
   end
 
-  def show_profile
-     @employee = Employee.find(params[:id])
-     @project_requests = ProjectRequest.all
-     @request_selections = RequestSelection.all
-     @current_date = DateTime.now
-   
-    @skills = Skill.all
-  end
+
 
   # GET /employees
   # GET /employees.json

@@ -287,22 +287,22 @@ height: 100%
 }
 .firstfld {
   position: absolute;
-  top: 130px;
-  left: 350px;
+  top: 140px;
+  left: 5px;
 
 }
 
 .secondfld {
   position: absolute;
-  top: 130px;
-  left: 550px;
+  top: 140px;
+  left: 350px;
 
 }
 
 .thirdfld {
   position: absolute;
-  top: 130px;
-  left: 850px;
+  top: 140px;
+  left: 750px;
 
 }
 
@@ -374,8 +374,15 @@ height: 100%
 
 .passfld {
   position: absolute;
-  top: 105px;
+  top: 95px;
 }
+.statusfield {
+
+ position: relative;
+ top: -30px;
+ left: 330px;
+}
+
 
 .newfirst {
   position: absolute;
@@ -384,7 +391,7 @@ height: 100%
 }
 .newsecond {
   position: absolute;
-  top: 105px;
+  top: 95px;
   left: 350px;
 }
 
@@ -444,7 +451,7 @@ height: 100%
   }*/
  .newsub {
   position: absolute;
-  top: 630px;
+  top: 640px;
   left: 200px;
   }
 

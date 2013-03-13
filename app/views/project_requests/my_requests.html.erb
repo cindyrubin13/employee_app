@@ -64,7 +64,12 @@
      <td>Description:
         <%= project_request.project_help %></td>
         <% if project_request.request_status == 0 %> 
-        <td><%= link_to "Cancel", edit_project_request_path(project_request.id) %></td>
+        <td><%= link_to "Edit Request",  edit_project_request_path(project_request.id) %>
+         
+          
+          </td>
+          
+        
         <% end %>
         
    </tr>
@@ -119,13 +124,15 @@
   
                           <tr><td><%= response.employee.employee_name %>
                           <%= response.employee.last_name %>
-                          <%= link_to 'View Profile', show_profile_path(response.employee_id) %>
-                          Selected </td>
-                          <% selected_id = 0 %>
+                          
+                          Selected 
+                          <%= link_to 'View Profile', employee_path(response.employee_id) %>
+                          <%= link_to 'Award Points', new_project_request_reward_path(project_request.id) %>
+                          <% selected_id = 0 %></td>
                     <% else %>
                          <tr><td><%= response.employee.employee_name %>
                          <%= response.employee.last_name %>
-                         <%= link_to 'View Profile', show_profile_path(response.employee_id) %>
+                         <%= link_to 'View Profile', employee_path(response.employee_id) %>
                                      </td>
                     <% end %>
                    
@@ -134,7 +141,7 @@
                     <% if notactive == 0 %>
                     <tr><td><%= response.employee.employee_name %>
                           <%= response.employee.last_name %>
-                          <%= link_to 'View Profile', show_profile_path(response.employee_id) %>
+                          <%= link_to 'View Profile', employee_path(response.employee_id) %>
                           Match: Skills: <%= project_request.match_skills(response.employee) %><%= @skill_score %>
                           Interest: <%= project_request.match_desired_skills(response.employee) %><%= @skill_score %>
                           <%= link_to 'Select', new_response_request_selection_path(response) %>

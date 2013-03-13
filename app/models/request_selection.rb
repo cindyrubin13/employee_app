@@ -4,4 +4,6 @@ class RequestSelection < ActiveRecord::Base
   belongs_to :response
   belongs_to :project_request
   belongs_to :employee
+  belongs_to :rewards
+  has_many :rewards
 end

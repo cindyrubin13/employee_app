@@ -8,7 +8,7 @@ class ProjectRequestsController < ApplicationController
  
   end
      
-     
+   
 
  
 
@@ -16,13 +16,13 @@ class ProjectRequestsController < ApplicationController
   # GET /project_requests.json
   def index
     @project_requests = ProjectRequest.all
-     @request_selections = RequestSelection.all
+    @request_selections = RequestSelection.all
 
-      @responses = Response.find(:all, :conditions => :project_request_id == :id)
-      @employee = Employee.all
-     @developer_skills = DeveloperSkill.find_all_by_employee_id(current_employee.id)
-     @desired_skills = DesiredSkill.find_all_by_employee_id(current_employee.id)
-     
+    @responses = Response.find(:all, :conditions => :project_request_id == :id)
+    @employee = Employee.all
+    @developer_skills = DeveloperSkill.find_all_by_employee_id(current_employee.id)
+    @desired_skills = DesiredSkill.find_all_by_employee_id(current_employee.id)
+     @skills = Skill.all
 
      @current_date = DateTime.now
     respond_to do |format|
@@ -82,13 +82,13 @@ class ProjectRequestsController < ApplicationController
      @project_request = current_employee.project_requests.build(params[:project_request])
      @current_date = DateTime.now
      @project_request.relevant_skill = params[:relevant_skill].to_a
-    @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
+     @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
      @skills = Skill.all
     if @project_request.save
      
       redirect_to project_requests_path
     else
-      redirect_to new_project_request_path(@project_request), notice: "End date must be later than today" 
+      redirect_to new_project_request_path(@project_request)
      
       
     end
@@ -100,13 +100,14 @@ class ProjectRequestsController < ApplicationController
   # PUT /project_requests/1.json
   def update
     @project_request = ProjectRequest.find(params[:id])
-     @current_date = DateTime.now
+    @current_date = DateTime.now
 
-      @project_request.relevant_skill = params[:relevant_skill].to_a
-   @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
-     
+    @project_request.relevant_skill = params[:relevant_skill].to_a
+    @project_request.relevant_skill = @project_request.relevant_skill.join(", ")
+    @skills = Skill.all 
     respond_to do |format|
       if @project_request.update_attributes(params[:project_request])
+        @project_request.update_request_status(@project_request) 
         format.html { redirect_to _my_requests_path }
         format.json { head :no_content }
       else

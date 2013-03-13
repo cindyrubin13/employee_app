@@ -1,6 +1,5 @@
 <h1 class="signhead">New Employee Sign-Up Page</h1>
-<%= hidden_field_tag "employee[current_skill][]", "" %>
-<%= hidden_field_tag "employee[skills_interested_in][]", "" %>
+
 
 <%= form_for(@employee) do |f| %>
  
@@ -33,102 +32,14 @@
     <%= f.password_field :password_confirmation %>
     </div>
     </div>
-   <div class="newoffice"
-    <div class="field">
-    <%= f.label :office %>
-    <%= f.select :location, ['New York', 'Chicago', 'Los Angeles', 'Atlanta', 'Detroit', 'Boston', 'Mumbai', 'Houston'] %> 
-  </div>
-</div>
-  <div class="newthird">
-  <div class="field">
-    <%= f.label :department %>
-    <%= f.select :department, ['IT', 'Security' 'Programming'] %>
-  </div>
-  </div>
-  <div class="newfourth">
-   <div class="field">
-    <%= f.label :years_with_company %>
-    <%= f.select :years_with_company, ['1', '2', '3', '4', '5', '6', '7', '8', '9'] %>
-  </div>
-  </div>
-  <div class="newsuper">
-  <div class="field">
-    <%= f.label :immediate_supervisor %>
-    <%= f.text_field :manager %>
-  </div>
-</div>
-<div class="newfifth">
-  <div class="field">
-    <%= f.label :job_title %>
-    <%= f.select :position, ['Engineer', 'Analyst', 'Project Lead', 'UI Specialist', 'QA Specialist'] %>
-  </div>
-  </div>
-<div class="newsixth">
-  <div class="field">
-    <%= f.label :group %>
-   <%= f.select :group, ['Development', 'Interface Design', 'QA', 'Infrasructure'] %>
-  </div>
- </div>
-
- <div class="newseventh">
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :size => "40x6" %>
-  </div>
- </div>
-
-  <div class="currsk">
-   <div class="field">
-     <%= f.label :current_skills  %>
-      <table>
-     <% @skills.each do |skill| %>
-      <div class="inbox">
-       <tr><td>
-       <%= skill.language %>
-       <%= skill.id %>
-     </td>
-       
-        <td><% [0, 1, 2, 3, 4].each do |level| %>
-         
-         <%= radio_button_tag "employee[current_skills][#{skill.id}]", "#{level}",  @employee.new_skill_level(skill.id, level) %>
-         
-        
-          <%=  level %>
-        <% end %>
-      </div></td></tr>
-    <% end %>
-     </table> 
-    </div>
-  </div>
-
-
-    <div class="skint">
-      <div class="field">
-        <%= f.label :desired_skills  %>
-        <table>
-         <% @skills.each do |skill| %> 
-         <div class="inbox">
-          <tr><td> <%= skill.language %>
-            <%= skill.id %></td>
-            <td><% [0, 1, 2, 3, 4].each do |level| %>
-         
-         <%= radio_button_tag "employee[skills_interested_in][#{skill.id}]", "#{level}",  @employee.new_skill_level(skill.id, level) %>
-         
-        
-          <%=  level %>
-        <% end %>
-          
-         </div></td></tr>
-       <% end %>
-        </table>
-      </div>
-    </div>
+ 
  
   <div class="newsub">
  <div class="actions">
     <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
   </div>
 </div>
+ <%= render 'form' %>
 <% end %>
 
 

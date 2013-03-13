@@ -35,4 +35,10 @@ def interested_skill_score(rel_skill)
 @skill_score
 @emp_skills
 end
+
+
+
+
+
+
 end

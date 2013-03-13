@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304021243) do
+ActiveRecord::Schema.define(:version => 20130311015002) do
 
   create_table "desired_skills", :force => true do |t|
     t.string   "language"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130304021243) do
     t.string   "office"
     t.string   "group"
     t.integer  "request_status"
+    t.string   "rstatus"
   end
 
   create_table "request_selections", :force => true do |t|
@@ -91,6 +92,21 @@ ActiveRecord::Schema.define(:version => 20130304021243) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "status"
+  end
+
+  create_table "rewards", :force => true do |t|
+    t.date     "reward_date"
+    t.integer  "employee_id"
+    t.integer  "project_request_id"
+    t.integer  "reward_points"
+    t.integer  "skill_id"
+    t.integer  "level_change"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "response_id"
+    t.integer  "request_selection_id"
+    t.integer  "total_days"
+    t.integer  "skill_days"
   end
 
   create_table "skills", :force => true do |t|
