@@ -2,12 +2,11 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @employee = Employee.find(params[:employee_id])
-    #@project_request = ProjectRequest.find(params[:project_request_id])
-    #@response = Response.find(params[:response_id])
-     @current_date = DateTime.now
+    @request_selection = RequestSelection.find(params[:request_selection_id])
+    @current_date = DateTime.now
     @rewards = Reward.all
     @skills = Skill.all
+    @developer_skills = DeveloperSkill.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @rewards }
@@ -17,11 +16,11 @@ class RewardsController < ApplicationController
   # GET /rewards/1
   # GET /rewards/1.json
   def show
-   # @project_request = ProjectRequest.find(params[:project_request_id])
+   
      @current_date = DateTime.now
      @skills = Skill.all
-    @employee = Employee.find(params[:employee_id])
-   # @response = Response.find(params[:response_id])
+     @request_selection = RequestSelection.find(params[:request_selection_id])
+   
    @reward = Reward.find(params[:id])
 
     respond_to do |format|
@@ -33,16 +32,16 @@ class RewardsController < ApplicationController
   # GET /rewards/new
   # GET /rewards/new.json
   def new
-    #@project_request = ProjectRequest.find(params[:project_request_id])
-  @employee = Employee.find(params[:employee_id])
+
+    @request_selection = RequestSelection.find(params[:request_selection_id])
     @current_date = DateTime.now
-    @reward = @employee.rewards.build
-     @skills = Skill.all
-   # @employee = Response.find(params[:employee_id])
-    #@reward = Response.find(params[:response_id])
-   
-    #@reward = @response.rewards.build
-   # @reward = Reward.new
+    @reward = @request_selection.rewards.build
+    @skills = Skill.all
+    @developer_skills = DeveloperSkill.all
+     1.times do
+      evaluation = @reward.evaluations.build
+     end
+  
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,9 +51,9 @@ class RewardsController < ApplicationController
 
   # GET /rewards/1/edit
   def edit
-    #@project_request = ProjectRequest.find(params[:project_request_id])
-     @employee = Employee.find(params[:employee_id])
-    # @response = Response.find(params[:response_id])
+   
+    @request_selection = RequestSelection.find(params[:request_selection_id])
+    
     @reward = Reward.find(params[:id])
      @skills = Skill.all
       @current_date = DateTime.now
@@ -63,15 +62,14 @@ class RewardsController < ApplicationController
   # POST /rewards
   # POST /rewards.json
   def create
-   # @project_request = ProjectRequest.find(params[:project_request_id])
-    @employee = Employee.find(params[:employee_id])
-    @reward = @employee.rewards.build(params[:reward])
+   
+   @request_selection = RequestSelection.find(params[:request_selection_id])
+   @reward = @request_selection.rewards.build(params[:reward])
+   @developer_skills = DeveloperSkill.find_by_employee_id(:employee_id)
   
-    @skills = Skill.all
-     @current_date = DateTime.now
-   # @response = Response.find(params[:response_id])
-   # @reward = @response.rewards.build(params[:reward])
-    #@reward = Reward.new(params[:reward])
+   @skills = Skill.all
+   @current_date = DateTime.now
+   
 
     respond_to do |format|
       if @reward.save
@@ -88,11 +86,11 @@ class RewardsController < ApplicationController
   # PUT /rewards/1
   # PUT /rewards/1.json
   def update
-     #@project_request = ProjectRequest.find(params[:project_request_id])
-    @employee = Employee.find(params[:employee_id])
+     
+    @request_selection = RequestSelection.find(params[:request_selection_id])
     @reward = Reward.find(params[:id])
-     @skills = Skill.all
-      @current_date = DateTime.now
+    @skills = Skill.all
+    @current_date = DateTime.now
 
     respond_to do |format|
       if @reward.update_attributes(params[:reward])

@@ -8,12 +8,16 @@ class Employee < ActiveRecord::Base
   has_many :developer_skills
   has_many :desired_skills
   has_many :rewards
+  has_many :evaluations
   belongs_to :skills
   accepts_nested_attributes_for :skills
   accepts_nested_attributes_for :developer_skills
   accepts_nested_attributes_for :desired_skills
+  accepts_nested_attributes_for :rewards 
+ 
   has_many :project_requests
   belongs_to :project_request
+  belongs_to :evaluation
   has_many :responses, :through => :project_request
   has_many :request_selections, :through => :responses
 
@@ -77,7 +81,8 @@ class Employee < ActiveRecord::Base
     self.desired_skills = to_desired_skills skills_interested_in
   end
 
-
+  
+ 
 
 private
 

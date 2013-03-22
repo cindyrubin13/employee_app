@@ -22,5 +22,28 @@ def show_skill_and_level(skill_level)
        end
  end
     
-
+def reward_points(current_employee_id)
+  rewards = Reward.find_all_by_employee_id(27)
+    return false if rewards == nil
+  else
+       evaluations = Evaluation.find_all_by_employee_id(27)
+       if !evaluations.nil?
+      eval_array = []
+      
+      evaluations.each do |eval|
+        @skills.each do |skill|
+          if skill.id == eval.skill_id
+          eval_array.push(skill.language)
+          else
+            next
+          end
+        end
+      
+        eval_array.push(eval.level)
+        eval_array.push(eval.eval_number)
+      end
+    
+    eval_array
+    
+     
 end

@@ -2,6 +2,9 @@ EmpApp::Application.routes.draw do
 
   
 
+  resources :evaluations
+
+
   resources :request_skills
 
 
@@ -30,10 +33,12 @@ EmpApp::Application.routes.draw do
   end
 
 
-  resources :employees do
+  resources :request_selections do
     resources :rewards
   end
-  
+  resources :rewards do
+    resources :evaluations
+  end
 
   resources :project_requests do
     resources :responses

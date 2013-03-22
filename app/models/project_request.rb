@@ -3,7 +3,7 @@ class ProjectRequest < ActiveRecord::Base
   
   belongs_to :employee
   has_many :responses
-  has_many :rewards
+  has_one :rewards
   belongs_to :request_selection
   has_many :request_selections
   accepts_nested_attributes_for :responses, :allow_destroy => true

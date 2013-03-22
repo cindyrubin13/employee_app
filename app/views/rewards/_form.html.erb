@@ -1,4 +1,7 @@
-<%= form_for([@project_request, @reward]) do |f| %>
+
+
+
+<%= form_for([@request_selection, @reward]) do |f| %>
   <% if @reward.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reward.errors.count, "error") %> prohibited this reward from being saved:</h2>
@@ -12,55 +15,76 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :reward_date %><br />
-    <%= f.date_select(:reward_date, :order => [:month, :day, :year], :default => @current_date) %>
- 
+  <%= f.label :reward_date %><br />
+  <%= f.date_select(:reward_date, :order => [:month, :day, :year], :default => @current_date) %>
+    
   
-  <% find_employee(@project_request.id) %>
-  
-   <%= f.hidden_field  :employee_id, :value => @employee_id  %>
-   <%= f.hidden_field  :project_request_id, :value => @project_request.id %>
-   <%  find_employee_name(@employee_id) %>
-   <p> Employee Name:  
-   <%= @name %> </p>
-   <p> Project Request ID: <%= @project_request.title %> </p>
-
-   <div class="field">
-    <p> Total Number of Days  <%= @name %> Worked on This Project </P>
-      <%= find_number_of_days(@project_request.id)  %>
    
-  </div>
+  <p> Employee Name:  
+  <%= @reward.request_selection.employee.employee_name %>    <%= @reward.request_selection.employee.last_name %></p>
+  <p> Project Request Title: <%= @reward.request_selection.project_request.title %> </p>
 
-     
-        <p>Please update observed skill levels, as appropriate </p>
-<table>
-        <% @skills.each do |skill| %> 
-        <div class="inbox">
-             <tr><td>
-            <%= skill.language %></td>
-              <td><% (0..4).each do |level| %>
-              <%= radio_button_tag "@project_request.reward[skill_change][#{skill.id}]", "#{level}", @reward.has_skill_level(@employee_id, skill.id, level)  %>
+   
+  <p> Total Number of Days  <%= @request_selection.employee.employee_name %>   
+      <%= @request_selection.employee.last_name %> Worked on This Project </P>
+      <%= find_number_of_days(@reward.request_selection.project_request_id)  %>
+   
  
-              <%= level %>
-              
-              <% end %></td>
+   <%= f.hidden_field  :employee_id, :value => @reward.request_selection.employee_id  %>
+   <%= f.hidden_field  :project_request_id, :value => @reward.request_selection.project_request_id %>
+   <table>
+    <tr>
+    
+    <th>Language</th>
+    <th>Current Level</th>
+    
+    </tr>
+
+
+<% @developer_skills.each do |developer_skill| %>
+<% if developer_skill.employee_id == @reward.request_selection.employee_id %>
+  <tr>
+  <% @skills.each do |skill| %>
+    <% if developer_skill.skill_id == skill.id %>
+      <td> <%= skill.language %></td>
+    <% end %>
+  <% end %>
+    <td><%= developer_skill.level %></td>
+
+    <%= f.fields_for :evaluations do |builder| %>
+      <td><%= builder.label :eval_number, "Experience Points" %>
+      <%= builder.select(:eval_number, days_array(find_number_of_days(@reward.request_selection.project_request_id))) %> </td>
+      <td><%= builder.label :level, "Level" %>
+      <%= builder.number_field :level, :value =>  developer_skill.level %></td>
+      <%= builder.hidden_field :skill_id, :value =>  developer_skill.skill_id %>
+      <%= builder.hidden_field :employee_id, :value =>  @reward.request_selection.employee_id  %>
+    <% end %>
+    
+    <% end %>
+   
+    
+  </tr>
+  <% end %>
+
+  </table>
+    <%= f.submit %>
+     
+   
+   </div>          
+   <% end %>
+   
+       
+
+
+
+
+        
+        
+             
+
+
 
      
-              <td>Experience Points: 
             
-              <%= f.select :reward_points, days_array(@days) %> </td> </tr>
-       
-        </div>
-        <% end %>
-   
-       
-</table>
-    
-  
-    
-  </div> 
- 
-  <div class="actions">
-    <%= f.submit "Submit" %>
-  </div>
-<% end %>
+
+

@@ -97,6 +97,7 @@
  
     <tr> </tr>
 <% selected_id = 0 %>    
+  <% request_selectid = 0 %>
  
  
 
@@ -113,6 +114,7 @@
                          
                       <% if project_request.id == request_selection.project_request_id %>
                       <% selected_id = request_selection.employee_id %>
+                      <% request_selectid = request_selection.id %>
                        <% project_request.request_status == 1 %>    
 
                       <% end %>
@@ -127,12 +129,13 @@
                           
                           Selected 
                           <%= link_to 'View Profile', employee_path(response.employee_id) %>
-                          <%= link_to 'Award Points', new_project_request_reward_path(project_request.id) %>
+                          <%= link_to 'Award Points', new_request_selection_reward_path(request_selectid) %>
                           <% selected_id = 0 %></td>
                     <% else %>
                          <tr><td><%= response.employee.employee_name %>
                          <%= response.employee.last_name %>
                          <%= link_to 'View Profile', employee_path(response.employee_id) %>
+
                                      </td>
                     <% end %>
                    

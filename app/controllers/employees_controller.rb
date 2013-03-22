@@ -27,12 +27,13 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
-     @employee = Employee.find(params[:id])
-     @project_requests = ProjectRequest.all
-     @request_selections = RequestSelection.all
-     @current_date = DateTime.now
+    @employee = Employee.find(params[:id])
+    @project_requests = ProjectRequest.all
+    @request_selections = RequestSelection.all
+    @current_date = DateTime.now
    
     @skills = Skill.all
+    
       
 
      respond_to do |format|
