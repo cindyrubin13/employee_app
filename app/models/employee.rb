@@ -7,20 +7,19 @@ class Employee < ActiveRecord::Base
   attr_accessor :skills_interested_in
   has_many :developer_skills
   has_many :desired_skills
-  has_many :rewards
+  has_many :rewards, :through => :request_selection
+  #belongs_to :reward
   has_many :evaluations
   belongs_to :skills
-  accepts_nested_attributes_for :skills
-  accepts_nested_attributes_for :developer_skills
+  belongs_to :request_selection
   accepts_nested_attributes_for :desired_skills
-  accepts_nested_attributes_for :rewards 
- 
+  #has_many :evaluations
   has_many :project_requests
   belongs_to :project_request
-  belongs_to :evaluation
+  #belongs_to :evaluation
   has_many :responses, :through => :project_request
-  has_many :request_selections, :through => :responses
-
+  #has_one :request_selection, :through => :responses
+  #has_one :request_selection
   before_save { |employee| employee.employee_email = employee_email.downcase }
   before_save :create_remember_token 
   validates :employee_name, presence: true
@@ -37,6 +36,47 @@ class Employee < ActiveRecord::Base
       end   
       level == 0
   end
+ 
+  def average_eval(request_selection)
+    total_evaluation = 0
+    x = 0
+    request_selection.reward.evaluations.each do |evaluation|
+      if evaluation.eval_number != 0 
+      total_evaluation = evaluation.eval_number + total_evaluation
+      x = x + 1
+      end
+    end
+    total_evaluation/x
+  end
+
+  def award_skills(response)
+  reward_skill = []
+  response.request_selection.reward.evaluations.each do |evaluation|
+    if evaluation.eval_number != 0 
+      language = evaluation.skill.language
+      reward_skill.push(language)
+      reward_skill.push(evaluation.eval_number)
+    end
+  end 
+    if !reward_skill.nil?
+       reward_skill.join(", ")
+    end
+  end
+
+def view_rewards(request_selection) 
+  reward_skill = []
+  request_selection.reward.evaluations.each do |evaluation|
+    if evaluation.eval_number != 0 
+      language = evaluation.skill.language
+      reward_skill.push(language)
+      reward_skill.push(evaluation.eval_number)
+    end
+  end 
+    if !reward_skill.nil?
+       reward_skill.join(", ")
+    end
+  end
+
  
 
   def desired_skill_level(skill_id, level) 
@@ -83,7 +123,6 @@ class Employee < ActiveRecord::Base
 
   
  
-
 private
 
     def create_remember_token

@@ -2,6 +2,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
+    @reward = Reward.find(params[:reward_id])
     @evaluations = Evaluation.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
+    @reward = Reward.find(params[:reward_id])
     @evaluation = Evaluation.find(params[:id])
 
     respond_to do |format|
@@ -24,7 +26,10 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/new
   # GET /evaluations/new.json
   def new
-    @evaluation = Evaluation.new
+    @reward = Reward.find(params[:reward_id])
+  
+
+    @evaluation = @reward.evaluations.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +39,16 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/1/edit
   def edit
+    @reward = Reward.find(params[:reward_id])
     @evaluation = Evaluation.find(params[:id])
   end
 
   # POST /evaluations
   # POST /evaluations.json
   def create
-    @evaluation = Evaluation.new(params[:evaluation])
+    @reward = Reward.find(params[:reward_id])
+    @evaluation = @reward.evaluations.build(params[:evaluation])
+   
 
     respond_to do |format|
       if @evaluation.save
@@ -56,6 +64,7 @@ class EvaluationsController < ApplicationController
   # PUT /evaluations/1
   # PUT /evaluations/1.json
   def update
+    @reward = Reward.find(params[:reward_id])
     @evaluation = Evaluation.find(params[:id])
 
     respond_to do |format|

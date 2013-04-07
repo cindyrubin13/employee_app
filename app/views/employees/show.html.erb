@@ -121,7 +121,7 @@
     <% if !@request_selections.nil? %>
      <% @request_selections.each do |request_selection| %>
 
-      <% if request_selection.employee_id == current_employee.id %>
+      <% if request_selection.employee_id == @employee.id %>
 
 
         <b><%= request_selection.project_request.title%> :
@@ -135,7 +135,15 @@
 
   </p>
            <p><b>Description:  <%= request_selection.project_request.project_help %></b></p>
-           <p> <%= reward_points(current_employee.id) %>
+            <% if !request_selection.reward.nil? %>
+           <p><b>Awarded Evaluation Points For Each Skill: </b></p><%= request_selection.employee.view_rewards(request_selection) %>
+            <% end %>
+            <% if request_selection.employee_id == current_employee.id %>
+            
+            <% if !request_selection.reward.evaluations.nil? %>
+            <td> Average Evaluation: <%= request_selection.employee.average_eval(request_selection) %></td>
+            <% end %>
+            <% end %>
    <p><b>-------------------------------------------------------------------------------------------</b></p>        
       <% end %>
   <% end %>

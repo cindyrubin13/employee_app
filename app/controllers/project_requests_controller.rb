@@ -2,6 +2,8 @@ class ProjectRequestsController < ApplicationController
   before_filter :signed_in_employee, only: [:create, :destroy]
   def my_requests
      @project_requests = ProjectRequest.find_all_by_employee_id(current_employee)
+     @rewards = Reward.all
+     @evaluations = Evaluation.all
      @responses = Response.all
      @request_selections = RequestSelection.all
      @current_date = DateTime.now
@@ -22,7 +24,7 @@ class ProjectRequestsController < ApplicationController
     @employee = Employee.all
     @developer_skills = DeveloperSkill.find_all_by_employee_id(current_employee.id)
     @desired_skills = DesiredSkill.find_all_by_employee_id(current_employee.id)
-     @skills = Skill.all
+    @skills = Skill.all
 
      @current_date = DateTime.now
     respond_to do |format|
@@ -35,11 +37,11 @@ class ProjectRequestsController < ApplicationController
   # GET /project_requests/1.json
   def show
    
-      @project_request = ProjectRequest.find_by_employee_id(current_employee)
-     @current_date = DateTime.now
+    @project_request = ProjectRequest.find_by_employee_id(current_employee)
+    @current_date = DateTime.now
     if  @project_request.nil?
         flash[:error] = "No Project Requests have been posted for you"
-         redirect_to employee_path(current_employee)
+        redirect_to employee_path(current_employee)
     end
 
 

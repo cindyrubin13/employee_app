@@ -126,11 +126,16 @@
   
                           <tr><td><%= response.employee.employee_name %>
                           <%= response.employee.last_name %>
-                          
-                          Selected 
                           <%= link_to 'View Profile', employee_path(response.employee_id) %>
+                          <% if response.request_selection.reward.nil? %>
                           <%= link_to 'Award Points', new_request_selection_reward_path(request_selectid) %>
+                          <% end %>
                           <% selected_id = 0 %></td>
+
+                          <% if response.has_award? %>   
+                          <tr><td>Reward Points: <%= response.employee.award_skills(response) %></td></tr>
+                          <% end %>
+                      
                     <% else %>
                          <tr><td><%= response.employee.employee_name %>
                          <%= response.employee.last_name %>

@@ -1,13 +1,17 @@
 class Reward < ActiveRecord::Base
   attr_accessible :employee_id, :project_request_id, :reward_date, :skill_id, :request_selection_id, :evaluations_attributes
  
-  has_many :skills
-  belongs_to :skills
-  belongs_to :employee
-  belongs_to :project_request
+  has_and_belongs_to_many :skills
+  
+  has_one :employee, :through => :request_selection
+  #belongs_to :employee
+  #belongs_to :project_request
+  #has_one :request_selection
   belongs_to :request_selection
-  belongs_to :developer_skills
+  #belongs_to :developer_skills
+ # belongs_to :response
   has_many :evaluations
+
 
   accepts_nested_attributes_for :evaluations, :allow_destroy => true
 

@@ -3,11 +3,16 @@ class ProjectRequest < ActiveRecord::Base
   
   belongs_to :employee
   has_many :responses
-  has_one :rewards
   belongs_to :request_selection
-  has_many :request_selections
+  has_one :request_selection
+   has_many :rewards
+  has_many :evaluations
   accepts_nested_attributes_for :responses, :allow_destroy => true
   accepts_nested_attributes_for :rewards, :allow_destroy => true
+  accepts_nested_attributes_for :evaluations
+  #belongs_to :rewards
+ 
+
   has_and_belongs_to_many :skills
   belongs_to :skills
   
@@ -68,6 +73,10 @@ def match_desired_skills(employee)
   end
   skill_score.sum
   end
+
+def duration_in_days
+   (end_date.to_date - start_date.to_date).to_i
+end 
 
 
 def current_count(employee)

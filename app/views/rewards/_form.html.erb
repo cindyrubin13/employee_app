@@ -1,7 +1,7 @@
 
 
 
-<%= form_for([@request_selection, @reward]) do |f| %>
+<%= form_for([@request_selection,  @reward]) do |f| %>
   <% if @reward.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reward.errors.count, "error") %> prohibited this reward from being saved:</h2>
@@ -18,20 +18,18 @@
   <%= f.label :reward_date %><br />
   <%= f.date_select(:reward_date, :order => [:month, :day, :year], :default => @current_date) %>
     
-  
    
   <p> Employee Name:  
   <%= @reward.request_selection.employee.employee_name %>    <%= @reward.request_selection.employee.last_name %></p>
   <p> Project Request Title: <%= @reward.request_selection.project_request.title %> </p>
 
    
-  <p> Total Number of Days  <%= @request_selection.employee.employee_name %>   
-      <%= @request_selection.employee.last_name %> Worked on This Project </P>
-      <%= find_number_of_days(@reward.request_selection.project_request_id)  %>
+  <p> Total Number of Days  <%= @reward.request_selection.employee.employee_name %>   
+      <%= @reward.request_selection.employee.last_name %> Worked on This Project </P>
+      <%= @reward.request_selection.project_request.duration_in_days  %>
    
  
-   <%= f.hidden_field  :employee_id, :value => @reward.request_selection.employee_id  %>
-   <%= f.hidden_field  :project_request_id, :value => @reward.request_selection.project_request_id %>
+   
    <table>
     <tr>
     
@@ -53,15 +51,12 @@
 
     <%= f.fields_for :evaluations do |builder| %>
       <td><%= builder.label :eval_number, "Experience Points" %>
-      <%= builder.select(:eval_number, days_array(find_number_of_days(@reward.request_selection.project_request_id))) %> </td>
+      <%= builder.select(:eval_number, (0..@reward.request_selection.project_request.duration_in_days)) %> </td>
       <td><%= builder.label :level, "Level" %>
       <%= builder.number_field :level, :value =>  developer_skill.level %></td>
       <%= builder.hidden_field :skill_id, :value =>  developer_skill.skill_id %>
-      <%= builder.hidden_field :employee_id, :value =>  @reward.request_selection.employee_id  %>
     <% end %>
-    
     <% end %>
-   
     
   </tr>
   <% end %>

@@ -40,6 +40,10 @@ EmpApp::Application.routes.draw do
     resources :evaluations
   end
 
+  resources :employees do
+    resources :rewards
+  end
+
   resources :project_requests do
     resources :responses
   end

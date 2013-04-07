@@ -20,6 +20,7 @@ class RewardsController < ApplicationController
      @current_date = DateTime.now
      @skills = Skill.all
      @request_selection = RequestSelection.find(params[:request_selection_id])
+    
    
    @reward = Reward.find(params[:id])
 
@@ -34,8 +35,9 @@ class RewardsController < ApplicationController
   def new
 
     @request_selection = RequestSelection.find(params[:request_selection_id])
+   
     @current_date = DateTime.now
-    @reward = @request_selection.rewards.build
+    @reward = @request_selection.build_reward
     @skills = Skill.all
     @developer_skills = DeveloperSkill.all
      1.times do
@@ -64,7 +66,8 @@ class RewardsController < ApplicationController
   def create
    
    @request_selection = RequestSelection.find(params[:request_selection_id])
-   @reward = @request_selection.rewards.build(params[:reward])
+  
+   @reward = @request_selection.create_reward(params[:reward])
    @developer_skills = DeveloperSkill.find_by_employee_id(:employee_id)
   
    @skills = Skill.all
@@ -88,6 +91,7 @@ class RewardsController < ApplicationController
   def update
      
     @request_selection = RequestSelection.find(params[:request_selection_id])
+     
     @reward = Reward.find(params[:id])
     @skills = Skill.all
     @current_date = DateTime.now
