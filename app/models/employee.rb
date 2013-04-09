@@ -10,7 +10,9 @@ class Employee < ActiveRecord::Base
   has_many :rewards, :through => :request_selection
   #belongs_to :reward
   has_many :evaluations
-  belongs_to :skills
+  belongs_to :skill
+  has_and_belongs_to_many :skills
+  has_many :request_selections
   belongs_to :request_selection
   accepts_nested_attributes_for :desired_skills
   #has_many :evaluations
@@ -111,6 +113,67 @@ def view_rewards(request_selection)
       desired_skills
     end
   end
+
+def show_des_skill_and_level
+   skillname = [] 
+     desired_skills.each do |des_skill| 
+       
+        if des_skill.level != 0
+         
+        language = des_skill.skill.language
+         level = des_skill.level
+         skillname.push(language)
+         skillname.push(level)
+
+       end
+     end
+         skillname.join(", ") 
+ end
+    
+def show_dev_skill_and_level
+   skillname = [] 
+     developer_skills.each do |dev_skill| 
+       
+        if dev_skill.level != 0
+        
+         
+         language = dev_skill.skill.language
+         level = dev_skill.level
+         skillname.push(language)
+         skillname.push(level)
+
+       end
+     end
+         skillname.join(", ") 
+ end
+
+  def total_evaluations(skill)
+    skillname = []
+
+    total_evaluation = 0
+    request_selections.each do |request_selection|
+      if request_selection.employee_id == id
+      if !request_selection.reward.evaluations.nil?
+      request_selection.reward.evaluations.each.each do |evaluation|
+        if evaluation.skill_id == skill.id
+          
+          total_evaluation += evaluation.eval_number
+        end
+      end
+    end
+    end
+  end
+      if total_evaluation != 0
+        skillname.push(total_evaluation)
+        skillname.push("days of experience with ")
+        skillname.push(skill.language)
+        
+    
+    
+    end
+    skillname.join(", ")
+  end
+
 
 
   def current_skills=(current_skills)

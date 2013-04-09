@@ -5,6 +5,7 @@ class RequestSelection < ActiveRecord::Base
   belongs_to :project_request
   belongs_to :employee
   has_one :reward
+ 
 
  # has_many :evaluations, :through => :reward
   #has_one :employee

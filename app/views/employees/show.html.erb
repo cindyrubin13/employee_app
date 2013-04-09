@@ -87,22 +87,23 @@
 
 <p>
   <b>Current Skills:</b>
-   <% @skillname = [] %>
-    <% @employee.developer_skills.each do |dev_skill| %>
-      <% show_skill_and_level(dev_skill) %>
-      <% end %>
-       <%= @skillname.join(", ") %>
-       
+   
+      <%= @employee.show_dev_skill_and_level %>
+      
        
 </p>
 
 <p>
   <b>Skills Interest In:</b>
-  <% @skillname = [] %>
-    <% @employee.desired_skills.each do |des_skill| %>
-      <% show_skill_and_level(des_skill) %>
+  
+      <%= @employee.show_des_skill_and_level %>
+      <p><b>Accumulated experience points for <%= @employee.employee_name %>: </b></p>
+      <% @skills.each do |skill| %>
+      <b> <p> <%= @employee.total_evaluations(skill) %></p></b>
+      
       <% end %>
-       <%= @skillname.join(", ") %>
+      
+      
        
        
 </p>
@@ -135,13 +136,11 @@
 
   </p>
            <p><b>Description:  <%= request_selection.project_request.project_help %></b></p>
-            <% if !request_selection.reward.nil? %>
-           <p><b>Awarded Evaluation Points For Each Skill: </b></p><%= request_selection.employee.view_rewards(request_selection) %>
-            <% end %>
+            
             <% if request_selection.employee_id == current_employee.id %>
             
             <% if !request_selection.reward.evaluations.nil? %>
-            <td> Average Evaluation: <%= request_selection.employee.average_eval(request_selection) %></td>
+            <td> <b>Evaluation for this Project: <%= request_selection.employee.view_rewards(request_selection) %></b></td>
             <% end %>
             <% end %>
    <p><b>-------------------------------------------------------------------------------------------</b></p>        
