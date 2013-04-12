@@ -38,17 +38,21 @@ class Employee < ActiveRecord::Base
       end   
       level == 0
   end
- 
-  def average_eval(request_selection)
-    total_evaluation = 0
-    x = 0
-    request_selection.reward.evaluations.each do |evaluation|
-      if evaluation.eval_number != 0 
-      total_evaluation = evaluation.eval_number + total_evaluation
-      x = x + 1
+  
+  def average_eval(skill)
+    average_evaluation = 0
+    eval_counter = 0
+    request_selections.each do |request_selection|
+      if !request_selection.reward.evaluations.nil?
+        request_selection.reward.evaluations.each do |evaluation|
+          if evaluation.skill_id == skill.id && evaluation.eval_number != 0
+            average_evaluation += evaluation.eval_number
+            eval_counter += 1
+          end
+        end
       end
     end
-    total_evaluation/x
+    average_evaluation/eval_counter
   end
 
   def award_skills(response)
@@ -65,18 +69,16 @@ class Employee < ActiveRecord::Base
     end
   end
 
-def view_rewards(request_selection) 
-  reward_skill = []
-  request_selection.reward.evaluations.each do |evaluation|
-    if evaluation.eval_number != 0 
-      language = evaluation.skill.language
-      reward_skill.push(language)
-      reward_skill.push(evaluation.eval_number)
-    end
-  end 
-    if !reward_skill.nil?
-       reward_skill.join(", ")
-    end
+  def view_rewards(request_selection) 
+    reward_skill = []
+    request_selection.reward.evaluations.each do |evaluation|
+      if evaluation.eval_number != 0 
+        language = evaluation.skill.language
+        reward_skill.push(language)
+        reward_skill.push(evaluation.eval_number)
+      end
+    end 
+    reward_skill.join(", ")
   end
 
  
@@ -114,64 +116,44 @@ def view_rewards(request_selection)
     end
   end
 
-def show_des_skill_and_level
-   skillname = [] 
-     desired_skills.each do |des_skill| 
-       
+  def show_des_skill_and_level
+    skillname = [] 
+      desired_skills.each do |des_skill| 
         if des_skill.level != 0
-         
         language = des_skill.skill.language
-         level = des_skill.level
-         skillname.push(language)
-         skillname.push(level)
-
-       end
-     end
-         skillname.join(", ") 
+        level = des_skill.level
+        skillname.push(language)
+        skillname.push(level)
+        end
+      end
+    skillname.join(", ") 
  end
     
-def show_dev_skill_and_level
-   skillname = [] 
-     developer_skills.each do |dev_skill| 
-       
+  def show_dev_skill_and_level
+    skillname = [] 
+      developer_skills.each do |dev_skill| 
         if dev_skill.level != 0
-        
-         
          language = dev_skill.skill.language
          level = dev_skill.level
          skillname.push(language)
          skillname.push(level)
-
-       end
-     end
-         skillname.join(", ") 
- end
-
-  def total_evaluations(skill)
-    skillname = []
-
-    total_evaluation = 0
-    request_selections.each do |request_selection|
-      if request_selection.employee_id == id
-      if !request_selection.reward.evaluations.nil?
-      request_selection.reward.evaluations.each.each do |evaluation|
-        if evaluation.skill_id == skill.id
-          
-          total_evaluation += evaluation.eval_number
         end
       end
-    end
-    end
+    skillname.join(", ") 
   end
-      if total_evaluation != 0
-        skillname.push(total_evaluation)
-        skillname.push("days of experience with ")
-        skillname.push(skill.language)
-        
-    
-    
-    end
-    skillname.join(", ")
+
+  def total_evaluations(skill)
+    total_evaluation = 0
+      request_selections.each do |request_selection|
+        if !request_selection.reward.evaluations.nil?
+          request_selection.reward.evaluations.each do |evaluation|
+            if evaluation.skill_id == skill.id
+              total_evaluation += evaluation.eval_number
+            end
+          end
+        end
+      end
+      total_evaluation
   end
 
 

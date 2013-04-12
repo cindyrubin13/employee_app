@@ -40,33 +40,33 @@
 
 
 <% @developer_skills.each do |developer_skill| %>
-<% if developer_skill.employee_id == @reward.request_selection.employee_id %>
+  <% if developer_skill.employee_id == @reward.request_selection.employee_id %>
   <tr>
-  <% @skills.each do |skill| %>
-    <% if developer_skill.skill_id == skill.id %>
-      <td> <%= skill.language %></td>
+    <% @skills.each do |skill| %>
+      <% if developer_skill.skill_id == skill.id %>
+        <td> <%= skill.language %></td>
+      <% end %>
     <% end %>
-  <% end %>
     <td><%= developer_skill.level %></td>
 
     <%= f.fields_for :evaluations do |builder| %>
       <td><%= builder.label :eval_number, "Experience Points" %>
-      <%= builder.select(:eval_number, (0..@reward.request_selection.project_request.duration_in_days)) %> </td>
+          <%= builder.select(:eval_number, (0..@reward.request_selection.project_request.duration_in_days)) %> </td>
       <td><%= builder.label :level, "Level" %>
-      <%= builder.number_field :level, :value =>  developer_skill.level %></td>
-      <%= builder.hidden_field :skill_id, :value =>  developer_skill.skill_id %>
+          <%= builder.number_field :level, :value =>  developer_skill.level %></td>
+          <%= builder.hidden_field :skill_id, :value =>  developer_skill.skill_id %>
     <% end %>
-    <% end %>
+  <% end %>
     
   </tr>
-  <% end %>
+<% end %>
 
   </table>
     <%= f.submit %>
      
    
    </div>          
-   <% end %>
+<% end %>
    
        
 

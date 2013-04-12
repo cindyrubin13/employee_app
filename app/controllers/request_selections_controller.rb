@@ -15,7 +15,7 @@ class RequestSelectionsController < ApplicationController
   # GET /request_selections/1
   # GET /request_selections/1.json
   def show
-     @response = Response.find(params[:response_id])
+    @response = Response.find(params[:response_id])
     @request_selection = RequestSelection.find(params[:id])
 
     #@request_selection = RequestSelection.find(params[:id])
@@ -58,7 +58,6 @@ class RequestSelectionsController < ApplicationController
     respond_to do |format|
       if @request_selection.save
        
-        #format.html { redirect_to response_request_selections_path @response, notice: 'This developer has been selected for this project request.' }
         format.html { redirect_to _my_requests_path }
         format.json { render json: @request_selection, status: :created, location: @request_selection }
       else
@@ -93,10 +92,6 @@ class RequestSelectionsController < ApplicationController
     @response = Response.find(params[:response_id])
      
     @request_selection = RequestSelection.find(params[:id])
-
-
-
-   # @request_selection = RequestSelection.find(params[:id])
     @request_selection.destroy
 
     respond_to do |format|

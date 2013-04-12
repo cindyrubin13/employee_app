@@ -87,25 +87,23 @@
 
 <p>
   <b>Current Skills:</b>
-   
-      <%= @employee.show_dev_skill_and_level %>
-      
-       
+      <%= @employee.show_dev_skill_and_level %> 
 </p>
 
 <p>
-  <b>Skills Interest In:</b>
-  
+  <b>Skills Interested In:</b>
       <%= @employee.show_des_skill_and_level %>
-      <p><b>Accumulated experience points for <%= @employee.employee_name %>: </b></p>
+</p>
+
+<p><b>Accumulated experience points for <%= @employee.employee_name %>: </b></p>
       <% @skills.each do |skill| %>
-      <b> <p> <%= @employee.total_evaluations(skill) %></p></b>
-      
+        <% if @employee.total_evaluations(skill) != 0 %>
+        <b> <p> <%= @employee.total_evaluations(skill) %>  days of experience with <%= skill.language %></p></b>
+          <% if @employee.id == current_employee.id %>
+          <b> <p>Average Evaluation for <%= skill.language %>: <%= @employee.average_eval(skill) %>  </p></b>
+          <% end %>
+        <% end %>
       <% end %>
-      
-      
-       
-       
 </p>
 
 <p>
@@ -135,14 +133,12 @@
              <% end %>
 
   </p>
-           <p><b>Description:  <%= request_selection.project_request.project_help %></b></p>
-            
-            <% if request_selection.employee_id == current_employee.id %>
-            
+  <p>   <b>Description:  <%= request_selection.project_request.project_help %></b></p>
+          <% if request_selection.employee_id == current_employee.id %>
             <% if !request_selection.reward.evaluations.nil? %>
-            <td> <b>Evaluation for this Project: <%= request_selection.employee.view_rewards(request_selection) %></b></td>
+              <p> <b>Evaluation for this Project: <%= request_selection.employee.view_rewards(request_selection) %></b></p>
             <% end %>
-            <% end %>
+          <% end %>
    <p><b>-------------------------------------------------------------------------------------------</b></p>        
       <% end %>
   <% end %>

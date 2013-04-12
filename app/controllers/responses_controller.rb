@@ -69,7 +69,6 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.save
        
-        # format.html { redirect_to project_request_responses_path @project_request, notice: 'Response was successfully created.' }
         format.html { redirect_to project_requests_path }# notice: 'Response was successfully created.' }
         format.json { render json: @response, status: :created, location: @response }
       else
@@ -85,8 +84,8 @@ class ResponsesController < ApplicationController
 
     @project_request = ProjectRequest.find(params[:project_request_id])
    
-   @response = Response.find(params[:id])
-     @current_date = DateTime.now
+    @response = Response.find(params[:id])
+    @current_date = DateTime.now
     respond_to do |format|
       if @response.update_attributes(params[:response])
         format.html { redirect_to project_request_response_path(@project_request, @response), notice: 'Response was successfully updated.' }

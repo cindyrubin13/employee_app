@@ -63,19 +63,6 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @skills = Skill.all
     
-   # current_skill = params[:current_skill]
-
-    
-
-   #skills_interested_in = params[:skills_interested_in]
-
-  # if !params[:skills_interested_in].nil?
-   #  skills_interested_in = @employee.skills_interested_in.split(", ")
-  # end
-
-
-
-
   end
 
   # POST /employees
@@ -84,16 +71,8 @@ class EmployeesController < ApplicationController
 
     @employee = Employee.new(params[:employee])
     @skills = Skill.all
-   #@employee.developer_skills = DeveloperSkill.new
-   # @employee.current_skill = params[:current_skill].to_a
-   # @employee.current_skill = @employee.current_skill.join(", ")
    
-    #@employee.skills_interested_in = params[:skills_interested_in].to_a
-    #@employee.skills_interested_in = @employee.skills_interested_in.join(", ")
-
       if @employee.save
-        
-        
          sign_in @employee
          @employee.to_developer_skills(@employee.current_skills)
          @employee.to_desired_skills(@employee.skills_interested_in)
@@ -111,17 +90,10 @@ class EmployeesController < ApplicationController
    @employee = Employee.find(params[:id])
    @skills = Skill.all
     
-   
-   #@employee.skills_interested_in = params[:skills_interested_in].to_a
-   #@employee.skills_interested_in = @employee.skills_interested_in.join(", ")
      if @employee.update_attributes(params[:employee])
-      
-      
         sign_in @employee
-        
          @employee.to_developer_skills(@employee.current_skills)
          @employee.to_desired_skills(@employee.skills_interested_in)
-        
         redirect_to @employee
       else
         render 'edit'
