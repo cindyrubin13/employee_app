@@ -43,12 +43,12 @@
 <div class="showprofile">
 <p>
   <b>Employee First Name:</b>
-  <%= @employee.employee_name %>
+  <%= @employee.employee_name.capitalize %>
 </p>
 
 <p>
   <b>Employee Last Name:</b>
-  <%= @employee.last_name %>
+  <%= @employee.last_name.capitalize %>
 </p>
 <p>
   <b>Employee email:</b>
@@ -72,48 +72,58 @@
 
 <p>
   <b>Manager:</b>
-  <%= @employee.manager %>
+  <%= @employee.manager.capitalize %>
 </p>
 
 <p>
-  <b>Position:</b>
+  <b>Position: </b>
   <%= @employee.position %>
 </p>
 
 <p>
-  <b>Group:</b>
+  <b>Group: </b>
   <%= @employee.group %>
 </p>
 
 <p>
-  <b>Current Skills:</b>
+  <b>Current Skills: </b>
       <%= @employee.show_dev_skill_and_level %> 
 </p>
 
 <p>
-  <b>Skills Interested In:</b>
-      <%= @employee.show_des_skill_and_level %>
+  <b>Skills Interested In: </b>
+    <%= @employee.show_des_skill_and_level %>
 </p>
-
-<p><b>Accumulated experience points for <%= @employee.employee_name %>: </b></p>
-      <% @skills.each do |skill| %>
-        <% if @employee.total_evaluations(skill) != 0 %>
-        <b> <p> <%= @employee.total_evaluations(skill) %>  days of experience with <%= skill.language %></p></b>
+<p><% if @employee.evaluation_check == true %>
+<b>Accumulated experience points for <%= @employee.employee_name.capitalize %>: </b></p>
+  <table class="tab_head">
+        <tr>
+          <th>Skill </th>
+          <th>Experience Points </th>
           <% if @employee.id == current_employee.id %>
-          <b> <p>Average Evaluation for <%= skill.language %>: <%= @employee.average_eval(skill) %>  </p></b>
+          <th>Average Evaluation </th>
           <% end %>
-        <% end %>
-      <% end %>
-</p>
+        </tr> 
+    <% @skills.each do |skill| %>
+      <% if @employee.total_evaluations(skill) != 0 %>
 
-<p>
-  <b>Short Description about </b>
-  <b><%= @employee.employee_name %></b>
-  <b> : </b>
-  <%= @employee.description %>
+          <tr>
+            <td><%= skill.language %> </td>
+            <td><%= @employee.total_evaluations(skill) %></td>
+            <% if @employee.id == current_employee.id %>
+            <td> <%= @employee.average_eval(skill) %>  </td>
+             <% end %>
+          </tr>
+
+    <% end %>
+  <% end %>
+  </table>
 </p>
+<% end %>
+
+<div class="projects">
 <div="projectsworked">
- <p> <b>Projects I have Worked On: </b></p>
+ <p> Projects <%= @employee.employee_name.capitalize %> has worked on: </p>
  
 
 
@@ -123,9 +133,9 @@
       <% if request_selection.employee_id == @employee.id %>
 
 
-        <b><%= request_selection.project_request.title%> :
+           <%= request_selection.project_request.title%> :
            <%= request_selection.project_request.start_date.strftime("%B %e, %Y -") %> 
-           <%= request_selection.project_request.end_date.strftime("%B %e, %Y") %> </b>
+           <%= request_selection.project_request.end_date.strftime("%B %e, %Y") %> 
              <% if request_selection.project_request.end_date < @current_date %>
                 <b>(Completed)</b>
              <% else %>
@@ -133,10 +143,9 @@
              <% end %>
 
   </p>
-  <p>   <b>Description:  <%= request_selection.project_request.project_help %></b></p>
           <% if request_selection.employee_id == current_employee.id %>
             <% if !request_selection.reward.evaluations.nil? %>
-              <p> <b>Evaluation for this Project: <%= request_selection.employee.view_rewards(request_selection) %></b></p>
+              <p> Evaluation for this Project: <%= request_selection.employee.view_rewards(request_selection) %></p>
             <% end %>
           <% end %>
    <p><b>-------------------------------------------------------------------------------------------</b></p>        
@@ -145,4 +154,4 @@
 <% end %>
 </div> 
 </div>
-
+</div>

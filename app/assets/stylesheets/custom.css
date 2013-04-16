@@ -45,11 +45,48 @@
   color: black;
 }
 
+.projects {
+  border: 1px solid 006400;
+  background-color: #99FF66;
+  color: black;
+  border-radius: 4px;
 
+}
+table.tab_head {
+  border-collapse: collapse;
+}
+table.tab_head th, table.tab_head td {
+  padding: 4px;
+  border: 2px solid #99FF66;
 
+}
+table.tab_head th {
+  text-align: left;
+  font-size: medium;
+}
+table.tab_head td {
+  font-size: small;
+}
 
+/*.skill_head th, .skilldata td  {
+  border: 1px solid #99FF66;
+  text-align: left;
+  padding-top: 0;
+  margin-top: 0;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: medium;
+  width: 40px;
+  
+
+}
+.skdata td {
+
+}
    
-
+table.skill_tab td {
+  width: 25px;
+}*/
 
 /*body { 
 height: 100%;

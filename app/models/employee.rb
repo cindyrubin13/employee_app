@@ -46,13 +46,13 @@ class Employee < ActiveRecord::Base
       if !request_selection.reward.evaluations.nil?
         request_selection.reward.evaluations.each do |evaluation|
           if evaluation.skill_id == skill.id && evaluation.eval_number != 0
-            average_evaluation += evaluation.eval_number
+            average_evaluation += evaluation.level
             eval_counter += 1
           end
         end
       end
     end
-    average_evaluation/eval_counter
+    average_evaluation.to_f/eval_counter
   end
 
   def award_skills(response)
@@ -155,7 +155,11 @@ class Employee < ActiveRecord::Base
       end
       total_evaluation
   end
-
+  def evaluation_check
+    request_selections.each do |request_selection|
+      return true if !request_selection.reward.evaluations.nil?   
+    end
+  end
 
 
   def current_skills=(current_skills)

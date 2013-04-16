@@ -30,8 +30,8 @@ class RequestSelectionsController < ApplicationController
   # GET /request_selections/new.json
   def new
     @response = Response.find(params[:response_id])
-    @request_selection = @response.request_selections.build
-
+    #@request_selection = @response.request_selections.build
+    @request_selection = @response.build_request_selection
     #@request_selection = RequestSelection.new
 
     respond_to do |format|
@@ -52,8 +52,8 @@ class RequestSelectionsController < ApplicationController
   def create
 
      @response = Response.find(params[:response_id])
-    @request_selection = @response.request_selections.build(params[:request_selection])
-   
+    @request_selection = @response.create_request_selection(params[:request_selection])
+   #@reward = @request_selection.create_reward(params[:reward])
  
     respond_to do |format|
       if @request_selection.save
