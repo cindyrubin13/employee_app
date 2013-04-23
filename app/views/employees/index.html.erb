@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Employee name</th>
+    <th></th>
     <th>Employee email</th>
     <th>Location</th>
     <th>Department</th>
@@ -10,18 +11,14 @@
     <th>Manager/Lead</th>
     <th>Position</th>
     <th>Group</th>
-    <th>Current skills</th>
-    <th>Skills Interested In</th>
-    <th>Post Projects</th>
-    <th>Checkout Projects</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    
+    
   </tr>
 
 <% @employees.each do |employee| %>
   <tr>
     <td><%= employee.employee_name %></td>
+    <td><%= employee.last_name %></td>
     <td><%= employee.employee_email %></td>
     <td><%= employee.location %></td>
     <td><%= employee.department %></td>
@@ -29,8 +26,8 @@
     <td><%= employee.manager %></td>
     <td><%= employee.position %></td>
     <td><%= employee.group %></td>
-    <td><%= employee.current_skill %></td>
-     <td><%= employee.skills_interested_in %></td>
+    <td><%= link_to 'View Profile', employee_path(employee) %></td>
+    
     
   </tr>
 <% end %>

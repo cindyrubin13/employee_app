@@ -3,8 +3,9 @@ class RequestSelectionsController < ApplicationController
   # GET /request_selections.json
   def index
    
-    @response = Response.find(params[:response_id])
-    @request_selections = @response.request_selections
+    #@response = Response.find(params[:response_id])
+    #@request_selections = @response.request_selections
+    @request_selections = RequestSelection.all
   
     respond_to do |format|
       format.html # index.html.erb

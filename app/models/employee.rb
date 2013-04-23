@@ -157,7 +157,7 @@ class Employee < ActiveRecord::Base
   end
   def evaluation_check
     request_selections.each do |request_selection|
-      return true if !request_selection.reward.evaluations.nil?   
+      return true if !request_selection.reward.nil?   
     end
   end
 

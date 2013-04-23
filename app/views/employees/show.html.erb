@@ -144,7 +144,7 @@
 
   </p>
           <% if request_selection.employee_id == current_employee.id %>
-            <% if !request_selection.reward.evaluations.nil? %>
+            <% if !request_selection.reward.nil? %>
               <p> Evaluation for this Project: <%= request_selection.employee.view_rewards(request_selection) %></p>
             <% end %>
           <% end %>

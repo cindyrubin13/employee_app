@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
 # GET /responses.json
   def index
   
- @project_request = ProjectRequest.find(params[:project_request_id])
+# @project_request = ProjectRequest.find(params[:project_request_id])
  @responses = Response.all
   @current_date = DateTime.now
 

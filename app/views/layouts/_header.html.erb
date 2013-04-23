@@ -2,6 +2,6 @@
   <p class="emphead"> Employee Application </p>
 <p><%= link_to 'Signout', signout_path, method: "delete", :class=> 'headsignoutlink' %></p>
 <p class="welcome"> Welcome </p>
-<p class="currentusername"><%= current_employee.employee_name %> 
-	<%= current_employee.last_name %><p>
+<p class="currentusername"><%= current_employee.employee_name.capitalize %> 
+	<%= current_employee.last_name.capitalize %><p>
 </header>
