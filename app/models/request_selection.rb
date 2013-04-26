@@ -1,5 +1,5 @@
 class RequestSelection < ActiveRecord::Base
-  attr_accessible :comment, :employee_id, :project_request_id, :response_id
+  attr_accessible :comment, :employee_id, :project_request_id, :response_id, :created_at
   has_one :employee, :through => :response
   belongs_to :response
   belongs_to :project_request

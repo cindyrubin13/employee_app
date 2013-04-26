@@ -1,5 +1,5 @@
 class Response < ActiveRecord::Base
-  attr_accessible :employee_id, :message, :project_request_id, :status
+  attr_accessible :employee_id, :message, :project_request_id, :status, :created_at
   
 
   belongs_to :project_request 
