@@ -21,12 +21,22 @@ EmpApp::Application.routes.draw do
   
  match '/signup', to: 'employees#new'
  root to:  'static_pages#home'
- #root to: 'sessions#new'
-  
-  match '/', to: 'static_pages#home'
+ match '/', to: 'static_pages#home'
   match '/signup', to: 'employees#new'
    match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+ #match "/dashboard", to: 'dashboard#index', :as => "request_report"
+  match '/dashboard', to: 'dashboard#index'
+  match 'request_report' => 'dashboard#request_report', :as => '_request_report'
+  match 'overall_report' => 'dashboard#overall_report', :as => '_overall_report'
+  match 'time_report' => 'dashboard#time_report', :as => '_time_report'
+  match 'developer_skill_report' => 'dashboard#developer_skill_report', :as => '_developer_skill_report'
+  match 'average_report' => 'dashboard#average_report', :as => '_average_report'
+  match 'shared_report' => 'dashboard#shared_report', :as => '_shared_report'
+  match 'volunteer_report' => 'dashboard#volunteer_report', :as => '_volunteer_report'
+ #root to: 'sessions#new'
+  
+  
 
   resources :responses do
     resources :request_selections

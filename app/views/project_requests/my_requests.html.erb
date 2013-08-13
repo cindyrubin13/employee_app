@@ -1,9 +1,5 @@
   <%= render 'layouts/header' %>
- <head>
-  <title>Tabbed Structure - Regular</title>
-  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
-</head>
-<body>
+ 
   <div id="tabbed_box_1" class="tabbed_box">
     
     <div id="navigation">
@@ -12,6 +8,7 @@
            <li><%= link_to 'My Profile', employee_path(current_employee) %></li>
            <li><%= link_to "Requests I've Posted", _my_requests_path, :class => 'current' %></li>
            <li><%= link_to "Post a New Request", new_project_request_path %></li>
+           <li><%= link_to "Dashboard", dashboard_path %></li>
           </ul>
         </div>  
           <p class="navmyrequest"></p>
@@ -37,7 +34,7 @@
       <% project_request.status = "Filled" %>
       <% open = 1 %>
     <% else %>
-      <% if project_request.request_status == 2 %>
+      <% if project_request.request_status == 2 || project_request.rstatus == 'Cancel' %>
        <%= project_request.status = "Canceled" %>
        <% open = 1 %>
       <% else %>

@@ -5,7 +5,7 @@ namespace :db do
   task :sample_data => :environment do
     require 'populator'
     require 'faker'
-   
+    
         
     [Employee, ProjectRequest, Response, Skill, DeveloperSkill, DesiredSkill, RequestSelection].each(&:delete_all)
     skill_array = ['PHP', 'MySQL', 'C+', 'Apache', 'Ruby on Rails', 'SQL Server', 'Linux']
@@ -38,19 +38,19 @@ namespace :db do
       :description => Faker::Lorem.sentences(3).join(" ")
       )
      e.save!
-      7.times do
+      (1..7).each do |x|
       dev = DeveloperSkill.new(
         :employee_id => e.id,
-        :skill_id => rand(1..7),
+        :skill_id => x,
         :level => rand(0..4)
       
         )
       dev.save!
       end
-      7.times do
+      (1..7).each do |x|
        des = DesiredSkill.new(  
         :employee_id => e.id,
-        :skill_id => rand(1..7),
+        :skill_id => x,
         :level => rand(0..4)
       )
       des.save!
@@ -79,11 +79,12 @@ namespace :db do
         
         :start_date  => start_date,
         :end_date => end_date,
-        :title => Faker::Lorem.words(5).to_s.capitalize,
+        :title => Faker::Lorem.words(5).join(" ").capitalize,
         :employee_id => employee.id,
         :group => group.sample,
         :office => employee.location,
         :relevant_skill =>  relevant_skill.join(", "),
+        :rstatus => 'Active',
         :project_help => Faker::Lorem.sentences(3).join(" ")
         )
     pr.save!
@@ -109,11 +110,12 @@ namespace :db do
         
         :start_date  => start_date,
         :end_date => end_date,
-        :title => Faker::Lorem.words(5).to_s.capitalize,
+        :title => Faker::Lorem.words(5).join(" ").capitalize,
         :employee_id => employee.id,
         :office => employee.location,
         :group => group.sample,
         :relevant_skill =>  relevant_skill.join(", "),
+        :rstatus => 'Active',
         :project_help => Faker::Lorem.sentences(3).join(" ")
         )
     pr.save!
@@ -148,11 +150,12 @@ namespace :db do
         :relevant_skill => [],
         :start_date  => start_date,
         :end_date => end_date,
-        :title => Faker::Lorem.words(5).to_s.capitalize,
+        :title => Faker::Lorem.words(5).join(" ").capitalize,
         :employee_id => employee.id,
         :office => employee.location,
         :group => group.sample,
         :relevant_skill =>  relevant_skill.join(", "),
+        :rstatus => 'Active',
         :project_help => Faker::Lorem.sentences(3).join(" ")
         )
     pr.save!
@@ -188,11 +191,12 @@ namespace :db do
        
         :start_date  => start_date,
         :end_date => end_date,
-        :title => Faker::Lorem.words(5).to_s.capitalize,
+        :title => Faker::Lorem.words(5).join(" ").capitalize,
         :employee_id => employee.id,
         :group => group.sample,
         :office => employee.location,
         :relevant_skill =>  relevant_skill.join(", "),
+        :rstatus => 'Active',
         :project_help => Faker::Lorem.sentences(3).join(" ")
         )
     pr.save!
@@ -217,11 +221,12 @@ namespace :db do
        
         :start_date  => start_date,
         :end_date => end_date,
-        :title => Faker::Lorem.words(5).to_s.capitalize,
+        :title => Faker::Lorem.words(5).join(" ").capitalize,
         :employee_id => employee.id,
         :group => group.sample,
         :office => employee.location,
         :relevant_skill =>  relevant_skill.join(", "),
+        :rstatus => 'Active',
         :project_help => Faker::Lorem.sentences(3).join(" ")
         )
     pr.save!
@@ -266,11 +271,12 @@ namespace :db do
         
         :start_date  => start_date,
         :end_date => end_date,
-        :title => Faker::Lorem.words(5).to_s.capitalize,
+        :title => Faker::Lorem.words(5).join(" ").capitalize,
         :employee_id => employee.id,
         :group => group.sample,
         :office => employee.location,
         :relevant_skill =>  relevant_skill.join(", "),
+        :rstatus => 'Active',
         :project_help => Faker::Lorem.sentences(3).join(" ")
         )
     pr.save!
@@ -293,11 +299,12 @@ namespace :db do
           
           :start_date  => start_date,
           :end_date => end_date,
-          :title => Faker::Lorem.words(5).to_s.capitalize,
+          :title => Faker::Lorem.words(5).join(" ").capitalize,
           :employee_id => employee.id,
           :group => group.sample,
           :office => employee.location,
           :relevant_skill =>  relevant_skill.join(", "),
+          :rstatus => 'Active',
           :project_help => Faker::Lorem.sentences(3).join(" ")
          )
         pr.save!
@@ -311,6 +318,10 @@ namespace :db do
   end
   employees = Employee.all
   project_requests = ProjectRequest.all
+  project_requests.each do |project_request|
+    project_request.update_attribute :created_at, rand(6.months).ago
+  end
+ 
   emp_length = employees.length
   response_counter = 0
   self_counter = 0
@@ -322,7 +333,7 @@ namespace :db do
         3.times do
         re = Response.new(
           :project_request_id => project_request.id,
-          :message => Faker::Lorem.words(5).to_s.capitalize,
+          :message => Faker::Lorem.words(5).join(" ").capitalize,
           :employee_id => rand(1..emp_length),
           :created_at => project_request.start_date + 1.day,
          )
@@ -339,7 +350,7 @@ namespace :db do
       if emp_id == project_request.employee_id
         re = Response.new(
           :project_request_id => project_request.id,
-          :message => Faker::Lorem.words(5).to_s.capitalize,
+          :message => Faker::Lorem.words(5).join(" ").capitalize,
           :employee_id => emp_id,
           :created_at => project_request.start_date + 2.days,
         )
@@ -351,7 +362,7 @@ namespace :db do
                     :employee_id => emp_id,
                     :project_request_id => project_request.id,
                     :response_id => re.id,
-                    :comment => Faker::Lorem.words(5).to_s.capitalize,
+                    :comment => Faker::Lorem.words(5).join(" ").capitalize,
                     :created_at => re.created_at,
                   )
                   rs.save!
@@ -376,7 +387,7 @@ namespace :db do
           if emp_location == project_request.office 
                 re = Response.new(
                   :project_request_id => project_request.id,
-                  :message => Faker::Lorem.words(5).to_s.capitalize,
+                  :message => Faker::Lorem.words(5).join(" ").capitalize,
                   :employee_id => emp_id,
                   :created_at => project_request.start_date + 4.days,
                 )
@@ -388,7 +399,7 @@ namespace :db do
                     :employee_id => emp_id,
                     :project_request_id => project_request.id,
                     :response_id => re.id,
-                    :comment => Faker::Lorem.words(5).to_s.capitalize,
+                    :comment => Faker::Lorem.words(5).join(" ").capitalize,
                     :created_at => re.created_at + 3,
                   )
                   rs.save!
@@ -413,7 +424,7 @@ namespace :db do
             emp_id = employees.slice(x).id
                 re = Response.new(
                   :project_request_id => project_request.id,
-                  :message => Faker::Lorem.words(5).to_s.capitalize,
+                  :message => Faker::Lorem.words(5).join(" ").capitalize,
                   :employee_id => emp_id,
                   :created_at => project_request.start_date + 8.days,
                 )
@@ -434,7 +445,7 @@ namespace :db do
             :employee_id => response.employee_id,
             :project_request_id => response.project_request_id,
             :response_id => response.id,
-            :comment => Faker::Lorem.words(5).to_s.capitalize,
+            :comment => Faker::Lorem.words(5).join(" ").capitalize,
             :created_at => response.created_at + 5,
              )
                   rs.save!
@@ -446,9 +457,21 @@ namespace :db do
             break
           end
         end
-        end
       end
     end
+    project_requests = ProjectRequest.all
+     request_counter = 0
+    project_requests.each do |project_request|
+    if project_request.request_status != 1
+      project_request.update_attribute :rstatus, 'Cancel'
+      request_counter += 1
+    end
+    if request_counter == 8
+      break
+    end
+  end
+  end
+
   end
 end
   

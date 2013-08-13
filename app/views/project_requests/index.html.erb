@@ -1,9 +1,5 @@
  <%= render 'layouts/header' %>
- <head>
-  <title>Tabbed Structure - REgular</title>
-  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
-</head>
-<body>
+ 
   <div id="tabbed_box_1" class="tabbed_box">
    
     <div id="navigation">
@@ -12,6 +8,7 @@
            <li><%= link_to 'My Profile', employee_path(current_employee) %></li>
            <li><%= link_to "Requests I've Posted", _my_requests_path %></li>
            <li><%= link_to "Post a New Request", new_project_request_path %></li>
+           <li><%= link_to "Dashboard", dashboard_path %></li>
           </ul>
         </div> 
         <p class="navline"></p>   

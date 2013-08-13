@@ -1,0 +1,66 @@
+<%= render 'layouts/header' %>
+
+  <div id="tabbed_box_1" class="tabbed_box">
+  
+    <div id="navigation">
+          <ul>
+           <li><%= link_to 'All Requests', project_requests_path %></li>
+           
+           <li><%= link_to 'My Profile', employee_path(current_employee) %></li>
+       
+           <li><%= link_to "Requests I've Posted", _my_requests_path %></li>
+           <li><%= link_to "Post a New Request", new_project_request_path %></li>
+            <li><%= link_to "Dashboard", dashboard_path, :class => 'current' %></li>
+          </ul>
+        </div>
+
+<div id="dashboard_navigation">
+<script type="text/javascript">
+  $(document).ready(function()    
+    {        
+         $("#overall").tablesorter();   
+    } 
+); 
+ </script>
+	<ul>
+           <li><%= link_to 'request report', _request_report_path %></li>
+
+           <li><%= link_to 'overall report', _overall_report_path, :class => 'current_dash' %></li>
+           <li><%= link_to 'time report', _time_report_path %></li>
+           <li><%= link_to 'developer skill report', _developer_skill_report_path %></li>
+           <li><%= link_to 'average report', _average_report_path %></li>
+
+            <li><%= link_to 'volunteer report', _volunteer_report_path %></li>
+            <li><%= link_to 'shared report', _shared_report_path %></li>
+            
+    </ul>   
+	</div>
+
+
+<p class="dash_header_overall"> Overall Activity Changes Queries and Results </p>
+<p class="dash_exit"></p>
+<div class="dashreport_overall">
+<table id="overall" class="tablesorter">
+	
+	<thead>
+	<tr class="dash_title">
+		<th>Created Date</th>
+		<th>Requests</th>
+		<th>Canceled Requests</th>
+		<th>Has Responses</th>
+		<th>Has Selections</th>
+	</tr>
+</thead>
+<tbody>
+	<% Dashboard.new.overall_report.each do |report| %>
+	<tr> 
+		<% report.each do |key, value| %>
+		  <td><%= value %></td>
+	
+		<% end %>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+<div id="overallchart"></div>	
+</div>

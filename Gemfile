@@ -3,9 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'jquery-rails', '2.0.2'
+gem 'jquery-ui-rails'
+gem 'jquery-tablesorter'
+gem "jquery_datepicker"
 
 
 group :development do
@@ -15,7 +16,9 @@ group :development do
   gem 'debugger'
 end
 
-
+group :production do
+  gem 'pg', '0.12.2'
+end
 
 
 # Gems used only for assets and not required
@@ -23,31 +26,23 @@ end
 group :assets do
   gem 'sass-rails',   '3.2.5'
   gem 'coffee-rails', '3.2.2'
-
+  gem 'morrisjs-rails'
+  gem 'raphael-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '1.2.3'
-  gem 'jquery-ui-rails'
-  
-  
+  gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails', '2.0.2'
 
 group :test do
-	gem 'capybara', '1.1.2'
+  gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '4.1.0'
   gem 'cucumber-rails', '1.2.1', :require => false
   gem 'database_cleaner', '0.7.0'
   gem 'faker', '1.0.1'
   gem 'populator'
 end
-
-group :production do
-	gem 'pg', '0.12.2'
-end
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

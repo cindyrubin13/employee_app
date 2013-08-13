@@ -1,0 +1,110 @@
+<%= render 'layouts/header' %>
+
+  <div id="tabbed_box_1" class="tabbed_box">
+  
+    <div id="navigation">
+          <ul>
+           <li><%= link_to 'All Requests', project_requests_path %></li>
+           
+           <li><%= link_to 'My Profile', employee_path(current_employee) %></li>
+       
+           <li><%= link_to "Requests I've Posted", _my_requests_path %></li>
+           <li><%= link_to "Post a New Request", new_project_request_path %></li>
+            <li><%= link_to "Dashboard", dashboard_path, :class => 'current' %></li>
+          </ul>
+</div>
+<div id="dashboard_navigation">
+
+	<ul>
+           <li><%= link_to 'request report', _request_report_path %></li>
+
+           <li><%= link_to 'overall report', _overall_report_path %></li>
+           <li><%= link_to 'time report', _time_report_path %></li>
+           <li><%= link_to 'developer skill report', _developer_skill_report_path %></li>
+           <li><%= link_to 'average report', _average_report_path %></li>
+
+            <li><%= link_to 'volunteer report', _volunteer_report_path %></li>
+            <li><%= link_to 'shared report', _shared_report_path, :class => 'current_dash' %></li>
+            
+    </ul>   
+	</div>
+
+<script type="text/javascript">
+  $(document).ready(function()    
+    {        
+         $("#threemonth").tablesorter();   
+    } 
+); 
+ </script><script type="text/javascript">
+  $(document).ready(function()    
+    {        
+         $("#sixmonth").tablesorter();   
+    } 
+); 
+ </script>
+ <script type="text/javascript">
+  $(document).ready(function()    
+    {        
+         $("#threemonth").tablesorter();   
+    } 
+); 
+ </script>
+<p class="dash_header_share"> Developers Queries and Results for the First Three Months</p>
+
+<div class="dashreport_shared1">
+ <table id="threemonth" class="tablesorter">
+	
+	<thead>
+	<tr class="dash_title">
+		<th>Location</th>
+		<th>Chicago</th>
+		<th>San Francisco</th>
+		<th>Houston</th>
+		<th>London</th>
+		<th>Mumbai</th>
+		<th>Boston</th>
+	</tr>
+
+	</thead>
+	<tbody>
+
+	<% Dashboard.new.three_month_report.each do |report| %>
+	<tr> 
+		<% report.each do |key, value| %>
+		  <td><%= value %></td>
+	
+		<% end %>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+</div>
+
+<p class="dash_header_shared2"> Developers Queries and Results for the First Six Months </p>
+<div class="dashreport_shared2">
+<table id="sixmonth" class="tablesorter">
+	
+	<thead>
+	<tr class="dash_title">
+		<th>Location</th>
+		<th>Chicago</th>
+		<th>San Francisco</th>
+		<th>Houston</th>
+		<th>London</th>
+		<th>Mumbai</th>
+		<th>Boston</th>
+	</tr>
+</thead>
+<tbody>
+	<% Dashboard.new.six_month_report.each do |report| %>
+	<tr> 
+		<% report.each do |key, value| %>
+		  <td><%= value %></td>
+	
+		<% end %>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+</div>	
+

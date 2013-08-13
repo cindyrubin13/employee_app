@@ -1,10 +1,9 @@
+  
+
   <%= render 'layouts/header' %>
  
- <head>
-  <title>Tabbed Structure - REgular</title>
-  <link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
-</head>
-<body>
+ 
+
   <div id="tabbed_box_1" class="tabbed_box">
    
     <div id="navigation">
@@ -13,10 +12,11 @@
            <li><%= link_to 'My Profile', employee_path(current_employee) %></li>
            <li><%= link_to "Requests I've Posted", _my_requests_path %></li>
            <li><%= link_to "Post a New Request", new_project_request_path, :class => 'current' %></li>
+           <li><%= link_to "Dashboard", dashboard_path %></li>
           </ul>
-        </div>  
+    </div>  
          <p class="navpost"></p>  
-      </div>
+  </div>
 
 <%= hidden_field_tag "project_request[relevant_skill][]", "" %>
 
@@ -47,7 +47,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :description %><br/>
+    <%= f.label :project_help %><br/>
     <%= f.text_area :project_help, :size => "40x6" %>
   </div>
    <div class="field">
@@ -58,18 +58,28 @@
  <div class="field">
     <%= f.label :start_date %>
   
-    <%= f.date_select(:start_date, :order => [:month, :day, :year], :default => @current_date) %>
+    <%= f.text_field :start_date %>
 
   </div>
-  
+
 <div class="field">
-    <%= f.label :end_date %>
-  
-    <%= f.date_select(:end_date, :order => [:month, :day, :year], :default => @current_date) %>
-  </div>
-  
 
- 
+    <%= f.label :end_date %>
+
+    <%= f.text_field :end_date %>
+
+  </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#project_request_end_date').datepicker();
+  });
+</script>
+
+ <script type="text/javascript">
+  $(document).ready(function() {
+    $('#project_request_start_date').datepicker();
+  });
+</script>
  
 <div class="proffice">
 <div class="field">
@@ -94,7 +104,7 @@
        <%= skill.language %>
      </div>
        <% end %>
-  
+
   <!--<div class="field">
     <%= f.label :status %><br />
     <%= f.text_field :status %>
@@ -107,6 +117,8 @@
   </div>
 </div>
 </div>
+</div>
+ </div>
 <% end %>
 
 
