@@ -13,6 +13,7 @@
             <li><%= link_to "Dashboard", dashboard_path, :class => 'current' %></li>
           </ul>
         </div>
+        </div>
 <div id="dashboard_navigation">
 
 	<ul>
@@ -24,14 +25,20 @@
   
            <li><%= link_to 'average report', _average_report_path %></li>
 
-            <li><%= link_to 'volunteer report', _volunteer_report_path %></li>
-            <li><%= link_to 'shared report', _shared_report_path %></li>
+           <li><%= link_to 'volunteer report', _volunteer_report_path %></li>
+           <li><%= link_to 'shared report', _shared_report_path %></li>
             
     </ul>   
 	</div>
 
 
-
+<script type="text/javascript">
+  $(document).ready(function()    
+    {        
+         $("#request").tablesorter();   
+    } 
+); 
+ </script>
 <p class="dash_exit"></p>
 <p class="dash_header"> Project Requests Queries and Results </p>
 <div class="dashreport">
@@ -64,11 +71,5 @@
 
 
 </div>
-  <script type="text/javascript">
-  $(document).ready(function()    
-    {        
-         $("#request").tablesorter();   
-    } 
-); 
- </script>
+  
     

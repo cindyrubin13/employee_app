@@ -8,7 +8,8 @@
 
   border: 3px solid #006400;
   background-color: #32CD32;
-  width: 100;
+  /* changed width size to 67% from 100*/
+  width: 60%;
   color: black;
   padding: 50px;
   margin: 40px;
@@ -22,7 +23,8 @@
 .headsignoutlink {
   position: absolute;
   top: 65px;
-  right: 60px;
+  /* changed location of signout link to 560 rfrom 60*/
+  right: 560px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -46,7 +48,7 @@
 }
 
 .projects {
-  border: 1px solid 006400;
+  border: 1px solid #006400;
   background-color: #99FF66;
   color: black;
   border-radius: 4px;
@@ -121,7 +123,7 @@ footer {
   margin-bottom: 0;
   padding-left: 2px;
   padding-right: 2px;
-  line-height: small;
+  line-height: 10px;
 
 }
 
@@ -618,14 +620,15 @@ p {
 }
 /* sidebar */
 
-aside {
+/*aside {
   section {
     padding: 10px 0;
     border-top: 1px solid gray;
     &:first-child {
       border: 0;
       padding-top: 0;
-    }
+    
+  }
     span {
       display: block;
       margin-bottom: 3px;
@@ -639,7 +642,7 @@ aside {
       margin-top: 0px;
     }
   }
-}
+} */
 
 .gravatar {
   float: left;
@@ -957,7 +960,8 @@ ul.tabs li a  {
   padding-bottom: 15px;
   padding-left: 5px;
    padding-right: 5px;
-  left: 27%;
+   /* changed to 20% from 27% */
+  left: 20%;
   
 }
 #averagechart {
@@ -1098,7 +1102,7 @@ ul.tabs li a  {
  #dashboard_navigation li {
   display: block;
   color: #458B00;
-  border-collapse: none;
+  /*border-collapse: none;*/
   border-left: 1px solid #458B00;
   border-top: 1px solid #458B00;
   border-right: 1px solid #458B00;
@@ -1193,8 +1197,10 @@ ul.tabs li a  {
   border: 3px solid #458B00;
   padding: 1px;
   margin: 1px;
-  width: 60%;
-  left: 27%;
+  /* changed width to 47% from 60% */
+  width: 47%;
+  /* changed to 20% from 27% */
+  left: 20%;
   border-radius: 10px;
   margin-bottom: 15px; 
   
@@ -1210,6 +1216,8 @@ ul.tabs li a  {
   font-size: 15px;
   padding-left: 5%;
 }
+
+
 /*#dashboard_navigation .current {
   border-radius: 15px;
   border-left: 3px solid #458B00;

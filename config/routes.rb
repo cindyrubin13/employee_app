@@ -21,6 +21,8 @@ EmpApp::Application.routes.draw do
   
  match '/signup', to: 'employees#new'
  root to:  'static_pages#home'
+#root to: 'project_requests#index'
+ #match '/', to: 'project_requests#index'
  match '/', to: 'static_pages#home'
   match '/signup', to: 'employees#new'
    match '/signin',  to: 'sessions#new'
